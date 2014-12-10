@@ -16,6 +16,6 @@ putenv is envisioned as an extensible vm provisioning and bootstrap automation t
 
 
 
-<footer
-This tool is the re-write of the elevage tool that incorporates a plug-in architecture to enable easier use of mutltiple virtualization infrastructures.
+#### under development
+This tool is the re-write of the elevage tool that will incorporate a plug-in architecture to enable easier use of mutltiple virtualization infrastructures.
 
