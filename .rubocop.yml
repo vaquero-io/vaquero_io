@@ -1,0 +1,7 @@
+AllCops:
+  Exclude:
+    - Guardfile
+Metrics/AbcSize:
+  Enabled: false
+Style/SpecialGlobalVars:
+  Enabled: false

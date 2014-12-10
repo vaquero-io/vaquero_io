@@ -1,8 +1,12 @@
 [![Build Status](https://travis-ci.org/ActiveSCM/putenv.svg?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/ActiveSCM/putenv.png?travis)][gemnasium]
 [![Coverage Status](https://coveralls.io/repos/ActiveSCM/putenv/badge.png?branch=master)][coveralls]
+[![Inline docs](http://inch-ci.org/github/ActiveSCM/putenv.png?branch=master)][inch]
 
 [travis]: http://travis-ci.org/ActiveSCM/putenv
+[gemnasium]: https://gemnasium.com/ActiveSCM/putenv
 [coveralls]: https://coveralls.io/r/ActiveSCM/putenv
+[inch]: http://inch-ci.org/github/ActiveSCM/putenv
 
 # putenv: environment provisioning
 
@@ -13,5 +17,5 @@ putenv is envisioned as an extensible vm provisioning and bootstrap automation t
 
 
 <footer
-This tool is the re-write of the elevage tool that incorporates a plug-in architecture to enable easier use of mutltiple virtualization ingrastructures.
+This tool is the re-write of the elevage tool that incorporates a plug-in architecture to enable easier use of mutltiple virtualization infrastructures.
 
