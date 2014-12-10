@@ -1,0 +1,4 @@
+lib/putenv.rb 1d63e7140c27b7facc34108b5a7e310aa18af0a8
+lib/putenv/runner.rb cc160bd9eb301859a063a08a05b8f694f3465ac9
+lib/putenv/version.rb c91bc6452f286b7ceee20249132baba6336799c3
+lib/putenv/messages.rb 77b62f18a6bd0e7b32f35f2e1ed8142fbbb7aaf0
