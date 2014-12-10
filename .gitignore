@@ -6,4 +6,4 @@ vendor/
 # Misc things
 .idea/
 .ruby-version
-.coverage/
+coverage/
