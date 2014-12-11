@@ -23,13 +23,13 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '>= 0.27.0'
   spec.add_development_dependency 'aruba', '>= 0.6'
   spec.add_development_dependency 'rspec', '>= 3.0'
-  spec.add_development_dependency 'coveralls', '>= 0.7.0'
+  spec.add_development_dependency 'coveralls', '= 0.7.1'
   spec.add_development_dependency 'guard', '>= 2.10.0'
   spec.add_development_dependency 'guard-rubocop', '>= 1.1.0'
   # growl functionality in Guardfile depends on growl-notify
   spec.add_development_dependency 'growl', '>= 1.0'
   spec.add_development_dependency 'yard', '>= 0.8'
-  spec.add_dependency 'thor', '>= 0.17.0'
+  spec.add_dependency 'thor', '>= 0.18.0'
 end
 # rubocop:enable all
 

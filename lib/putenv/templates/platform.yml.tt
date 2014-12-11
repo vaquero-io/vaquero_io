@@ -1,0 +1,124 @@
+? "%YAML 1.2"
+provider:
+  #
+  name:
+  #
+  location:
+  #
+  # desc:
+  #
+  structure:
+
+    platform:
+      path:
+      references:
+        - vcenter
+        - compute
+        - network
+      params:
+        name:
+          type: string
+          match: 'regex'
+        description:
+          type: string
+          match: 'regex'
+        environments:
+          type: array
+          	type: string
+          	match: 'regex'
+        nodename:
+          type: array
+          	type: string
+          	match: 'regex'
+        pools:
+          count:
+            type: integer
+            range: 1..100
+          runlist:
+            type: string
+              type: string
+              match: 'regex'
+          componentrole:
+            type: string
+            match: 'regex'
+          compute:
+            type: string
+            match: 'regex'
+          network:
+            type: string
+            match: 'regex'
+          vcenter:
+            type: string
+            match: 'regex'
+        components:
+
+    environment:
+
+    vcenter:
+      path: 'infrastrucure/'
+      references:
+      params:
+        location:
+          type: string
+          match: 'regex'
+        host:
+          type: string
+          match: 'regex'
+        datacenter:
+          type: string
+          match: 'regex'
+        imagefolder:
+          type: string
+          match: 'regex'
+        destfolder:
+          type: string
+          match: 'regex'
+        resourcepool:
+          type: string
+          match: 'regex'
+        datastore:
+          type: string
+          match: 'regex'
+        domain:
+          type: string
+          match: 'regex'
+        envsubdomain:
+          type: boolean
+        dnsips:
+          type: array
+          	type: IP
+
+    network:
+      path: 'infrastructure/'
+      references:
+      params:
+        vlanid:
+          type: string
+          match: 'regex'
+        gateway:
+          type: IP
+        netmask:
+          type: integer
+          range: 1..24
+
+    compute:
+      path: 'infrastructure/'
+      references:
+      params:
+        ram:
+          type: integer
+          range: 128..262144
+        cpu:
+          type: integer
+          range: 1..16
+        drive:
+          type: hash
+            mount:
+              type: string
+              match: 'regex'
+            capacity:
+              type: integer
+              range: 8..2048
+        image:
+          type: string
+          match: 'regex'
