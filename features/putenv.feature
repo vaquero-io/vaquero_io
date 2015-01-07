@@ -12,7 +12,7 @@ Feature: Behavior of CLI with general features and commands
     And the following commands should be documented:
       |help|
       |version|
-      |provider|
+      |plugin|
 
   Scenario: Display gem version
 

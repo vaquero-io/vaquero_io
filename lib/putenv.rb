@@ -1,6 +1,7 @@
 require 'thor'
 require 'putenv/messages'
-require 'putenv/provider'
+require 'putenv/config'
+require 'putenv/plugin'
 
 # Refer to README.md for use instructions
 module Putenv
@@ -16,6 +17,6 @@ module Putenv
     end
 
     # subcommand in Thor called as registered class
-    register(Putenv::Provider, 'provider', 'provider COMMAND', DESC_PROVIDER)
+    register(Putenv::Plugin, 'plugin', 'plugin COMMAND', DESC_PLUGIN)
   end
 end

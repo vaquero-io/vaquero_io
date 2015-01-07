@@ -80,7 +80,7 @@
   
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/putenv.rb<span class="defines">,<br />
-  lib/putenv/runner.rb,<br /> lib/putenv/version.rb,<br /> lib/putenv/messages.rb</span>
+  lib/putenv/runner.rb,<br /> lib/putenv/plugin.rb,<br /> lib/putenv/config.rb,<br /> lib/putenv/version.rb,<br /> lib/putenv/messages.rb</span>
 </dd>
   
 </dl>
@@ -89,7 +89,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>string constants for interactive messages</p>
+<p>string constants for interactive messages rubocop:disable LineLength</p>
 
 
   </div>
@@ -103,7 +103,7 @@
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Putenv/CLI.html" title="Putenv::CLI (class)">CLI</a></span>, <span class='object_link'><a href="Putenv/Runner.html" title="Putenv::Runner (class)">Runner</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Putenv/CLI.html" title="Putenv::CLI (class)">CLI</a></span>, <span class='object_link'><a href="Putenv/Plugin.html" title="Putenv::Plugin (class)">Plugin</a></span>, <span class='object_link'><a href="Putenv/Runner.html" title="Putenv::Runner (class)">Runner</a></span>
     
   
 </p>
@@ -112,10 +112,51 @@
   
     <dl class="constants">
       
+        <dt id="PROVIDERFILE-constant" class="">PROVIDERFILE =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>plugin conventions</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Providerfile.yml</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="PATH_PROVIDERS-constant" class="">PATH_PROVIDERS =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='kw'>__FILE__</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>putenv</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>providers/</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="PATH_LIST_PLUGINS-constant" class="">PATH_LIST_PLUGINS =
+          
+        </dt>
+        <dd><pre class="code"><span class='comment'>#{PATH_PROVIDERS + &#39;**/*.yml&#39;} #{PROVIDERFILE}</span></pre></dd>
+      
+        <dt id="TEMPLATE_PROVIDER-constant" class="">TEMPLATE_PROVIDER =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>templates/</span><span class='embexpr_beg'>#{</span><span class='const'>PROVIDERFILE</span><span class='embexpr_end'>}</span><span class='tstring_content'>.tt</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="INSTALL_WORK_FOLDER-constant" class="">INSTALL_WORK_FOLDER =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_pwd'>pwd</span><span class='embexpr_end'>}</span><span class='tstring_content'>/tmp-providers</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="INSTALL_WORK_PROVIDER-constant" class="">INSTALL_WORK_PROVIDER =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>INSTALL_WORK_FOLDER</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='const'>PROVIDERFILE</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
         <dt id="VERSION-constant" class="">VERSION =
           
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0.1.0</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0.1.0.pre</span><span class='tstring_end'>&#39;</span></span></pre></dd>
       
         <dt id="DESC_VERSION-constant" class="">DESC_VERSION =
           <div class="docstring">
@@ -131,7 +172,58 @@
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Display gem version (Can also use -v)</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Display gem version</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_PLUGIN-constant" class="">DESC_PLUGIN =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Manage Provider plugin modules</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_PLUGIN_LIST-constant" class="">DESC_PLUGIN_LIST =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>List installed Provider plugins</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_PLUGIN_INSTALL-constant" class="">DESC_PLUGIN_INSTALL =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Install Provider plugin from LOCATION</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_PLUGIN_UPDATE-constant" class="">DESC_PLUGIN_UPDATE =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Update installed Provider plugins</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_PLUGIN_REMOVE-constant" class="">DESC_PLUGIN_REMOVE =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Remove installed Provider plugin</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_PLUGIN_INIT-constant" class="">DESC_PLUGIN_INIT =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Create new Providerfile template for custom provider development</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="NO_PROVIDER-constant" class="">NO_PROVIDER =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Error messages</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Missing or invalid Providerfile</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="PLUGINS_CURRENT-constant" class="">PLUGINS_CURRENT =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> provider already at current version</span><span class='tstring_end'>&#39;</span></span></pre></dd>
       
     </dl>
   
@@ -147,7 +239,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Dec 10 18:05:23 2014 by
+  Generated on Wed Jan  7 03:07:02 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.1.5).
 </div>
