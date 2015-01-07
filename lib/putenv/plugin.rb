@@ -28,7 +28,7 @@ module Putenv
         puts "Successfully installed #{latest['name']} (#{latest['version']})"
       end if latest != NO_PROVIDER
       clear_working_copy
-      fail(IOERROR, NO_PROVIDER) if latest == NO_PROVIDER
+      fail(IOError, NO_PROVIDER) if latest == NO_PROVIDER
     end
     # rubocop:enable LineLength
 
@@ -48,13 +48,18 @@ module Putenv
         end
       end
       update_list.each { |prov, ins_vers| update_plugin(prov, ins_vers) } if update_list != NO_PROVIDER
-      fail(IOERROR, NO_PROVIDER) if update_list == NO_PROVIDER
+      fail(IOError, NO_PROVIDER) if update_list == NO_PROVIDER
     end
     # rubocop:enable MethodLength, LineLength
 
     desc 'remove PROVIDER', DESC_PLUGIN_REMOVE
     def remove(plugin)
-      puts "remove #{plugin} [NOT YET IMPLEMENTED]"
+      if installed_providers.key?(plugin)
+        FileUtils.remove_dir("#{PATH_PROVIDERS}#{plugin}")
+        puts "#{plugin} removed"
+      else
+        fail(IOError, NO_PROVIDER)
+      end
     end
 
     private

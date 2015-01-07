@@ -46,6 +46,8 @@ Feature: Provider plugin modules
     Then the exit status should be 0
     And the output should contain "test-installed-a (0.0.0.a)"
     And the output should contain "test-installed-b (0.0.0.b)"
+    And I will clean up the test plugin "lib/providers/putenv-test-a" when finished
+    And I will clean up the test plugin "lib/providers/putenv-test-b" when finished
 
   Scenario: New Providerfile template
 
@@ -131,6 +133,17 @@ Feature: Provider plugin modules
     And the output should contain "called with no arguments"
 
     When I run `putenv plugin remove putenv-plugin-test`
-    Then the exit status should be 0
-    And the output should contain "[NOT YET IMPLEMENTED]"
+    Then the exit status should be 1
+    And the output should contain "Missing or invalid Providerfile"
 
+    Given a file named "../../lib/providers/putenv-plugin-test/Providerfile.yml" with:
+    """
+    provider:
+      name: putenv-plugin-test
+      version: 0.1.0.pre
+      location: https://github.com/ActiveSCM/putenv-plugin-test.git
+    """
+    When I run `putenv plugin remove putenv-plugin-test`
+    Then the exit status should be 0
+    And the output should contain "putenv-plugin-test removed"
+    And I will clean up the test plugin "lib/providers/putenv-plugin-test" when finished
