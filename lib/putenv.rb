@@ -1,5 +1,7 @@
 require 'thor'
 require 'putenv/messages'
+require 'putenv/config'
+require 'putenv/plugin'
 
 # Refer to README.md for use instructions
 module Putenv
@@ -9,9 +11,12 @@ module Putenv
     map '--version' => :version
     map '-v' => :version
 
-    desc 'version', DESC_VERSION
+    desc 'version, -v', DESC_VERSION
     def version
       puts VERSION
     end
+
+    # subcommand in Thor called as registered class
+    register(Putenv::Plugin, 'plugin', 'plugin COMMAND', DESC_PLUGIN)
   end
 end
