@@ -16,18 +16,6 @@ Feature: Provider plugin modules
       |update|
       |remove|
 
-  Scenario: List local Providers
-
-    Given a file named "Providerfile.yml" with:
-    """
-    provider:
-      name: test-development
-      version: 0.0.0
-    """
-    When I run `putenv plugin list`
-    Then the exit status should be 0
-    And the output should contain "development (0.0.0)"
-
   Scenario: List installed Providers
 
     Given a file named "../../lib/providers/putenv-test-a/Providerfile.yml" with:
@@ -59,8 +47,9 @@ Feature: Provider plugin modules
     And the file "Providerfile.yml" should contain:
     """
     provider:
-      name: template
-      version: '0.0.0'
+      # define the plugin name that can be used to select this provider from the command line or environmental variable
+      name:
+      version: 0.0.0
     """
 
     When I run `putenv plugin init example`

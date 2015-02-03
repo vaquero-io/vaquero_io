@@ -3,10 +3,15 @@
 module Putenv
   # plugin conventions
   PROVIDERFILE = 'Providerfile.yml'
-  PATH_PROVIDERS = "#{File.dirname(__FILE__).chomp('putenv')}providers/"
-  PATH_LIST_PLUGINS = %W(#{PATH_PROVIDERS + '**/*.yml'} #{PROVIDERFILE})
+  PROVIDERS_PATH = "#{File.dirname(__FILE__).chomp('putenv')}providers/"
+  LIST_PLUGINS_PATH = "#{PROVIDERS_PATH + '**/Providerfile.yml'}"
   TEMPLATE_PROVIDER = "templates/#{PROVIDERFILE}.tt"
-  INSTALL_WORK_FOLDER = "#{Dir.pwd}/tmp-providers"
-  INSTALL_WORK_PROVIDER = "#{INSTALL_WORK_FOLDER}/#{PROVIDERFILE}"
+  TMP_INSTALL_FOLDER = "#{Dir.pwd}/tmp-providers"
+  TMP_INSTALL_PROVIDER = "#{TMP_INSTALL_FOLDER}/#{PROVIDERFILE}"
+
+  # provider platform temmplates
+
+  # system variables
+  PUTENV_PROVIDER = 'PUTENV_PROVIDER'
 end
 # rubocop:enable LineLength

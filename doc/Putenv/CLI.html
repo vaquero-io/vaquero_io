@@ -130,6 +130,28 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#new-instance_method" title="#new (instance method)">- (Object) <strong>new</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#version-instance_method" title="#version (instance method)">- (Object) <strong>version</strong> </a>
     
 
@@ -160,7 +182,37 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="version-instance_method">
+  <h3 class="signature first" id="new-instance_method">
+  
+    - (<tt>Object</tt>) <strong>new</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/putenv.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
+  <span class='const'>Putenv</span><span class='op'>::</span><span class='const'>Provider</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:provider</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_new_definition'>new_definition</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="version-instance_method">
   
     - (<tt>Object</tt>) <strong>version</strong> 
   
@@ -174,12 +226,12 @@
       <pre class="lines">
 
 
-15
 16
-17</pre>
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/putenv.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/putenv.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_version'>version</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='const'>VERSION</span>
@@ -194,7 +246,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Jan  7 03:07:02 2015 by
+  Generated on Tue Feb  3 12:44:14 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.1.5).
 </div>

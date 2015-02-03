@@ -1,6 +1,8 @@
-lib/putenv.rb 5a027865eec6890c6e84fbc6c43ad1177d47b35c
+lib/putenv.rb 7e8e691f1a836c9be50f4891b7837cccdc80b1db
+lib/putenv/plugin.rb 55f010429e216c0b2d87cb9eca706ba304d79df7
 lib/putenv/runner.rb cc160bd9eb301859a063a08a05b8f694f3465ac9
-lib/putenv/plugin.rb a3a4b4ac5bc129d796c58dfa75e405c44b3e57f5
-lib/putenv/config.rb ee054e550481d290c20dbebbc096ea5eda9e57ed
+lib/putenv/config.rb 486e919fe62cdd07aef6c7f96967cfed79bfde8a
 lib/putenv/version.rb d563e2bf7f62a34e366b32923b93c6dd6652afb4
-lib/putenv/messages.rb 11165cef599d1d722d03a49b7c33b280d4f8812f
+lib/putenv/messages.rb 55ee5f9da06a04bf8704b7df33c816b0443cb052
+lib/putenv/provider.rb 041071a12809029c54c9903cfc943c2b4778b0d8
+lib/providers/putenv-vsphere/putenv_vsphere.rb 7d07c9f9708165f44bee14e08ab0d4877ddde334

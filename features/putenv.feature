@@ -13,9 +13,16 @@ Feature: Behavior of CLI with general features and commands
       |help|
       |version|
       |plugin|
+      |new|
 
   Scenario: Display gem version
 
     When I run `putenv -v`
     Then the output should display the version
 
+# commands
+#
+#  $putenv new <appname>, create yml folder structure for new platform definition
+#  $putenv generate <environment>, generate new environment yml for current platform
+#  $putenv validate [-e <env>, -p] no param is all, -e is specifici env, -p is platform files only
+#  $putenv build

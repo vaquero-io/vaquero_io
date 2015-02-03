@@ -4,21 +4,30 @@
 # https://github.com/ActiveSCM/putenv/wiki/Custom-Provider-Plugins
 #
 provider:
-  name: template
-  version: '0.0.0'
+  # define the plugin name that can be used to select this provider from the command line or environmental variable
+  name:
+  version: 0.0.0
+
   # Repository location for installation and updates
   location:
-  # desc:
 
   structure:
 
     platform:
       # default to present working directory to find platform.yml
       path:
+
       # Use of additional reference files is optional (see documentation)
-      # Compute is a likely requirement and included in the template
+      #
+      # Example
+      #
+      # references:
+      #   - compute
+      #   - tags
+      #
       references:
-        - compute
+        -
+
       params:
         name:
           type: string
