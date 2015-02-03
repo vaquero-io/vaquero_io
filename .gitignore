@@ -3,8 +3,10 @@ Gemfile.lock
 .bundle/
 vendor/
 
+
 # Misc things
 .idea/
 .ruby-version
 coverage/
 pkg/
+lib/providers/

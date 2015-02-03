@@ -2,6 +2,7 @@ require 'thor'
 require 'putenv/messages'
 require 'putenv/config'
 require 'putenv/plugin'
+require 'putenv/provider'
 
 # Refer to README.md for use instructions
 module Putenv
@@ -14,6 +15,12 @@ module Putenv
     desc 'version, -v', DESC_VERSION
     def version
       puts VERSION
+    end
+
+    desc 'new', DESC_NEW
+    method_options %w( provider -p ) => :string
+    def new
+      Putenv::Provider.new(options[:provider]).new_definition
     end
 
     # subcommand in Thor called as registered class
