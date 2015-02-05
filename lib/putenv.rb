@@ -3,6 +3,7 @@ require 'putenv/messages'
 require 'putenv/config'
 require 'putenv/plugin'
 require 'putenv/provider'
+require 'putenv/platform'
 
 # Refer to README.md for use instructions
 module Putenv
@@ -21,6 +22,12 @@ module Putenv
     method_options %w( provider -p ) => :string
     def new
       Putenv::Provider.new(options[:provider]).new_definition
+    end
+
+    desc 'health [ENVIRONMENT]', DESC_HEALTH
+    method_options %w( provider -p ) => :string
+    def health(env='')
+      puts HEALTHY if Putenv::Platform.new(Putenv::Provider.new(options[:provider])).healthy?(env)
     end
 
     # subcommand in Thor called as registered class

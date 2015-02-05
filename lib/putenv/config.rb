@@ -10,6 +10,7 @@ module Putenv
   TMP_INSTALL_PROVIDER = "#{TMP_INSTALL_FOLDER}/#{PROVIDERFILE}"
 
   # provider platform temmplates
+  PLATFORMFILE = 'platform.yml'
 
   # system variables
   PUTENV_PROVIDER = 'PUTENV_PROVIDER'

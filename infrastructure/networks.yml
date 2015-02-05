@@ -1,0 +1,15 @@
+networks:
+  # Any number of networks may be specified. Networks are assigned to components as part
+  # of the component definition. The vcenter vlan id is used to specify the network.
+  #
+  # Example:
+  #
+  #  devweb:
+  #    vlanid: DEV_WEB_NET
+  #    gateway: 10.10.128.1
+  #    netmask: 19
+  #
+  devweb:
+    vlanid: DEV_WEB_NET
+    gateway: 10.10.128.1
+    netmask: 19

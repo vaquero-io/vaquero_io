@@ -1,8 +1,6 @@
 module Putenv
   # comment
-  class Provider < Thor::Group
-    include Thor::Actions
-
+  class Provider
     attr_accessor :provider
     attr_accessor :definition
 
