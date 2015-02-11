@@ -1,0 +1,66 @@
+vcenter:
+  # you can add as many vcenter definitions as required. The default file configuratioon
+  # includes two in the form of a production and non production datacenter.
+  # Key elements are as follows:
+  #
+  # geo           geographic location of a physical data center. Primarily for use in DR defintions
+  # timezone      node timezone setting
+  # host          hostname of vcenter management server
+  # datacenter    vcenter 'datacenter' folder
+  # imagefolder   vcenter resource folder where the clone image is located
+  # destfolder    vcenter resource folder destination for provisioned vms
+  # resourcepool  vcenter resource pool for the provisioned vms
+  # appendenv     if true the destfolder path will be appended with the environment name
+  # appenddomain  if true the domain will be pre-pended with environment name
+  # datastore     prefix of desired datastorecluster.  knife vsphere datastorecluster maxfree will determine
+  # domain        domain for fqdn of host
+  # dnsips        ips of dns servers
+  #
+  # Example
+  #
+  #  locations:
+  #      nonprod: &vcenter
+  #        geo: west
+  #        timezone: 085
+  #
+  #        host: 'vcwest.corp.local'
+  #        datacenter: 'WCDC NonProd'
+  #        imagefolder: 'Corporate/Platform Services/Templates'
+  #        destfolder: 'Corporate/Platform Services/app'
+  #        resourcepool: 'App-Web Linux/Corporate'
+  #        appendenv: true
+  #        appenddomain: true
+  #        appendtier: false
+  #        datastore: 'NonProd_Cor_PlaSer'
+  #
+  #        domain: dev.corp.local
+  #        dnsips:
+  #          - 10.10.10.5
+  #          - 10.10.10.6
+  #
+  #      prod:
+  #        <<: *vcenter
+  #
+  #        datacenter: 'WCDC Prod'
+  #        datastore: 'Prod_Cor_PlaSer'
+  #
+  #        domain: corp.local
+  #        dnsips:
+  #          - 10.20.100.5
+  #          - 10.20.100.6
+  #
+  nonprod: &default
+    location: west
+    host: vcenter.local
+    datacenter: WCDC_nonprod
+    imagefolder: 'compute/images'
+    destfolder: 'aw/nonprod'
+    resourcepool: 'aw'
+    datastore: 'aw_data'
+    domain: active.local
+    envsubdomain: true
+    dnsips:
+      - 10.20.30.40
+
+  prod:
+    <<: *default

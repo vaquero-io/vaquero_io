@@ -4,12 +4,10 @@ platform:
   plugin_version: 0.1.0.pre
 
   environments:
-    - int
-    - qa
+    -
 
   nodename:
-    - 'node'
-    - instance
+    -
 
   # You can add any other custom attributes to the platform definition
   # by creating additional yml files with key values. The referenced
@@ -71,12 +69,9 @@ platform:
   pools:
 
     defaultpool: &defaultpool
-      vcenter: nonprod
-      networks: devweb
-      compute: nonprodweb
-      count: 2
+      count: 0
       runlist:
-        - '%role[loc_uswest]'
+        - 'role[loc_uswest]'
         - 'recipe[loc_uswest]'
       componentrole: 'role[aw_#]'
       chefserver: https://manage.chef.io

@@ -28,7 +28,7 @@ module Putenv
   FAIL_PROVIDER = 'Incorrect Provider'
   WARN_PROVIDER_VERSION = 'Warning: Version difference between Provider plugin and platform definition'
   FAIL_EMPTY_ENVIRONMENTS = 'Empty environments definition'
-  FAIL_EMPTY_NODENAME = 'Emptry nodename convention'
+  FAIL_EMPTY_NODENAME = 'Empty nodename convention'
   FAIL_REQUIRED_FILES = 'No references to required file:'
 end
 # rubocop:enable LineLength
