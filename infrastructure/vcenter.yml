@@ -50,20 +50,15 @@ vcenter:
   #          - 10.20.100.6
   #
   nonprod: &default
-    geo: west
-    timezone: 85
-
+    location: west
     host: vcenter.local
     datacenter: WCDC_nonprod
     imagefolder: 'compute/images'
     destfolder: 'aw/nonprod'
     resourcepool: 'aw'
-    appendenv: false
-    appenddomain: false
-    appendtier: false
     datastore: 'aw_data'
-
     domain: active.local
+    envsubdomain: true
     dnsips:
       - 10.20.30.40
 

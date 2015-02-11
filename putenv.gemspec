@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'putenv'
   spec.version       = Putenv::VERSION
   spec.authors       = %w('Nic Cheneweth','Gregory Ruiz-ade')
-  spec.email         = %w('Nic.Cheneweth@activenetwork.com','gregory.ruiz-ade@activenetwork.com')
+  spec.email         = %w('Nic.Cheneweth@thoughtworks.com','gregory.ruiz-ade@activenetwork.com')
   spec.summary       = 'Automated provisioning of application environments'
   spec.description   = 'Command line tool to automate the provision and bootstrap of virtual machine application environments'
   spec.homepage      = ''
@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '>= 0.27.0'
   spec.add_development_dependency 'aruba', '>= 0.6'
   spec.add_development_dependency 'rspec', '>= 3.0'
-  spec.add_development_dependency 'coveralls', '= 0.7.1'
+  spec.add_development_dependency 'coveralls', '>= 0.7.9'
   spec.add_development_dependency 'guard', '>= 2.10.0'
   spec.add_development_dependency 'guard-rubocop', '>= 1.1.0'
   # growl functionality in Guardfile depends on growl-notify

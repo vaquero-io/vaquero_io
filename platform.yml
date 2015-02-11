@@ -76,8 +76,8 @@ platform:
       compute: nonprodweb
       count: 2
       runlist:
-        - 'bob'
-        - 'tom'
+        - 'role[loc_uswest]'
+        - 'recipe[loc_uswest]'
       componentrole: 'role[aw_#]'
       chefserver: https://manage.chef.io
       addresses:

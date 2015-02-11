@@ -19,10 +19,11 @@ compute:
   #
   default: &default
     cpu: 1
-    ram: 1
+    ram: 2048
     drive:
-      mount: 'media/data'
+      mount: '/media/data'
       capacity: 8192
+    image: 'centos_2015.xxx'
 
   nonprodweb:
     <<: *default
