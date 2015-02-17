@@ -9,13 +9,13 @@ Feature: Provider Health check
     Given a file named "platform.yml" with:
     """
     platform:
-      product: aw
-      provider: putenv-vsphere
+      product: test
+      provider: putenv-plugin-test
       plugin_version: 0.1.0.pre
 
       environments:
-        - int
-        - qa
+        - dev
+        - prod
 
       nodename:
         - 'node'
@@ -45,45 +45,11 @@ Feature: Provider Health check
       #     - tags
       #
 
-      # Pools are used to define all the required elements of a component.
-      # If you have a front-end web tier, the number of servers in the pool,
-      # the ram, cpu, image to use, etc, are all defined in a pool
-      # definition.
-      #
-      # The keys defined in this template are considered required for this plugin
-      # though you can add additional keys either through references files
-      # or directly.
-      #
-      # vcenter         reference to record set in vcenter required file
-      # network         reference to record set in network required file
-      # compute         reference to record set in compute required file
-      # count           The number of components in the load balance pool
-      # runlist         Chef runlist(s) for the node, array of strings
-      # componentrole   optional custom role created by substituting the component name for # in the supplied string
-      # chefserver      url for chef server
-      # addresses       not necessary to define specific values in a pool definition, must include array of IP in component
-      #
-      # Example
-      #
-      # pools:
-      #   webdefault: &webdefault
-      #     vcenter: nonprod
-      #     network: devweb
-      #     compute: nonprodweb
-      #     count: 2
-      #     runlist:
-      #       - 'role[loc_uswest]'
-      #       - 'role[base]'
-      #     componentrole: 'role[aw_#]'
-      #     chefserver: https://chef
-      #
-      #
       pools:
 
         defaultpool: &defaultpool
-          vcenter: nonprod
-          networks: devweb
-          compute: nonprodweb
+          file1: nonprod
+          file2: devweb
           count: 2
           runlist:
             - 'role[loc_uswest]'
@@ -229,7 +195,8 @@ Feature: Provider Health check
         <<: *default
 
     """
-    When I run `putenv health -p putenv-vsphere`
+    When I run `putenv plugin install https://github.com/ActiveSCM/putenv-plugin-test.git`
+    When I run `putenv health -p putenv-plugin-test`
     Then the exit status should be 0
     And the output should contain "Success:"
 
@@ -457,7 +424,8 @@ Feature: Provider Health check
         <<: *default
 
     """
-    When I run `putenv health -p putenv-vsphere`
+    When I run `putenv plugin install https://github.com/ActiveSCM/putenv-plugin-test.git`
+    When I run `putenv health -p putenv-plugin-test`
     And the output should contain "Empty environments definition"
     And the output should contain "Empty nodename convention"
     And the output should contain "No references to required file:vcenter"

@@ -5,6 +5,8 @@ vendor/
 
 
 # Misc things
+required/
+platform.yml
 .idea/
 .ruby-version
 coverage/
