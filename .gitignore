@@ -5,6 +5,8 @@ vendor/
 
 
 # Misc things
+environments/
+infrastructure/
 required/
 platform.yml
 .idea/
@@ -12,3 +14,5 @@ platform.yml
 coverage/
 pkg/
 lib/providers/
+.DS_Store
+tmp/

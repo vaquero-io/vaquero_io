@@ -4,6 +4,8 @@ require 'putenv/config'
 require 'putenv/plugin'
 require 'putenv/provider'
 require 'putenv/platform'
+require 'putenv/build'
+require 'putenv/provision'
 
 # Refer to README.md for use instructions
 module Putenv
@@ -34,5 +36,6 @@ module Putenv
 
     # subcommand in Thor called as registered class
     register(Putenv::Plugin, 'plugin', 'plugin COMMAND', DESC_PLUGIN)
+    register(Putenv::Build, 'build', 'build TARGET', DESC_BUILD)
   end
 end

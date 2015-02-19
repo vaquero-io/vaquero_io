@@ -17,6 +17,14 @@ Feature: Provider Health check
         - dev
         - prod
 
+      #
+      # environment    environment name from the key above
+      # component      component name
+      # instance       single leading zero 0..9, up to count of component pool
+      # geo            first letter of geo key value
+      # 'string'       any single quoted string, escape char not evaluated
+      #
+
       nodename:
         - 'node'
         - instance
@@ -48,8 +56,8 @@ Feature: Provider Health check
       pools:
 
         defaultpool: &defaultpool
-          file1: nonprod
-          file2: devweb
+          file1: devweb
+          file2: nonprodweb
           count: 2
           runlist:
             - 'role[loc_uswest]'
@@ -73,26 +81,25 @@ Feature: Provider Health check
             - 10.10.10.10
             - 10.10.10.20
     """
-    Given a file named "infrastructure/compute.yml" with:
+    Given a file named "required/file1.yml" with:
     """
-    compute:
-      # The compute name is used to specify the compute resources used in the provsioning of the component node
+    file1:
       #
-      # Example:
-      #
-      #   dev:
-      #     cpu: 2
-      #     ram: 1
-      #     drive:
-      #       mount: '/media/data'\
-      #       capacity: 8192
-      #
-      #   prod:
-      #     cpu: 2
-      #     ram: 12
-      #     drive:
-      #       mount: '/media/data'\
-      #       capacity: 8192
+      file1record1:
+        any_alphanumeric: DEV_WEB_NET
+        any_IP: 10.10.128.1
+        any_integer: 19
+        any_boolean: true
+
+      file1record2:
+        any_alphanumeric: PROD_WEB_NET
+        any_IP: 10.10.20.1
+        any_integer: 24
+        any_boolean: false
+    """
+    Given a file named "required/file2.yml" with:
+    """
+    file2:
       #
       default: &default
         cpu: 1
@@ -105,100 +112,26 @@ Feature: Provider Health check
       nonprodweb:
         <<: *default
 
-    """
-    Given a file named "infrastructure/networks.yml" with:
-    """
-    networks:
-      # Any number of networks may be specified. Networks are assigned to components as part
-      # of the component definition. The vcenter vlan id is used to specify the network.
-      #
-      # Example:
-      #
-      #  devweb:
-      #    vlanid: DEV_WEB_NET
-      #    gateway: 10.10.128.1
-      #    netmask: 19
-      #
-      devweb:
-        vlanid: DEV_WEB_NET
-        gateway: 10.10.128.1
-        netmask: 19
-
-    """
-    Given a file named "infrastructure/vcenter.yml" with:
-    """
-    vcenter:
-      # you can add as many vcenter definitions as required. The default file configuratioon
-      # includes two in the form of a production and non production datacenter.
-      # Key elements are as follows:
-      #
-      # geo           geographic location of a physical data center. Primarily for use in DR defintions
-      # timezone      node timezone setting
-      # host          hostname of vcenter management server
-      # datacenter    vcenter 'datacenter' folder
-      # imagefolder   vcenter resource folder where the clone image is located
-      # destfolder    vcenter resource folder destination for provisioned vms
-      # resourcepool  vcenter resource pool for the provisioned vms
-      # appendenv     if true the destfolder path will be appended with the environment name
-      # appenddomain  if true the domain will be pre-pended with environment name
-      # datastore     prefix of desired datastorecluster.  knife vsphere datastorecluster maxfree will determine
-      # domain        domain for fqdn of host
-      # dnsips        ips of dns servers
-      #
-      # Example
-      #
-      #  locations:
-      #      nonprod: &vcenter
-      #        geo: west
-      #        timezone: 085
-      #
-      #        host: 'vcwest.corp.local'
-      #        datacenter: 'WCDC NonProd'
-      #        imagefolder: 'Corporate/Platform Services/Templates'
-      #        destfolder: 'Corporate/Platform Services/app'
-      #        resourcepool: 'App-Web Linux/Corporate'
-      #        appendenv: true
-      #        appenddomain: true
-      #        appendtier: false
-      #        datastore: 'NonProd_Cor_PlaSer'
-      #
-      #        domain: dev.corp.local
-      #        dnsips:
-      #          - 10.10.10.5
-      #          - 10.10.10.6
-      #
-      #      prod:
-      #        <<: *vcenter
-      #
-      #        datacenter: 'WCDC Prod'
-      #        datastore: 'Prod_Cor_PlaSer'
-      #
-      #        domain: corp.local
-      #        dnsips:
-      #          - 10.20.100.5
-      #          - 10.20.100.6
-      #
-      nonprod: &default
-        location: west
-        host: vcenter.local
-        datacenter: WCDC_nonprod
-        imagefolder: 'compute/images'
-        destfolder: 'aw/nonprod'
-        resourcepool: 'aw'
-        datastore: 'aw_data'
-        domain: active.local
-        envsubdomain: true
-        dnsips:
-          - 10.20.30.40
-
-      prod:
+      prodweb:
         <<: *default
+        ram: 4096
+        drive:
+          capacity: 28192
+
+    """
+    Given a file named "environments/dev.yml" with:
+    """
+
+    """
+    Given a file named "environments/prod.yml" with:
+    """
 
     """
     When I run `putenv plugin install https://github.com/ActiveSCM/putenv-plugin-test.git`
     When I run `putenv health -p putenv-plugin-test`
     Then the exit status should be 0
     And the output should contain "Success:"
+    And I will clean up the test plugin "lib/providers/putenv-plugin-test" when finished
 
   Scenario: Health check of a incorrectly defined platform (stress each param in test platform.yml)
 
@@ -209,12 +142,20 @@ Feature: Provider Health check
     Given a file named "platform.yml" with:
     """
     platform:
-      product: aw
-      provider: putenv-vsphere
+      product: test
+      provider: putenv-plugin-test
       plugin_version: 0.1.0.pre
 
       environments:
         -
+
+      #
+      # environment    environment name from the key above
+      # component      component name
+      # instance       single leading zero 0..9, up to count of component pool
+      # geo            first letter of geo key value
+      # 'string'       any single quoted string, escape char not evaluated
+      #
 
       nodename:
         -
@@ -243,48 +184,13 @@ Feature: Provider Health check
       #     - tags
       #
 
-      # Pools are used to define all the required elements of a component.
-      # If you have a front-end web tier, the number of servers in the pool,
-      # the ram, cpu, image to use, etc, are all defined in a pool
-      # definition.
-      #
-      # The keys defined in this template are considered required for this plugin
-      # though you can add additional keys either through references files
-      # or directly.
-      #
-      # vcenter         reference to record set in vcenter required file
-      # network         reference to record set in network required file
-      # compute         reference to record set in compute required file
-      # count           The number of components in the load balance pool
-      # runlist         Chef runlist(s) for the node, array of strings
-      # componentrole   optional custom role created by substituting the component name for # in the supplied string
-      # chefserver      url for chef server
-      # addresses       not necessary to define specific values in a pool definition, must include array of IP in component
-      #
-      # Example
-      #
-      # pools:
-      #   webdefault: &webdefault
-      #     vcenter: nonprod
-      #     network: devweb
-      #     compute: nonprodweb
-      #     count: 2
-      #     runlist:
-      #       - 'role[loc_uswest]'
-      #       - 'role[base]'
-      #     componentrole: 'role[aw_#]'
-      #     chefserver: https://chef
-      #
-      #
       pools:
 
         defaultpool: &defaultpool
-          count: 0
-          runlist:
-            - 'role[loc_uswest]'
-            - 'recipe[loc_uswest]'
-          componentrole: 'role[aw_#]'
-          chefserver: https://manage.chef.io
+          count: 25
+          runlist: 'string instead of array'
+          componentrole: 'role[aw_%]'
+          chefserver: 10.10.10.1
           addresses:
             -
 
@@ -293,7 +199,7 @@ Feature: Provider Health check
         api:
           <<: *defaultpool
           addresses:
-            - 10.10.10.1
+            - 10.10.300.1
             - 10.10.10.2
 
         aui:
@@ -302,143 +208,69 @@ Feature: Provider Health check
             - 10.10.10.10
             - 10.10.10.20
     """
-    Given a file named "infrastructure/compute.yml" with:
+    Given a file named "required/file1.yml" with:
     """
-    compute:
-      # The compute name is used to specify the compute resources used in the provsioning of the component node
+    file1:
       #
-      # Example:
-      #
-      #   dev:
-      #     cpu: 2
-      #     ram: 1
-      #     drive:
-      #       mount: '/media/data'\
-      #       capacity: 8192
-      #
-      #   prod:
-      #     cpu: 2
-      #     ram: 12
-      #     drive:
-      #       mount: '/media/data'\
-      #       capacity: 8192
+      file1record1:
+        any_alphanumeric: 0
+        any_IP: 10.10.300.1
+        any_integer: 30
+        any_boolean: random
+
+      file1record2:
+        any_alphanumeric: PROD_WEB_NET
+        any_IP: 10.10.20.1
+        any_integer: 24
+        any_boolean: false
+    """
+    Given a file named "required/file2.yml" with:
+    """
+    file2:
       #
       default: &default
-        cpu: 1
-        ram: 2048
+        cpu: 100
+        ram: 0
         drive:
-          mount: '/media/data'
-          capacity: 8192
-        image: 'centos_2015.xxx'
+          mount: 0
+          capacity: 0
+        image:
 
       nonprodweb:
         <<: *default
 
-    """
-    Given a file named "infrastructure/networks.yml" with:
-    """
-    networks:
-      # Any number of networks may be specified. Networks are assigned to components as part
-      # of the component definition. The vcenter vlan id is used to specify the network.
-      #
-      # Example:
-      #
-      #  devweb:
-      #    vlanid: DEV_WEB_NET
-      #    gateway: 10.10.128.1
-      #    netmask: 19
-      #
-      devweb:
-        vlanid: DEV_WEB_NET
-        gateway: 10.10.128.1
-        netmask: 19
-
-    """
-    Given a file named "infrastructure/vcenter.yml" with:
-    """
-    vcenter:
-      # you can add as many vcenter definitions as required. The default file configuratioon
-      # includes two in the form of a production and non production datacenter.
-      # Key elements are as follows:
-      #
-      # geo           geographic location of a physical data center. Primarily for use in DR defintions
-      # timezone      node timezone setting
-      # host          hostname of vcenter management server
-      # datacenter    vcenter 'datacenter' folder
-      # imagefolder   vcenter resource folder where the clone image is located
-      # destfolder    vcenter resource folder destination for provisioned vms
-      # resourcepool  vcenter resource pool for the provisioned vms
-      # appendenv     if true the destfolder path will be appended with the environment name
-      # appenddomain  if true the domain will be pre-pended with environment name
-      # datastore     prefix of desired datastorecluster.  knife vsphere datastorecluster maxfree will determine
-      # domain        domain for fqdn of host
-      # dnsips        ips of dns servers
-      #
-      # Example
-      #
-      #  locations:
-      #      nonprod: &vcenter
-      #        geo: west
-      #        timezone: 085
-      #
-      #        host: 'vcwest.corp.local'
-      #        datacenter: 'WCDC NonProd'
-      #        imagefolder: 'Corporate/Platform Services/Templates'
-      #        destfolder: 'Corporate/Platform Services/app'
-      #        resourcepool: 'App-Web Linux/Corporate'
-      #        appendenv: true
-      #        appenddomain: true
-      #        appendtier: false
-      #        datastore: 'NonProd_Cor_PlaSer'
-      #
-      #        domain: dev.corp.local
-      #        dnsips:
-      #          - 10.10.10.5
-      #          - 10.10.10.6
-      #
-      #      prod:
-      #        <<: *vcenter
-      #
-      #        datacenter: 'WCDC Prod'
-      #        datastore: 'Prod_Cor_PlaSer'
-      #
-      #        domain: corp.local
-      #        dnsips:
-      #          - 10.20.100.5
-      #          - 10.20.100.6
-      #
-      nonprod: &default
-        location: west
-        host: vcenter.local
-        datacenter: WCDC_nonprod
-        imagefolder: 'compute/images'
-        destfolder: 'aw/nonprod'
-        resourcepool: 'aw'
-        datastore: 'aw_data'
-        domain: active.local
-        envsubdomain: true
-        dnsips:
-          - 10.20.30.40
-
-      prod:
+      prodweb:
         <<: *default
+        ram: 4096
+        drive:
+          capacity: 28192
+
+    """
+    Given a file named "environments/dev.yml" with:
+    """
+
+    """
+    Given a file named "environments/prod.yml" with:
+    """
 
     """
     When I run `putenv plugin install https://github.com/ActiveSCM/putenv-plugin-test.git`
     When I run `putenv health -p putenv-plugin-test`
     And the output should contain "Empty environments definition"
     And the output should contain "Empty nodename convention"
-    And the output should contain "No references to required file:vcenter"
-    And the output should contain "No references to required file:network"
-    And the output should contain "No references to required file:compute"
+    And the output should contain "No references to required file:file1"
+    And the output should contain "No references to required file:file2"
     And the output should contain "Validation error: api:count"
-#    And the output should contain "Validation error: api:count"
-#    And the output should contain "Validation error: api:count"
-#    And the output should contain "Validation error: api:count"
-#    And the output should contain "Validation error: api:count"
-#    And the output should contain "Validation error: api:count"
-#    And the output should contain "Validation error: api:count"
-#    And the output should contain "Validation error: api:count"
-#    And the output should contain "Validation error: api:count"
-#    And the output should contain "Validation error: api:count"
-#    And the output should contain "Validation error: api:count"
+    And the output should contain "Validation error: api:runlist"
+    And the output should contain "Validation error: api:componentrole"
+    And the output should contain "Validation error: api:chefserver"
+    And the output should contain "Validation error: api:addresses"
+    And the output should contain "Validation error: file1record1:any_alphanumeric"
+    And the output should contain "Validation error: file1record1:any_IP"
+    And the output should contain "Validation error: file1record1:any_integer"
+    And the output should contain "Validation error: file1record1:any_boolean"
+    And the output should contain "Validation error: default:cpu"
+    And the output should contain "Validation error: default:ram"
+    And the output should contain "Validation error: default:drive"
+    And the output should contain "Validation error: default:image"
+    And I will clean up the test plugin "lib/providers/putenv-plugin-test" when finished

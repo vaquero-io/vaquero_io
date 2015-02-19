@@ -8,6 +8,7 @@ module Putenv
   TEMPLATE_PROVIDER = "templates/#{PROVIDERFILE}.tt"
   TMP_INSTALL_FOLDER = "#{Dir.pwd}/tmp-providers"
   TMP_INSTALL_PROVIDER = "#{TMP_INSTALL_FOLDER}/#{PROVIDERFILE}"
+  ENVIRONMENTFILE = 'environments/'
 
   # provider platform temmplates
   PLATFORMFILE = 'platform.yml'
