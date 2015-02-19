@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Putenv::Build
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!Putenv/Build.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (B)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Putenv.html" title="Putenv (module)">Putenv</a></span></span>
+     &raquo; 
+    <span class="title">Build</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Putenv::Build
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Thor::Group</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Thor::Group</li>
+          
+            <li class="next">Putenv::Build</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2">Thor::Actions</dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/putenv/build.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Instantiates the platform builds the environment hash then passes to
+provider plugin</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#source_root-class_method" title="source_root (class method)">+ (Object) <strong>source_root</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>TODO: we don&#39;t have a tier definition any longer class_option :tier,
+type: :string, aliases: &#39;-t&#39;, desc: DESC_BUILD_TIER TODO:
+Concurrency is an aspect of the provisioner not the tool so somehow you
+have to find a way to pass/set any kind of provider required options that
+is plugin agnostic class_option :concurrency, type: :numeric, aliases:
+&#39;-C&#39;, default: 8, desc: DESC_BUILD_CONCURRENCY TODO: What to do
+about logfiles? class_option :logfiles, type: :string, aliases:
+&#39;-l&#39;, default: &#39;logs&#39;, desc: DESC_BUILD_LOGFILES
+rubocop:enable LineLength.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#build-instance_method" title="#build (instance method)">- (Object) <strong>build</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="source_root-class_method">
+  
+    + (<tt>Object</tt>) <strong>source_root</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>TODO: we don&#39;t have a tier definition any longer class_option :tier,
+type: :string, aliases: &#39;-t&#39;, desc: DESC_BUILD_TIER TODO:
+Concurrency is an aspect of the provisioner not the tool so somehow you
+have to find a way to pass/set any kind of provider required options that
+is plugin agnostic class_option :concurrency, type: :numeric, aliases:
+&#39;-C&#39;, default: 8, desc: DESC_BUILD_CONCURRENCY TODO: What to do
+about logfiles? class_option :logfiles, type: :string, aliases:
+&#39;-l&#39;, default: &#39;logs&#39;, desc: DESC_BUILD_LOGFILES
+rubocop:enable LineLength</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/putenv/build.rb', line 26</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_source_root'>source_root</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='kw'>__FILE__</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="build-instance_method">
+  
+    - (<tt>Object</tt>) <strong>build</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32
+33
+34
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/putenv/build.rb', line 30</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_build'>build</span>
+  <span class='comment'># TODO: Initially, i am just passing the entire
+</span>  <span class='comment'># environment hash to the plugin
+</span>  <span class='comment'># But this can be further broken down based on parameters passed to build
+</span>  <span class='id identifier rubyid_test'>test</span> <span class='op'>=</span> <span class='const'>Putenv</span><span class='op'>::</span><span class='const'>Platform</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Putenv</span><span class='op'>::</span><span class='const'>Provider</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:provider</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_test'>test</span><span class='period'>.</span><span class='id identifier rubyid_environment'>environment</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_test'>test</span><span class='period'>.</span><span class='id identifier rubyid_provision'>provision</span><span class='lparen'>(</span><span class='id identifier rubyid_test'>test</span><span class='period'>.</span><span class='id identifier rubyid_env_definition'>env_definition</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Thu Feb 19 17:53:20 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.2.0).
+</div>
+
+  </body>
+</html>
