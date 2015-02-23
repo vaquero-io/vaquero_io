@@ -1,8 +1,11 @@
-lib/putenv.rb 7e8e691f1a836c9be50f4891b7837cccdc80b1db
+lib/putenv.rb f378747bce23a9be81485ec5df76c32278900acb
+lib/putenv/build.rb cd0ab1636e13d1c23dfc5e3117a116fb7cc20e7f
 lib/putenv/plugin.rb 55f010429e216c0b2d87cb9eca706ba304d79df7
 lib/putenv/runner.rb cc160bd9eb301859a063a08a05b8f694f3465ac9
-lib/putenv/config.rb 486e919fe62cdd07aef6c7f96967cfed79bfde8a
+lib/putenv/config.rb 6e72d5226ad6a010c540c9ee018f98d1a67a06e2
 lib/putenv/version.rb d563e2bf7f62a34e366b32923b93c6dd6652afb4
-lib/putenv/messages.rb 55ee5f9da06a04bf8704b7df33c816b0443cb052
-lib/putenv/provider.rb 041071a12809029c54c9903cfc943c2b4778b0d8
-lib/providers/putenv-vsphere/putenv_vsphere.rb 7d07c9f9708165f44bee14e08ab0d4877ddde334
+lib/putenv/messages.rb eff21903aeedd760986b362a9c1767a6636c1733
+lib/putenv/platform.rb 2ab16f3db2759f877008e9e15017f6bc48e118fe
+lib/putenv/provider.rb 6042846959417e5562022d294b8328c598f0d7b2
+lib/putenv/provision.rb 0b9d9ac7ac65a52af5bd3304e9d6f10543bee032
+lib/putenv/environment.rb da39a3ee5e6b4b0d3255bfef95601890afd80709

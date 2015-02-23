@@ -5,8 +5,14 @@ vendor/
 
 
 # Misc things
+environments/
+infrastructure/
+required/
+platform.yml
 .idea/
 .ruby-version
 coverage/
 pkg/
 lib/providers/
+.DS_Store
+tmp/

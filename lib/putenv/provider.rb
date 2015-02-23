@@ -1,8 +1,6 @@
 module Putenv
   # comment
-  class Provider < Thor::Group
-    include Thor::Actions
-
+  class Provider
     attr_accessor :provider
     attr_accessor :definition
 
@@ -10,6 +8,7 @@ module Putenv
     def initialize(use_provider)
       @provider = resolve_provider(use_provider)
       @definition = YAML.load_file(PROVIDERS_PATH + @provider + '/' + PROVIDERFILE).fetch('provider')
+      require PROVIDERS_PATH + @provider + '/' + @provider.gsub('-', '_') + '.rb'
     end
     # rubocop:enable LineLength
 

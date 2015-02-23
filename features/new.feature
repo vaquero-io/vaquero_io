@@ -104,6 +104,9 @@ Feature: New platform definition files for specified provider
     """
     file3:
     """
+    Given a file named "../../lib/providers/putenv-test-a/putenv_test_a.rb" with:
+    """
+    """
     When I run `putenv new --provider putenv-test-a`
     Then the exit status should be 0
     And the output should contain "Platform definition files successfully created"

@@ -28,6 +28,7 @@ module Putenv
       if installed_providers.key?(latest['name'])
         puts "#{latest['name']} already installed"
       else
+        Dir.mkdir(PROVIDERS_PATH) unless Dir.exist?(PROVIDERS_PATH)
         FileUtils.cp_r("#{TMP_INSTALL_FOLDER}/.", "#{PROVIDERS_PATH}#{latest['name']}")
         puts "Successfully installed #{latest['name']} (#{latest['version']})"
       end if latest != NO_PROVIDER_FILE
