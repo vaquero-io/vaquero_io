@@ -21,7 +21,7 @@ module Putenv
     end
 
     desc 'new', DESC_NEW
-    method_options %w( provider -p ) => :string
+    method_options %w( provider -p ) => :string, :required => false
     def new
       Putenv::Provider.new(options[:provider]).new_definition
     end
@@ -30,7 +30,9 @@ module Putenv
     desc 'health [ENVIRONMENT]', DESC_HEALTH
     method_options %w( provider -p ) => :string
     def health(env = '')
-      puts HEALTHY if Putenv::Platform.new(Putenv::Provider.new(options[:provider])).healthy?(env)
+      provider = options[:provider] ? Putenv::Provider.new(options[:provider]) : nil
+      # puts HEALTHY if Putenv::Platform.new(Putenv::Provider.new(options[:provider])).healthy?(env)
+      puts HEALTHY if Putenv::Platform.new(provider).healthy?(env)
     end
     # rubocop:enable LineLength
 
