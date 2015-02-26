@@ -16,12 +16,20 @@ module Putenv
     attr_accessor :env_definition
 
     # rubocop:disable MethodLength, LineLength
-    def initialize(provider)
+    def initialize(provider = nil)
       @provider = provider
       fail unless platform_files_exist?
       platform = YAML.load_file(PLATFORMFILE).fetch('platform')
       @product = platform['product']
       @product_provider = platform['provider']
+
+      # Lazy provider loading if we weren't given one...
+      if @provider.nil?
+        @provider = Putenv::Provider.new(@product_provider)
+        # re-test platform health
+        fail unless platform_files_exist?
+      end
+
       @product_provider_version = platform['plugin_version']
       @environments = platform['environments']
       @nodename = platform['nodename']
@@ -171,8 +179,10 @@ module Putenv
     # rubocop:disable LineLength
     def platform_files_exist?
       fail(IOError, MISSING_PLATFORM) unless File.file?(PLATFORMFILE)
-      @provider.definition['structure']['require'].each do |required_file|
-        fail(IOError, MISSING_PLATFORM + required_file) unless File.file?(@provider.definition['structure'][required_file]['path'] + required_file + '.yml')
+      unless @provider.nil? # We can't check that everything's present yet...
+        @provider.definition['structure']['require'].each do |required_file|
+          fail(IOError, MISSING_PLATFORM + required_file) unless File.file?(@provider.definition['structure'][required_file]['path'] + required_file + '.yml')
+        end
       end
       true
     end
