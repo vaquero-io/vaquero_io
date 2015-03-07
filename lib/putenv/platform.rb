@@ -92,7 +92,7 @@ module Putenv
         @required.each do |required_item, _values|
           build_env['components'][component][required_item] = @required[required_item][build_env['components'][component][required_item]]
         end
-        config['componentrole'] = config['componentrole'].gsub('#', component) if config['componentrole']
+        config['component_role'] = config['component_role'].gsub('#', component) if config['component_role']
       end
       @env_definition = {}
       build_env['components'].each do |component, config|
