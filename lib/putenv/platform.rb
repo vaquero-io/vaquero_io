@@ -1,4 +1,5 @@
 require 'resolv'
+require 'uri'
 require 'putenv/provision'
 
 module Putenv
@@ -171,6 +172,8 @@ module Putenv
           (value.class != String) ? false : value.match(Regexp.new(validate['match']))
         when 'IP'
           (value.class != String) ? false : Resolv::IPv4::Regex.match(value)
+        when 'URL'
+          (value.class != String) ? false : value.match(URI.regexp)
         when 'boolean'
           !!value == value
         else
