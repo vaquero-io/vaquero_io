@@ -41,15 +41,12 @@ module Putenv
       plat = Putenv::Platform.new(provider)
 
       env_build = plat.environment(env)
-      puts "Platform:    #{plat.product}"
-      puts "Environment: #{env_build['environment']}"
 
       # here we figure out what to cut
 
       # If we're requesting a single component, we'll just do that.
       if options[:component]
         comp = options[:component]
-        puts "Component:   #{comp}"
         unless env_build['components'][comp]
           fail(IOError, "Requested component #{comp} not found in environment #{env}")
         end
@@ -59,9 +56,6 @@ module Putenv
           options[:node].split(/,/).each do |n|
             node_list << env_build['components'][comp]['nodes'][n.to_i - 1]
           end
-
-          puts "Nodes:"
-          node_list.each { |n| puts " - #{n}" }
 
           env_build['components'][comp]['nodes'] = node_list
           env_build['components'][comp]['count'] = node_list.size
