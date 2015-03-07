@@ -15,6 +15,7 @@ module Putenv
     class_option :verbose, type: :boolean, aliases: '-v', default: false
     class_option :provider, type: :string, aliases: '-p'
     class_option :verify_ssl, type: :boolean, default: true
+    class_option :dry_run, type: :boolean, default: false
     class_option :provider_username, type: :string, default: nil
     class_option :provider_password, type: :string, default: nil
     class_option :provider_options, type: :string, default: nil
@@ -74,10 +75,33 @@ module Putenv
         username:    options[:provider_username],
         password:    options[:provider_password],
         named_nodes: options[:named_nodes],
-        verify_ssl:  options[:verify_ssl]
+        verify_ssl:  options[:verify_ssl],
+        dry_run:     options[:dry_run]
       }.merge(provider_options)
 
-      plat.provision(env_build, provider_options)
+      if options[:dry_run]
+        puts "\nDry run only, will not do anything!\n"
+        puts "Calling provider #{provider} with options:"
+        provider_options.each { |k, v| puts " - '#{k}' = '#{v}'"}
+      end
+      puts "\nBuilding:"
+      puts "  Product: #{plat.product}"
+      puts "  Environment: #{env_build['environment']}"
+      puts '  Components:'
+      env_build['components'].each do |name, component|
+        print "   - #{name}"
+        component['nodes'].each_with_index do |n, i|
+          print ' (' if i == 0
+          print n
+          if i == component['nodes'].size - 1
+            puts ')'
+          else
+            print ', '
+          end
+        end
+      end
+
+      plat.provision(env_build, provider_options) # unless options[:dry_run]
     end
   end
 end
