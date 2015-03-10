@@ -45,13 +45,13 @@ module Putenv
     # rubocop:disable MethodLength, LineLength, CyclomaticComplexity, PerceivedComplexity
     def healthy?(env = '')
       health = ''
-      health += FAIL_PROVIDER if @provider.definition['name'] != @product_provider
+      health += (FAIL_PROVIDER + "\n") if @provider.definition['name'] != @product_provider
       puts WARN_PROVIDER_VERSION if @provider.definition['version'] != @product_provider_version
-      health += FAIL_EMPTY_ENVIRONMENTS unless @environments.all?
+      health += (FAIL_EMPTY_ENVIRONMENTS + "\n") unless @environments.all?
       @environments.each do |e|
         health += (FAIL_MISSING_ENV + e + "\n") unless File.file?(ENVIRONMENTFILE + e + '.yml')
       end if @environments.all?
-      health += FAIL_EMPTY_NODENAME unless @nodename.all?
+      health += (FAIL_EMPTY_NODENAME + "\n") unless @nodename.all?
 
       # confirm that the platform definition references all required files
       @provider.definition['structure']['require'].each do |required_file|
