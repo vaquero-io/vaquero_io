@@ -143,12 +143,8 @@ module Putenv
               health += "Validation error: #{component}:#{param}\n"
             end
           when value['hash']
-            if keys[param].class == Hash
-              keys[param].each do |k, v|
-                health += "Validation error: #{component}:#{param}\n" unless valid?(v, value['hash'])
-              end
-            else
-              health += "Validation error: #{component}:#{param}\n"
+            keys[param].each do |k, v|
+              health += "Validation error: #{component}:#{param}\n" unless valid?(v, value['hash'][k])
             end
           else
             health += "Validation error: #{component}:#{param}\n" unless valid?(keys[param], value)
