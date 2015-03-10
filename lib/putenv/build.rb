@@ -33,6 +33,8 @@ module Putenv
       File.dirname(__FILE__)
     end
 
+    # rubocop:disable MethodLength, LineLength, CyclomaticComplexity, PerceivedComplexity
+
     def build
       # TODO: Initially, i am just passing the entire
       # environment hash to the plugin
@@ -82,7 +84,7 @@ module Putenv
       if options[:dry_run]
         puts "\nDry run only, will not do anything!\n"
         puts "Calling provider #{provider} with options:"
-        provider_options.each { |k, v| puts " - '#{k}' = '#{v}'"}
+        provider_options.each { |k, v| puts " - '#{k}' = '#{v}'" }
       end
       puts "\nBuilding:"
       puts "  Product: #{plat.product}"
@@ -103,5 +105,7 @@ module Putenv
 
       plat.provision(env_build, provider_options) # unless options[:dry_run]
     end
+
+    # rubocop:enable MethodLength, LineLength, CyclomaticComplexity, PerceivedComplexity
   end
 end
