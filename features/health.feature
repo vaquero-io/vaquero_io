@@ -188,7 +188,7 @@ Feature: Provider Health check
 
         defaultpool: &defaultpool
           count: 25
-          runlist: 'string instead of array'
+          run_list: 'string instead of array'
           component_role: 'role[aw_%]'
           chef_server: 10.10.10.1
           addresses:
@@ -254,14 +254,14 @@ Feature: Provider Health check
     """
 
     """
-    When I run `putenv plugin install https://github.com/ActiveSCM/putenv-plugin-test.git`
+    When I run `putenv plugin install https://github.com/activenetwork-automation/putenv-plugin-test.git`
     When I run `putenv health -p putenv-plugin-test`
     And the output should contain "Empty environments definition"
     And the output should contain "Empty nodename convention"
     And the output should contain "No references to required file:file1"
     And the output should contain "No references to required file:file2"
     And the output should contain "Validation error: api:count"
-    And the output should contain "Validation error: api:runlist"
+    And the output should contain "Validation error: api:run_list"
     And the output should contain "Validation error: api:component_role"
     And the output should contain "Validation error: api:chef_server"
     And the output should contain "Validation error: api:addresses"
