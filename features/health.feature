@@ -136,7 +136,7 @@ Feature: Provider Health check
   Scenario: Health check of a incorrectly defined platform (stress each param in test platform.yml)
 
     # for required files: this test only omits. See later test for validation of provided entries
-    # for runlists: test emtpy array
+    # for run_lists: test empty array
     # for component_role: test mismatch regex
 
     Given a file named "platform.yml" with:
