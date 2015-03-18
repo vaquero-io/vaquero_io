@@ -56,7 +56,9 @@ module Putenv
         env_build['components'] = { comp => env_build['components'][comp] }
         if options[:node]
           node_list = []
+          node_max = env_build['components'][comp]['count']
           options[:node].split(/,/).each do |n|
+            fail(IOError, "Requested node (#{n}) greater than component count (#{node_max})") if n.to_i > node_max.to_i
             node_list << env_build['components'][comp]['nodes'][n.to_i - 1]
           end
 
