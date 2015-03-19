@@ -45,6 +45,14 @@ module Putenv
 
       env_build = plat.environment(env)
 
+      if env_build.nil?
+        puts ''
+        puts "Platform #{plat.product} definition handed us a nil object for environment #{env}"
+        puts 'Cowardly refusing to build invalid environment definition!'
+        puts ''
+        fail(IOError, "Validation of platform #{plat.product} environment #{env} failed.")
+      end
+
       # here we figure out what to cut
 
       # If we're requesting a single component, we'll just do that.
