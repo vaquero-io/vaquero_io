@@ -14,7 +14,7 @@ module Putenv
     class_option :named_nodes, type: :boolean, default: true
     class_option :verbose, type: :boolean, aliases: '-v', default: false
     class_option :provider, type: :string, aliases: '-p'
-    class_option :verify_ssl, type: :boolean, default: true
+    class_option :verify_ssl, type: :boolean, default: nil
     class_option :dry_run, type: :boolean, default: false
     class_option :provider_username, type: :string, default: nil
     class_option :provider_password, type: :string, default: nil
