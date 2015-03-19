@@ -79,6 +79,15 @@ module Putenv
       provider_options = {}
       options[:provider_options].split(/,/).each do |keyval|
         key, value = keyval.split(/=/)
+        # Convert the key to a symbol
+        key = key.to_sym
+        # Do some quick checks for obvious boolean values
+        case value.downcase
+        when 'true'
+          value = true
+        when 'false'
+          value = false
+        end
         provider_options[key] = value
       end if options[:provider_options]
 
