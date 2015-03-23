@@ -62,7 +62,7 @@ Feature: Provider plugin modules
     Then the exit status should be 0
     And the output should contain "called with no arguments"
 
-    When I run `putenv plugin install https://github.com/ActiveSCM/putenv-plugin-test.git`
+    When I run `putenv plugin install https://github.com/activenetwork-automation/putenv-plugin-test.git`
     Then the exit status should be 0
     And the output should contain "Successfully installed putenv-plugin-test"
     And the following files should exist:
@@ -73,7 +73,7 @@ Feature: Provider plugin modules
     provider:
       name: putenv-plugin-test
       version: 0.1.0.pre
-      location: https://github.com/ActiveSCM/putenv-plugin-test.git
+      location: https://github.com/activenetwork-automation/putenv-plugin-test.git
     """
     And I will clean up the test plugin "lib/providers/putenv-plugin-test" when finished
 
@@ -82,9 +82,9 @@ Feature: Provider plugin modules
     provider:
       name: putenv-plugin-test
       version: 0.1.0.pre
-      location: https://github.com/ActiveSCM/putenv-plugin-test.git
+      location: https://github.com/activenetwork-automation/putenv-plugin-test.git
     """
-    When I run `putenv plugin install https://github.com/ActiveSCM/putenv-plugin-test.git`
+    When I run `putenv plugin install https://github.com/activenetwork-automation/putenv-plugin-test.git`
     Then the exit status should be 0
     And the output should contain "putenv-plugin-test already installed"
     And I will clean up the test plugin "lib/providers/putenv-plugin-test" when finished
@@ -96,7 +96,7 @@ Feature: Provider plugin modules
     provider:
       name: putenv-plugin-test
       version: 0.1.0.pre
-      location: https://github.com/ActiveSCM/putenv-plugin-test.git
+      location: https://github.com/activenetwork-automation/putenv-plugin-test.git
     """
     When I run `putenv plugin update putenv-plugin-test`
     Then the exit status should be 0
@@ -108,7 +108,7 @@ Feature: Provider plugin modules
     provider:
       name: putenv-plugin-test
       version: 0.0.0.pre
-      location: https://github.com/ActiveSCM/putenv-plugin-test.git
+      location: https://github.com/activenetwork-automation/putenv-plugin-test.git
     """
     When I run `putenv plugin update putenv-plugin-test`
     Then the exit status should be 0
@@ -130,7 +130,7 @@ Feature: Provider plugin modules
     provider:
       name: putenv-plugin-test
       version: 0.1.0.pre
-      location: https://github.com/ActiveSCM/putenv-plugin-test.git
+      location: https://github.com/activenetwork-automation/putenv-plugin-test.git
     """
     When I run `putenv plugin remove putenv-plugin-test`
     Then the exit status should be 0

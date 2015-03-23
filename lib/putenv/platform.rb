@@ -1,4 +1,5 @@
 require 'resolv'
+require 'uri'
 require 'putenv/provision'
 
 module Putenv
@@ -16,12 +17,20 @@ module Putenv
     attr_accessor :env_definition
 
     # rubocop:disable MethodLength, LineLength
-    def initialize(provider)
+    def initialize(provider = nil)
       @provider = provider
       fail unless platform_files_exist?
       platform = YAML.load_file(PLATFORMFILE).fetch('platform')
       @product = platform['product']
       @product_provider = platform['provider']
+
+      # Lazy provider loading if we weren't given one...
+      if @provider.nil?
+        @provider = Putenv::Provider.new(@product_provider)
+        # re-test platform health
+        fail unless platform_files_exist?
+      end
+
       @product_provider_version = platform['plugin_version']
       @environments = platform['environments']
       @nodename = platform['nodename']
@@ -36,13 +45,13 @@ module Putenv
     # rubocop:disable MethodLength, LineLength, CyclomaticComplexity, PerceivedComplexity
     def healthy?(env = '')
       health = ''
-      health += FAIL_PROVIDER if @provider.definition['name'] != @product_provider
+      health += (FAIL_PROVIDER + "\n") if @provider.definition['name'] != @product_provider
       puts WARN_PROVIDER_VERSION if @provider.definition['version'] != @product_provider_version
-      health += FAIL_EMPTY_ENVIRONMENTS unless @environments.all?
+      health += (FAIL_EMPTY_ENVIRONMENTS + "\n") unless @environments.all?
       @environments.each do |e|
         health += (FAIL_MISSING_ENV + e + "\n") unless File.file?(ENVIRONMENTFILE + e + '.yml')
       end if @environments.all?
-      health += FAIL_EMPTY_NODENAME unless @nodename.all?
+      health += (FAIL_EMPTY_NODENAME + "\n") unless @nodename.all?
 
       # confirm that the platform definition references all required files
       @provider.definition['structure']['require'].each do |required_file|
@@ -83,7 +92,7 @@ module Putenv
         @required.each do |required_item, _values|
           build_env['components'][component][required_item] = @required[required_item][build_env['components'][component][required_item]]
         end
-        config['componentrole'] = config['componentrole'].gsub('#', component) if config['componentrole']
+        config['component_role'] = config['component_role'].gsub('#', component) if config['component_role']
       end
       @env_definition = {}
       build_env['components'].each do |component, config|
@@ -159,6 +168,8 @@ module Putenv
           (value.class != String) ? false : value.match(Regexp.new(validate['match']))
         when 'IP'
           (value.class != String) ? false : Resolv::IPv4::Regex.match(value)
+        when 'URL'
+          (value.class != String) ? false : value.match(URI.regexp)
         when 'boolean'
           !!value == value
         else
@@ -171,8 +182,10 @@ module Putenv
     # rubocop:disable LineLength
     def platform_files_exist?
       fail(IOError, MISSING_PLATFORM) unless File.file?(PLATFORMFILE)
-      @provider.definition['structure']['require'].each do |required_file|
-        fail(IOError, MISSING_PLATFORM + required_file) unless File.file?(@provider.definition['structure'][required_file]['path'] + required_file + '.yml')
+      unless @provider.nil? # We can't check that everything's present yet...
+        @provider.definition['structure']['require'].each do |required_file|
+          fail(IOError, MISSING_PLATFORM + required_file) unless File.file?(@provider.definition['structure'][required_file]['path'] + required_file + '.yml')
+        end
       end
       true
     end

@@ -99,7 +99,7 @@
   
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/putenv/platform.rb<span class="defines">,<br />
-  lib/putenv/provision.rb</span>
+  lib/putenv/provision.rb,<br /> lib/providers/putenv-vcoworkflow/putenv_vcoworkflow.rb</span>
 </dd>
   
 </dl>
@@ -108,7 +108,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>comment</p>
+<p>Platform</p>
 
 
   </div>
@@ -441,7 +441,7 @@ PerceivedComplexity.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Platform) <strong>initialize</strong>(provider) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Platform) <strong>initialize</strong>(provider = nil) </a>
     
 
     
@@ -477,14 +477,14 @@ PerceivedComplexity.</p>
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Platform/Provision.html" title="Putenv::Platform::Provision (module)">Provision</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Platform/Provision.html#provision-instance_method" title="Putenv::Platform::Provision#provision (method)">#provision</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Platform/Provision.html#execute-instance_method" title="Putenv::Platform::Provision#execute (method)">#execute</a></span>, <span class='object_link'><a href="Platform/Provision.html#provision-instance_method" title="Putenv::Platform::Provision#provision (method)">#provision</a></span>, <span class='object_link'><a href="Platform/Provision.html#set_parameters-instance_method" title="Putenv::Platform::Provision#set_parameters (method)">#set_parameters</a></span>, <span class='object_link'><a href="Platform/Provision.html#watch_executions-instance_method" title="Putenv::Platform::Provision#watch_executions (method)">#watch_executions</a></span></p>
 <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="Putenv::Platform (class)">Platform</a></span></tt>) <strong>initialize</strong>(provider) 
+    - (<tt><span class='object_link'><a href="" title="Putenv::Platform (class)">Platform</a></span></tt>) <strong>initialize</strong>(provider = nil) 
   
 
   
@@ -507,7 +507,6 @@ PerceivedComplexity.</p>
       <pre class="lines">
 
 
-19
 20
 21
 22
@@ -521,17 +520,34 @@ PerceivedComplexity.</p>
 30
 31
 32
-33</pre>
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 20</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@provider</span> <span class='op'>=</span> <span class='id identifier rubyid_provider'>provider</span>
   <span class='id identifier rubyid_fail'>fail</span> <span class='kw'>unless</span> <span class='id identifier rubyid_platform_files_exist?'>platform_files_exist?</span>
   <span class='id identifier rubyid_platform'>platform</span> <span class='op'>=</span> <span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='const'>PLATFORMFILE</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>platform</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='ivar'>@product</span> <span class='op'>=</span> <span class='id identifier rubyid_platform'>platform</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>product</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
   <span class='ivar'>@product_provider</span> <span class='op'>=</span> <span class='id identifier rubyid_platform'>platform</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>provider</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+
+  <span class='comment'># Lazy provider loading if we weren&#39;t given one...
+</span>  <span class='kw'>if</span> <span class='ivar'>@provider</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='ivar'>@provider</span> <span class='op'>=</span> <span class='const'>Putenv</span><span class='op'>::</span><span class='const'>Provider</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@product_provider</span><span class='rparen'>)</span>
+    <span class='comment'># re-test platform health
+</span>    <span class='id identifier rubyid_fail'>fail</span> <span class='kw'>unless</span> <span class='id identifier rubyid_platform_files_exist?'>platform_files_exist?</span>
+  <span class='kw'>end</span>
+
   <span class='ivar'>@product_provider_version</span> <span class='op'>=</span> <span class='id identifier rubyid_platform'>platform</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>plugin_version</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
   <span class='ivar'>@environments</span> <span class='op'>=</span> <span class='id identifier rubyid_platform'>platform</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>environments</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
   <span class='ivar'>@nodename</span> <span class='op'>=</span> <span class='id identifier rubyid_platform'>platform</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nodename</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -579,12 +595,12 @@ PerceivedComplexity.</p>
       <pre class="lines">
 
 
-14
 15
-16</pre>
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_components'>components</span>
   <span class='ivar'>@components</span>
@@ -622,12 +638,12 @@ PerceivedComplexity.</p>
       <pre class="lines">
 
 
-16
 17
-18</pre>
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_env_definition'>env_definition</span>
   <span class='ivar'>@env_definition</span>
@@ -665,12 +681,12 @@ PerceivedComplexity.</p>
       <pre class="lines">
 
 
-12
 13
-14</pre>
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_environments'>environments</span>
   <span class='ivar'>@environments</span>
@@ -708,12 +724,12 @@ PerceivedComplexity.</p>
       <pre class="lines">
 
 
-13
 14
-15</pre>
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_nodename'>nodename</span>
   <span class='ivar'>@nodename</span>
@@ -751,12 +767,12 @@ PerceivedComplexity.</p>
       <pre class="lines">
 
 
-10
 11
-12</pre>
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_product'>product</span>
   <span class='ivar'>@product</span>
@@ -794,12 +810,12 @@ PerceivedComplexity.</p>
       <pre class="lines">
 
 
-11
 12
-13</pre>
+13
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_product_provider'>product_provider</span>
   <span class='ivar'>@product_provider</span>
@@ -837,12 +853,12 @@ PerceivedComplexity.</p>
       <pre class="lines">
 
 
-11
 12
-13</pre>
+13
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_product_provider_version'>product_provider_version</span>
   <span class='ivar'>@product_provider_version</span>
@@ -880,12 +896,12 @@ PerceivedComplexity.</p>
       <pre class="lines">
 
 
-9
 10
-11</pre>
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_provider'>provider</span>
   <span class='ivar'>@provider</span>
@@ -923,12 +939,12 @@ PerceivedComplexity.</p>
       <pre class="lines">
 
 
-15
 16
-17</pre>
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_required'>required</span>
   <span class='ivar'>@required</span>
@@ -971,15 +987,6 @@ PerceivedComplexity.</p>
       <pre class="lines">
 
 
-71
-72
-73
-74
-75
-76
-77
-78
-79
 80
 81
 82
@@ -998,10 +1005,19 @@ PerceivedComplexity.</p>
 95
 96
 97
-98</pre>
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_environment'>environment</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_healthy?'>healthy?</span>
@@ -1018,7 +1034,7 @@ PerceivedComplexity.</p>
     <span class='ivar'>@required</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_required_item'>required_item</span><span class='comma'>,</span> <span class='id identifier rubyid__values'>_values</span><span class='op'>|</span>
       <span class='id identifier rubyid_build_env'>build_env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>components</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_component'>component</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_required_item'>required_item</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@required</span><span class='lbracket'>[</span><span class='id identifier rubyid_required_item'>required_item</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_build_env'>build_env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>components</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_component'>component</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_required_item'>required_item</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
-    <span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>componentrole</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>componentrole</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>#</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_component'>component</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>componentrole</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>component_role</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>component_role</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>#</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_component'>component</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>component_role</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
   <span class='kw'>end</span>
   <span class='ivar'>@env_definition</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_build_env'>build_env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>components</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_component'>component</span><span class='comma'>,</span> <span class='id identifier rubyid_config'>config</span><span class='op'>|</span>
@@ -1076,15 +1092,6 @@ PerceivedComplexity</p>
       <pre class="lines">
 
 
-37
-38
-39
-40
-41
-42
-43
-44
-45
 46
 47
 48
@@ -1106,20 +1113,29 @@ PerceivedComplexity</p>
 64
 65
 66
-67</pre>
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/putenv/platform.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_healthy?'>healthy?</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_health'>health</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
-  <span class='id identifier rubyid_health'>health</span> <span class='op'>+=</span> <span class='const'>FAIL_PROVIDER</span> <span class='kw'>if</span> <span class='ivar'>@provider</span><span class='period'>.</span><span class='id identifier rubyid_definition'>definition</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='ivar'>@product_provider</span>
+  <span class='id identifier rubyid_health'>health</span> <span class='op'>+=</span> <span class='lparen'>(</span><span class='const'>FAIL_PROVIDER</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@provider</span><span class='period'>.</span><span class='id identifier rubyid_definition'>definition</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='ivar'>@product_provider</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='const'>WARN_PROVIDER_VERSION</span> <span class='kw'>if</span> <span class='ivar'>@provider</span><span class='period'>.</span><span class='id identifier rubyid_definition'>definition</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>version</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='ivar'>@product_provider_version</span>
-  <span class='id identifier rubyid_health'>health</span> <span class='op'>+=</span> <span class='const'>FAIL_EMPTY_ENVIRONMENTS</span> <span class='kw'>unless</span> <span class='ivar'>@environments</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span>
+  <span class='id identifier rubyid_health'>health</span> <span class='op'>+=</span> <span class='lparen'>(</span><span class='const'>FAIL_EMPTY_ENVIRONMENTS</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='ivar'>@environments</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span>
   <span class='ivar'>@environments</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span>
     <span class='id identifier rubyid_health'>health</span> <span class='op'>+=</span> <span class='lparen'>(</span><span class='const'>FAIL_MISSING_ENV</span> <span class='op'>+</span> <span class='id identifier rubyid_e'>e</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_file?'>file?</span><span class='lparen'>(</span><span class='const'>ENVIRONMENTFILE</span> <span class='op'>+</span> <span class='id identifier rubyid_e'>e</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.yml</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span> <span class='kw'>if</span> <span class='ivar'>@environments</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span>
-  <span class='id identifier rubyid_health'>health</span> <span class='op'>+=</span> <span class='const'>FAIL_EMPTY_NODENAME</span> <span class='kw'>unless</span> <span class='ivar'>@nodename</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span>
+  <span class='id identifier rubyid_health'>health</span> <span class='op'>+=</span> <span class='lparen'>(</span><span class='const'>FAIL_EMPTY_NODENAME</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='ivar'>@nodename</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span>
 
   <span class='comment'># confirm that the platform definition references all required files
 </span>  <span class='ivar'>@provider</span><span class='period'>.</span><span class='id identifier rubyid_definition'>definition</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>structure</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>require</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_required_file'>required_file</span><span class='op'>|</span>
@@ -1152,9 +1168,9 @@ PerceivedComplexity</p>
 </div>
 
     <div id="footer">
-  Generated on Thu Feb 19 17:53:20 2015 by
+  Generated on Fri Mar 20 14:30:24 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.2.0).
+  0.8.7.6 (ruby-2.1.5).
 </div>
 
   </body>

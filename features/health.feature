@@ -59,11 +59,11 @@ Feature: Provider Health check
           file1: devweb
           file2: nonprodweb
           count: 2
-          runlist:
+          run_list:
             - 'role[loc_uswest]'
             - 'recipe[loc_uswest]'
-          componentrole: 'role[aw_#]'
-          chefserver: https://manage.chef.io
+          component_role: 'role[aw_#]'
+          chef_server: https://manage.chef.io
           addresses:
             -
 
@@ -136,8 +136,8 @@ Feature: Provider Health check
   Scenario: Health check of a incorrectly defined platform (stress each param in test platform.yml)
 
     # for required files: this test only omits. See later test for validation of provided entries
-    # for runlists: test emtpy array
-    # for componentrole: test mismatch regex
+    # for run_lists: test empty array
+    # for component_role: test mismatch regex
 
     Given a file named "platform.yml" with:
     """
@@ -188,9 +188,9 @@ Feature: Provider Health check
 
         defaultpool: &defaultpool
           count: 25
-          runlist: 'string instead of array'
-          componentrole: 'role[aw_%]'
-          chefserver: 10.10.10.1
+          run_list: 'string instead of array'
+          component_role: 'role[aw_%]'
+          chef_server: 10.10.10.1
           addresses:
             -
 
@@ -254,16 +254,16 @@ Feature: Provider Health check
     """
 
     """
-    When I run `putenv plugin install https://github.com/ActiveSCM/putenv-plugin-test.git`
+    When I run `putenv plugin install https://github.com/activenetwork-automation/putenv-plugin-test.git`
     When I run `putenv health -p putenv-plugin-test`
     And the output should contain "Empty environments definition"
     And the output should contain "Empty nodename convention"
     And the output should contain "No references to required file:file1"
     And the output should contain "No references to required file:file2"
     And the output should contain "Validation error: api:count"
-    And the output should contain "Validation error: api:runlist"
-    And the output should contain "Validation error: api:componentrole"
-    And the output should contain "Validation error: api:chefserver"
+    And the output should contain "Validation error: api:run_list"
+    And the output should contain "Validation error: api:component_role"
+    And the output should contain "Validation error: api:chef_server"
     And the output should contain "Validation error: api:addresses"
     And the output should contain "Validation error: file1record1:any_alphanumeric"
     And the output should contain "Validation error: file1record1:any_IP"
