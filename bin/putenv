@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'putenv/runner'
+
+Putenv::Runner.new(ARGV.dup).execute!

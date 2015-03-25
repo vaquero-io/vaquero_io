@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Putenv
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!Putenv.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (P)</a> &raquo;
+    
+    
+    <span class="title">Putenv</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Putenv
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/putenv.rb<span class="defines">,<br />
+  lib/putenv/build.rb,<br /> lib/putenv/config.rb,<br /> lib/putenv/runner.rb,<br /> lib/putenv/plugin.rb,<br /> lib/putenv/version.rb,<br /> lib/putenv/provider.rb,<br /> lib/putenv/platform.rb,<br /> lib/putenv/messages.rb,<br /> lib/putenv/provision.rb,<br /> lib/providers/putenv-vcoworkflow/putenv_vcoworkflow.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Basically a dummy placeholder for the provision method that plugins will
+override</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Putenv/Build.html" title="Putenv::Build (class)">Build</a></span>, <span class='object_link'><a href="Putenv/CLI.html" title="Putenv::CLI (class)">CLI</a></span>, <span class='object_link'><a href="Putenv/Platform.html" title="Putenv::Platform (class)">Platform</a></span>, <span class='object_link'><a href="Putenv/Plugin.html" title="Putenv::Plugin (class)">Plugin</a></span>, <span class='object_link'><a href="Putenv/Provider.html" title="Putenv::Provider (class)">Provider</a></span>, <span class='object_link'><a href="Putenv/Runner.html" title="Putenv::Runner (class)">Runner</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="PROVIDERFILE-constant" class="">PROVIDERFILE =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>plugin conventions</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Providerfile.yml</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="PROVIDERS_PATH-constant" class="">PROVIDERS_PATH =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='kw'>__FILE__</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>putenv</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>providers/</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="LIST_PLUGINS_PATH-constant" class="">LIST_PLUGINS_PATH =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>PROVIDERS_PATH</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>**/Providerfile.yml</span><span class='tstring_end'>&#39;</span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="TEMPLATE_PROVIDER-constant" class="">TEMPLATE_PROVIDER =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>templates/</span><span class='embexpr_beg'>#{</span><span class='const'>PROVIDERFILE</span><span class='embexpr_end'>}</span><span class='tstring_content'>.tt</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="TMP_INSTALL_FOLDER-constant" class="">TMP_INSTALL_FOLDER =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_pwd'>pwd</span><span class='embexpr_end'>}</span><span class='tstring_content'>/tmp-providers</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="TMP_INSTALL_PROVIDER-constant" class="">TMP_INSTALL_PROVIDER =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>TMP_INSTALL_FOLDER</span><span class='embexpr_end'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='const'>PROVIDERFILE</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="ENVIRONMENTFILE-constant" class="">ENVIRONMENTFILE =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>environments/</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="PLATFORMFILE-constant" class="">PLATFORMFILE =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>provider platform temmplates</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>platform.yml</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="PUTENV_PROVIDER-constant" class="">PUTENV_PROVIDER =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>system variables</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUTENV_PROVIDER</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="VERSION-constant" class="">VERSION =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0.1.0.pre</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_VERSION-constant" class="">DESC_VERSION =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>command descriptions</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Display gem version</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_PLUGIN-constant" class="">DESC_PLUGIN =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Manage Provider plugin modules</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_PLUGIN_LIST-constant" class="">DESC_PLUGIN_LIST =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>List installed Provider plugins</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_PLUGIN_INSTALL-constant" class="">DESC_PLUGIN_INSTALL =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Install Provider plugin from LOCATION</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_PLUGIN_UPDATE-constant" class="">DESC_PLUGIN_UPDATE =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Update installed Provider plugins</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_PLUGIN_REMOVE-constant" class="">DESC_PLUGIN_REMOVE =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Remove installed Provider plugin</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_PLUGIN_INIT-constant" class="">DESC_PLUGIN_INIT =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Create new Providerfile template for custom provider development</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_NEW-constant" class="">DESC_NEW =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Create new platform definition files based on specified Provider</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="MSG_NEW_SUCCESS-constant" class="">MSG_NEW_SUCCESS =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Platform definition files successfully created</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_HEALTH-constant" class="">DESC_HEALTH =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Health check of all platform files and list all nodes for ENVIRONMENT</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="HEALTHY-constant" class="">HEALTHY =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Success: Platform definition files exist and parameters match type requirements</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_BUILD-constant" class="">DESC_BUILD =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Provision vms in an environment definition</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_BUILD_ALL-constant" class="">DESC_BUILD_ALL =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Build everything for the named environment</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_BUILD_COMPONENT-constant" class="">DESC_BUILD_COMPONENT =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Build all nodes for the specified component</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="DESC_BUILD_NODE-constant" class="">DESC_BUILD_NODE =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Build the single specified node</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="NO_PROVIDER_FILE-constant" class="">NO_PROVIDER_FILE =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Error messages</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Missing or invalid Providerfile</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="NO_PROVIDER-constant" class="">NO_PROVIDER =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Must specify a valid, installed provider plugin for platform definition</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="PLUGINS_CURRENT-constant" class="">PLUGINS_CURRENT =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> provider already at current version</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="PLATFORM_EXISTS-constant" class="">PLATFORM_EXISTS =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Platform files already exist at this location</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="MISSING_PLATFORM-constant" class="">MISSING_PLATFORM =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Missing or invalid platform definitions file:</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="FAIL_PROVIDER-constant" class="">FAIL_PROVIDER =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Incorrect Provider</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="WARN_PROVIDER_VERSION-constant" class="">WARN_PROVIDER_VERSION =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Warning: Version difference between Provider plugin and platform definition</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="FAIL_EMPTY_ENVIRONMENTS-constant" class="">FAIL_EMPTY_ENVIRONMENTS =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Empty environments definition</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="FAIL_EMPTY_NODENAME-constant" class="">FAIL_EMPTY_NODENAME =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Empty nodename convention</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="FAIL_REQUIRED_FILES-constant" class="">FAIL_REQUIRED_FILES =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>No references to required file:</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="FAIL_MISSING_ENV-constant" class="">FAIL_MISSING_ENV =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Defined environment files not found:</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Mar 20 14:30:24 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

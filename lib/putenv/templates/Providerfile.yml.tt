@@ -1,0 +1,86 @@
+# putenv: Provider template definition file
+#
+# Complete provider file documentation can be found on the putenv wiki
+# https://github.com/ActiveSCM/putenv/wiki/Custom-Provider-Plugins
+#
+provider:
+  # define the plugin name that can be used to select this provider from the command line or environmental variable
+  name:
+  version: 0.0.0
+
+  # Repository location for installation and updates
+  location:
+
+  structure:
+
+    platform:
+      # default to present working directory to find platform.yml
+      path:
+
+      # Use of additional reference files is optional (see documentation)
+      #
+      # Example
+      #
+      # references:
+      #   - compute
+      #   - tags
+      #
+      references:
+        -
+
+      params:
+        name:
+          type: string
+          match: 'regex'
+        description:
+          type: string
+          match: 'regex'
+        environments:
+          array:
+            type: string
+            match: 'regex'
+        nodename:
+          array:
+            type: string
+            match: 'regex'
+        pools:
+          count:
+            type: integer
+            range: 1..100
+          runlist:
+            array:
+              type: string
+              match: 'regex'
+          componentrole:
+            type: string
+            match: 'regex'
+          compute:
+            type: string
+            match: 'regex'
+
+        components:
+
+    environment:
+      path: 'environments/'
+
+    compute:
+      path: 'infrastructure/'
+      references:
+      params:
+        ram:
+          type: integer
+          range: 128..262144
+        cpu:
+          type: integer
+          range: 1..16
+        drive:
+          hash:
+            mount:
+              type: string
+              match: 'regex'
+            capacity:
+              type: integer
+              range: 8..2048
+        image:
+          type: string
+          match: 'regex'
