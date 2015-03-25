@@ -12,10 +12,5 @@
 
 vaquero is envisioned as an extensible vm provisioning and bootstrap automation tool for managing the multiple servers, roles, and environments that make up a typical continuous delivery architectural design for a web based software-as-a-service application.
 
-
-
-
-
 #### under development
 This tool is the re-write of the elevage tool that will incorporate a plug-in architecture to enable easier use of mutltiple virtualization infrastructures.
-
