@@ -1,9 +1,9 @@
 # Gem default configuration settings
 # rubocop:disable LineLength
-module Putenv
+module Vaquero
   # plugin conventions
   PROVIDERFILE = 'Providerfile.yml'
-  PROVIDERS_PATH = "#{File.dirname(__FILE__).chomp('putenv')}providers/"
+  PROVIDERS_PATH = "#{File.dirname(__FILE__).chomp('vaquero')}providers/"
   LIST_PLUGINS_PATH = "#{PROVIDERS_PATH + '**/Providerfile.yml'}"
   TEMPLATE_PROVIDER = "templates/#{PROVIDERFILE}.tt"
   TMP_INSTALL_FOLDER = "#{Dir.pwd}/tmp-providers"

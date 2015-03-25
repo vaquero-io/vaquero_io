@@ -1,6 +1,6 @@
 Feature: Provider Health check
 
-  As an Infracoder developing the putenv command line tool
+  As an Infracoder developing the vaquero command line tool
   I want to routinely test the syntactic health of the platform definition files against the plugin definition
   In order to support consistent maintenance of large and multi-environment platforms
 
@@ -10,7 +10,7 @@ Feature: Provider Health check
     """
     platform:
       product: test
-      provider: putenv-plugin-test
+      provider: vaquero-plugin-test
       plugin_version: 0.1.0.pre
 
       environments:
@@ -127,11 +127,11 @@ Feature: Provider Health check
     """
 
     """
-    When I run `putenv plugin install https://github.com/ActiveSCM/putenv-plugin-test.git`
-    When I run `putenv health -p putenv-plugin-test`
+    When I run `vaquero plugin install https://github.com/ActiveSCM/vaquero-plugin-test.git`
+    When I run `vaquero health -p vaquero-plugin-test`
     Then the exit status should be 0
     And the output should contain "Success:"
-    And I will clean up the test plugin "lib/providers/putenv-plugin-test" when finished
+    And I will clean up the test plugin "lib/providers/vaquero-plugin-test" when finished
 
   Scenario: Health check of a incorrectly defined platform (stress each param in test platform.yml)
 
@@ -143,7 +143,7 @@ Feature: Provider Health check
     """
     platform:
       product: test
-      provider: putenv-plugin-test
+      provider: vaquero-plugin-test
       plugin_version: 0.1.0.pre
 
       environments:
@@ -254,8 +254,8 @@ Feature: Provider Health check
     """
 
     """
-    When I run `putenv plugin install https://github.com/activenetwork-automation/putenv-plugin-test.git`
-    When I run `putenv health -p putenv-plugin-test`
+    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero-plugin-test.git`
+    When I run `vaquero health -p vaquero-plugin-test`
     And the output should contain "Empty environments definition"
     And the output should contain "Empty nodename convention"
     And the output should contain "No references to required file:file1"
@@ -273,4 +273,4 @@ Feature: Provider Health check
     And the output should contain "Validation error: default:ram"
     And the output should contain "Validation error: default:drive"
     And the output should contain "Validation error: default:image"
-    And I will clean up the test plugin "lib/providers/putenv-plugin-test" when finished
+    And I will clean up the test plugin "lib/providers/vaquero-plugin-test" when finished

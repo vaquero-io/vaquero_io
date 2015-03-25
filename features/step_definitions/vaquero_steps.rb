@@ -7,7 +7,7 @@ When(/^I get general help for "([^"]*)"$/) do |app_name|
 end
 
 Then(/^the banner should be present$/) do
-  step %(the output should match /putenv commands:/)
+  step %(the output should match /vaquero commands:/)
 end
 
 Then(/^the following commands should be documented:$/) do |options|
@@ -33,11 +33,11 @@ Then(/^I will clean up the test plugin "([^"]*)" when finished$/) do |plugin|
 end
 
 # Then(/^I will clean up the test plugin "([^"]*)" when finished$/) do |plugin|
-#   FileUtils.remove_dir('lib/providers/putenv-plugin-test') if File.file?('lib/providers/putenv-plugin-test/Providerfile.yml')
+#   FileUtils.remove_dir('lib/providers/vaquero-plugin-test') if File.file?('lib/providers/vaquero-plugin-test/Providerfile.yml')
 # end
 
 # Given(/^I have cleaned up the test plugin$/) do
-#   FileUtils.remove_dir('lib/providers/putenv-plugin-test') if File.file?('lib/providers/putenv-plugin-test/Providerfile.yml')
+#   FileUtils.remove_dir('lib/providers/vaquero-plugin-test') if File.file?('lib/providers/vaquero-plugin-test/Providerfile.yml')
 # end
 
 # rubocop:enable LineLength, StringLiterals

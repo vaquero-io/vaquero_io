@@ -1,12 +1,12 @@
 Feature: New platform definition files for specified provider
 
-  As an Infracoder developing the putenv command line tool
+  As an Infracoder developing the vaquero command line tool
   I want to test the ability to create platform definition template files for a provider
   In order to assist the user in creating and maintaining definition files for product platforms
 
   Scenario: Request help with NEW commands
 
-    When I run `putenv help new`
+    When I run `vaquero help new`
     Then the exit status should be 0
     And the output should contain "Usage:"
     And the output should contain "new"
@@ -14,10 +14,10 @@ Feature: New platform definition files for specified provider
 
   Scenario: Create new platform definition file based on current provider
 
-    Given a file named "../../lib/providers/putenv-test-a/Providerfile.yml" with:
+    Given a file named "../../lib/providers/vaquero-test-a/Providerfile.yml" with:
     """
     provider:
-      name: putenv-test-a
+      name: vaquero-test-a
       version: 0.1.0.pre
       location:
 
@@ -88,26 +88,26 @@ Feature: New platform definition files for specified provider
               type: string
               match: 'regex'
     """
-    Given a file named "../../lib/providers/putenv-test-a/templates/platform.yml" with:
+    Given a file named "../../lib/providers/vaquero-test-a/templates/platform.yml" with:
     """
     platform:
     """
-    Given a file named "../../lib/providers/putenv-test-a/templates/file1.yml" with:
+    Given a file named "../../lib/providers/vaquero-test-a/templates/file1.yml" with:
     """
     file1:
     """
-    Given a file named "../../lib/providers/putenv-test-a/templates/file2.yml" with:
+    Given a file named "../../lib/providers/vaquero-test-a/templates/file2.yml" with:
     """
     file2:
     """
-    Given a file named "../../lib/providers/putenv-test-a/templates/file3.yml" with:
+    Given a file named "../../lib/providers/vaquero-test-a/templates/file3.yml" with:
     """
     file3:
     """
-    Given a file named "../../lib/providers/putenv-test-a/putenv_test_a.rb" with:
+    Given a file named "../../lib/providers/vaquero-test-a/vaquero_test_a.rb" with:
     """
     """
-    When I run `putenv new --provider putenv-test-a`
+    When I run `vaquero new --provider vaquero-test-a`
     Then the exit status should be 0
     And the output should contain "Platform definition files successfully created"
     And the following files should exist:
@@ -115,4 +115,4 @@ Feature: New platform definition files for specified provider
       |folder1/file1.yml|
       |folder1/file2.yml|
       |folder2/file3.yml|
-    And I will clean up the test plugin "lib/providers/putenv-test-a" when finished
+    And I will clean up the test plugin "lib/providers/vaquero-test-a" when finished

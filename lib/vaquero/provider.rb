@@ -1,4 +1,4 @@
-module Putenv
+module Vaquero
   # comment
   class Provider
     attr_accessor :provider

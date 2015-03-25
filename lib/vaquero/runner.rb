@@ -1,6 +1,6 @@
-require 'putenv'
+require 'vaquero'
 
-module Putenv
+module Vaquero
   # wrapper to assist aruba in single process execution
   class Runner
     # rubocop:disable LineLength
@@ -16,7 +16,7 @@ module Putenv
         $stdin = @stdin
         $stdout = @stdout
 
-        Putenv::CLI.start(@argv)
+        Vaquero::CLI.start(@argv)
 
         # Thor::Base#start does not have a return value
         # assume success if no exception is raised.

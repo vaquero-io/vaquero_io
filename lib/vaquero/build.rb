@@ -1,4 +1,4 @@
-module Putenv
+module Vaquero
   # Instantiates the platform
   # builds the environment hash then
   # passes to provider plugin
@@ -39,9 +39,9 @@ module Putenv
       # TODO: Initially, i am just passing the entire
       # environment hash to the plugin
       # But this can be further broken down based on parameters passed to build
-      provider = options[:provider] ? Putenv::Provider.new(options[:provider]) : nil
+      provider = options[:provider] ? Vaquero::Provider.new(options[:provider]) : nil
 
-      plat = Putenv::Platform.new(provider)
+      plat = Vaquero::Platform.new(provider)
 
       env_build = plat.environment(env)
 

@@ -1,4 +1,4 @@
 # simple gem version number tracking
-module Putenv
+module Vaquero
   VERSION = '0.1.1'
 end

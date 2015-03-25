@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# gem dependencies in putenv.gemspec
+# gem dependencies in vaquero.gemspec
 gemspec

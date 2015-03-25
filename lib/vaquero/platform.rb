@@ -1,11 +1,11 @@
 require 'resolv'
 require 'uri'
-require 'putenv/provision'
+require 'vaquero/provision'
 
-module Putenv
+module Vaquero
   # rubocop:disable ClassLength
   class Platform
-    include Putenv::Platform::Provision
+    include Vaquero::Platform::Provision
 
     attr_accessor :provider
     attr_accessor :product
@@ -26,7 +26,7 @@ module Putenv
 
       # Lazy provider loading if we weren't given one...
       if @provider.nil?
-        @provider = Putenv::Provider.new(@product_provider)
+        @provider = Vaquero::Provider.new(@product_provider)
         # re-test platform health
         fail unless platform_files_exist?
       end

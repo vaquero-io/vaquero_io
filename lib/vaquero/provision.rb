@@ -1,6 +1,6 @@
 # Basically a dummy placeholder for the provision method that
 # plugins will override
-module Putenv
+module Vaquero
   # comment
   class Platform
     # comment

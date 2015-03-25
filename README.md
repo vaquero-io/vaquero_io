@@ -1,16 +1,16 @@
-[![Build Status](https://travis-ci.org/activenetwork-automation/putenv.svg?branch=master)][travis]
-[![Dependency Status](https://gemnasium.com/activenetwork-automation/putenv.png?travis)][gemnasium]
-[![Coverage Status](https://coveralls.io/repos/activenetwork-automation/putenv/badge.png?branch=master)][coveralls]
-[![Inline docs](http://inch-ci.org/github/activenetwork-automation/putenv.png?branch=master)][inch]
+[![Build Status](https://travis-ci.org/vaquero-io/vaquero.svg?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/vaquero-io/vaquero.png?travis)][gemnasium]
+[![Coverage Status](https://coveralls.io/repos/vaquero-io/vaquero/badge.png?branch=master)][coveralls]
+[![Inline docs](http://inch-ci.org/github/vaquero-io/vaquero.png?branch=master)][inch]
 
-[travis]: http://travis-ci.org/activenetwork-automation/putenv
-[gemnasium]: https://gemnasium.com/activenetwork-automation/putenv
-[coveralls]: https://coveralls.io/r/activenetwork-automation/putenv
-[inch]: http://inch-ci.org/github/activenetwork-automation/putenv
+[travis]: http://travis-ci.org/vaquero-io/vaquero
+[gemnasium]: https://gemnasium.com/vaquero-io/vaquero
+[coveralls]: https://coveralls.io/r/vaquero-io/vaquero
+[inch]: http://inch-ci.org/github/vaquero-io/vaquero
 
-# putenv: environment provisioning
+# vaquero: environment provisioning
 
-putenv is envisioned as an extensible vm provisioning and bootstrap automation tool for managing the multiple servers, roles, and environments that make up a typical continuous delivery architectural design for a web based software-as-a-service application.
+vaquero is envisioned as an extensible vm provisioning and bootstrap automation tool for managing the multiple servers, roles, and environments that make up a typical continuous delivery architectural design for a web based software-as-a-service application.
 
 
 
