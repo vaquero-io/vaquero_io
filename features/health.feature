@@ -127,7 +127,7 @@ Feature: Provider Health check
     """
 
     """
-    When I run `vaquero plugin install https://github.com/ActiveSCM/vaquero-plugin-test.git`
+    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero-plugin-test.git`
     When I run `vaquero health -p vaquero-plugin-test`
     Then the exit status should be 0
     And the output should contain "Success:"

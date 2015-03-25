@@ -1,7 +1,7 @@
-# putenv: Provider template definition file
+# vaquero: Provider template definition file
 #
-# Complete provider file documentation can be found on the putenv wiki
-# https://github.com/ActiveSCM/putenv/wiki/Custom-Provider-Plugins
+# Complete provider file documentation can be found on the vaquero wiki
+# https://github.com/vaquero-io/vaquero/wiki/Custom-Provider-Plugins
 #
 provider:
   # define the plugin name that can be used to select this provider from the command line or environmental variable
