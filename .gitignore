@@ -11,6 +11,8 @@ required/
 platform.yml
 .idea/
 .ruby-version
+.yardoc/
+doc/
 coverage/
 pkg/
 lib/providers/
