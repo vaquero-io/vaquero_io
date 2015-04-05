@@ -72,7 +72,7 @@ Feature: Provider plugin modules
     """
     provider:
       name: vaquero-plugin-test
-      version: 0.1.0.pre
+      version: 0.1.0
       location: https://github.com/vaquero-io/vaquero-plugin-test.git
     """
     And I will clean up the test plugin "lib/providers/vaquero-plugin-test" when finished
@@ -81,7 +81,7 @@ Feature: Provider plugin modules
     """
     provider:
       name: vaquero-plugin-test
-      version: 0.1.0.pre
+      version: 0.1.0
       location: https://github.com/vaquero-io/vaquero-plugin-test.git
     """
     When I run `vaquero plugin install https://github.com/vaquero-io/vaquero-plugin-test.git`
@@ -95,7 +95,7 @@ Feature: Provider plugin modules
     """
     provider:
       name: vaquero-plugin-test
-      version: 0.1.0.pre
+      version: 0.1.0
       location: https://github.com/vaquero-io/vaquero-plugin-test.git
     """
     When I run `vaquero plugin update vaquero-plugin-test`
@@ -107,12 +107,12 @@ Feature: Provider plugin modules
     """
     provider:
       name: vaquero-plugin-test
-      version: 0.0.0.pre
+      version: 0.0.0
       location: https://github.com/vaquero-io/vaquero-plugin-test.git
     """
     When I run `vaquero plugin update vaquero-plugin-test`
     Then the exit status should be 0
-    And the output should contain "Updated vaquero-plugin-test version 0.0.0.pre -> 0.1.0.pre"
+    And the output should contain "Updated vaquero-plugin-test version 0.0.0 -> 0.1.0"
     And I will clean up the test plugin "lib/providers/vaquero-plugin-test" when finished
 
   Scenario: Remove Provider
@@ -129,7 +129,7 @@ Feature: Provider plugin modules
     """
     provider:
       name: vaquero-plugin-test
-      version: 0.1.0.pre
+      version: 0.1.0
       location: https://github.com/vaquero-io/vaquero-plugin-test.git
     """
     When I run `vaquero plugin remove vaquero-plugin-test`
