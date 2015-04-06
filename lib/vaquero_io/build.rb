@@ -1,4 +1,4 @@
-module Vaquero
+module VaqueroIo
   # Instantiates the platform
   # builds the environment hash then
   # passes to provider plugin
@@ -39,9 +39,9 @@ module Vaquero
       # TODO: Initially, i am just passing the entire
       # environment hash to the plugin
       # But this can be further broken down based on parameters passed to build
-      provider = options[:provider] ? Vaquero::Provider.new(options[:provider]) : nil
+      provider = options[:provider] ? VaqueroIo::Provider.new(options[:provider]) : nil
 
-      plat = Vaquero::Platform.new(provider)
+      plat = VaqueroIo::Platform.new(provider)
 
       env_build = plat.environment(env)
 

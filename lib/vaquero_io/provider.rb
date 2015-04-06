@@ -1,4 +1,4 @@
-module Vaquero
+module VaqueroIo
   # comment
   class Provider
     attr_accessor :provider
