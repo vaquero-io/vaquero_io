@@ -10,7 +10,7 @@ Feature: Provider Health check
     """
     platform:
       product: test
-      provider: vaquero-plugin-test
+      provider: vaquero_io-plugin-test
       plugin_version: 0.1.0
 
       environments:
@@ -127,11 +127,11 @@ Feature: Provider Health check
     """
 
     """
-    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero-plugin-test.git`
-    When I run `vaquero health -p vaquero-plugin-test`
+    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero_io-plugin-test.git`
+    When I run `vaquero health -p vaquero_io-plugin-test`
     Then the exit status should be 0
     And the output should contain "Success:"
-    And I will clean up the test plugin "lib/providers/vaquero-plugin-test" when finished
+    And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished
 
   Scenario: Health check of a incorrectly defined platform (stress each param in test platform.yml)
 
@@ -143,7 +143,7 @@ Feature: Provider Health check
     """
     platform:
       product: test
-      provider: vaquero-plugin-test
+      provider: vaquero_io-plugin-test
       plugin_version: 0.1.0
 
       environments:
@@ -254,8 +254,8 @@ Feature: Provider Health check
     """
 
     """
-    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero-plugin-test.git`
-    When I run `vaquero health -p vaquero-plugin-test`
+    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero_io-plugin-test.git`
+    When I run `vaquero health -p vaquero_io-plugin-test`
     And the output should contain "Empty environments definition"
     And the output should contain "Empty nodename convention"
     And the output should contain "No references to required file:file1"
@@ -273,4 +273,4 @@ Feature: Provider Health check
     And the output should contain "Validation error: default:ram"
     And the output should contain "Validation error: default:drive"
     And the output should contain "Validation error: default:image"
-    And I will clean up the test plugin "lib/providers/vaquero-plugin-test" when finished
+    And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished
