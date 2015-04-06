@@ -10,6 +10,10 @@
 
 # vaquero: environment provisioning
 
+[![Join the chat at https://gitter.im/vaquero-io/vaquero_io](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaquero-io/vaquero_io?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+[![Join the chat at https://gitter.im/vaquero-io/vaquero](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaquero-io/vaquero?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 vaquero is envisioned as an extensible vm provisioning and bootstrap automation tool for managing the multiple servers, roles, and environments that make up a typical continuous delivery architectural design for a web based software-as-a-service application.
 
 #### under development
