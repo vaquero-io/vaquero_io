@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/vaquero-io/vaquero_io.png?label=ready&title=Ready)](https://waffle.io/vaquero-io/vaquero_io)
 [![Build Status](https://travis-ci.org/vaquero-io/vaquero.svg?branch=master)][travis]
 [![Dependency Status](https://gemnasium.com/vaquero-io/vaquero.png?travis)][gemnasium]
 [![Coverage Status](https://coveralls.io/repos/vaquero-io/vaquero/badge.png?branch=master)][coveralls]
