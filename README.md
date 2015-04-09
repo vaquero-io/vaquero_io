@@ -7,6 +7,7 @@
 [gemnasium]: https://gemnasium.com/vaquero-io/vaquero_io
 [coveralls]: https://coveralls.io/r/vaquero-io/vaquero_io
 [inch]: http://inch-ci.org/github/vaquero-io/vaquero_io
+[![Stories in Ready](https://badge.waffle.io/vaquero-io/vaquero_io.svg?label=ready&title=Ready)](http://waffle.io/vaquero-io/vaquero_io)
 
 # vaquero: environment provisioning
 
