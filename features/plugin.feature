@@ -67,12 +67,12 @@ Feature: Provider plugin modules
     And the output should contain "Successfully installed vaquero_io-plugin-test"
     And the following files should exist:
       |../../lib/providers/vaquero_io-plugin-test/Providerfile.yml|
-      |../../lib/providers/vaquero_io-plugin-test/vaquero_plugin_test.rb|
+      |../../lib/providers/vaquero_io-plugin-test/vaquero_io_plugin_test.rb|
     And the file "../../lib/providers/vaquero_io-plugin-test/Providerfile.yml" should contain:
     """
     provider:
       name: vaquero_io-plugin-test
-      version: 0.1.0
+      version: 0.1.1
       location: https://github.com/vaquero-io/vaquero_io-plugin-test.git
     """
     And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished
@@ -81,7 +81,7 @@ Feature: Provider plugin modules
     """
     provider:
       name: vaquero_io-plugin-test
-      version: 0.1.0
+      version: 0.1.1
       location: https://github.com/vaquero-io/vaquero_io-plugin-test.git
     """
     When I run `vaquero plugin install https://github.com/vaquero-io/vaquero_io-plugin-test.git`
@@ -95,7 +95,7 @@ Feature: Provider plugin modules
     """
     provider:
       name: vaquero_io-plugin-test
-      version: 0.1.0
+      version: 0.1.1
       location: https://github.com/vaquero-io/vaquero_io-plugin-test.git
     """
     When I run `vaquero plugin update vaquero_io-plugin-test`
@@ -112,7 +112,7 @@ Feature: Provider plugin modules
     """
     When I run `vaquero plugin update vaquero_io-plugin-test`
     Then the exit status should be 0
-    And the output should contain "Updated vaquero_io-plugin-test version 0.0.0 -> 0.1.0"
+    And the output should contain "Updated vaquero_io-plugin-test version 0.0.0 -> 0.1.1"
     And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished
 
   Scenario: Remove Provider
@@ -129,7 +129,7 @@ Feature: Provider plugin modules
     """
     provider:
       name: vaquero_io-plugin-test
-      version: 0.1.0
+      version: 0.1.1
       location: https://github.com/vaquero-io/vaquero_io-plugin-test.git
     """
     When I run `vaquero plugin remove vaquero_io-plugin-test`

@@ -11,7 +11,7 @@ Feature: Provider Health check
     platform:
       product: test
       provider: vaquero_io-plugin-test
-      plugin_version: 0.1.0
+      plugin_version: 0.1.1
 
       environments:
         - dev
@@ -144,7 +144,7 @@ Feature: Provider Health check
     platform:
       product: test
       provider: vaquero_io-plugin-test
-      plugin_version: 0.1.0
+      plugin_version: 0.1.1
 
       environments:
         -
