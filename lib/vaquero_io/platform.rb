@@ -1,11 +1,11 @@
 require 'resolv'
 require 'uri'
-require 'vaquero/provision'
+require 'vaquero_io/provision'
 
-module Vaquero
+module VaqueroIo
   # rubocop:disable ClassLength
   class Platform
-    include Vaquero::Platform::Provision
+    include VaqueroIo::Platform::Provision
 
     attr_accessor :provider
     attr_accessor :product
@@ -26,7 +26,7 @@ module Vaquero
 
       # Lazy provider loading if we weren't given one...
       if @provider.nil?
-        @provider = Vaquero::Provider.new(@product_provider)
+        @provider = VaqueroIo::Provider.new(@product_provider)
         # re-test platform health
         fail unless platform_files_exist?
       end

@@ -1,6 +1,6 @@
-require 'vaquero'
+require 'vaquero_io'
 
-module Vaquero
+module VaqueroIo
   # wrapper to assist aruba in single process execution
   class Runner
     # rubocop:disable LineLength
@@ -16,7 +16,7 @@ module Vaquero
         $stdin = @stdin
         $stdout = @stdout
 
-        Vaquero::CLI.start(@argv)
+        VaqueroIo::CLI.start(@argv)
 
         # Thor::Base#start does not have a return value
         # assume success if no exception is raised.

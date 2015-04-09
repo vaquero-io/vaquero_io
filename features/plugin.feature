@@ -62,58 +62,58 @@ Feature: Provider plugin modules
     Then the exit status should be 0
     And the output should contain "called with no arguments"
 
-    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero-plugin-test.git`
+    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero_io-plugin-test.git`
     Then the exit status should be 0
-    And the output should contain "Successfully installed vaquero-plugin-test"
+    And the output should contain "Successfully installed vaquero_io-plugin-test"
     And the following files should exist:
-      |../../lib/providers/vaquero-plugin-test/Providerfile.yml|
-      |../../lib/providers/vaquero-plugin-test/vaquero_plugin_test.rb|
-    And the file "../../lib/providers/vaquero-plugin-test/Providerfile.yml" should contain:
+      |../../lib/providers/vaquero_io-plugin-test/Providerfile.yml|
+      |../../lib/providers/vaquero_io-plugin-test/vaquero_io_plugin_test.rb|
+    And the file "../../lib/providers/vaquero_io-plugin-test/Providerfile.yml" should contain:
     """
     provider:
-      name: vaquero-plugin-test
-      version: 0.1.0
-      location: https://github.com/vaquero-io/vaquero-plugin-test.git
+      name: vaquero_io-plugin-test
+      version: 0.1.1
+      location: https://github.com/vaquero-io/vaquero_io-plugin-test.git
     """
-    And I will clean up the test plugin "lib/providers/vaquero-plugin-test" when finished
+    And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished
 
-    Given a file named "../../lib/providers/vaquero-plugin-test/Providerfile.yml" with:
+    Given a file named "../../lib/providers/vaquero_io-plugin-test/Providerfile.yml" with:
     """
     provider:
-      name: vaquero-plugin-test
-      version: 0.1.0
-      location: https://github.com/vaquero-io/vaquero-plugin-test.git
+      name: vaquero_io-plugin-test
+      version: 0.1.1
+      location: https://github.com/vaquero-io/vaquero_io-plugin-test.git
     """
-    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero-plugin-test.git`
+    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero_io-plugin-test.git`
     Then the exit status should be 0
-    And the output should contain "vaquero-plugin-test already installed"
-    And I will clean up the test plugin "lib/providers/vaquero-plugin-test" when finished
+    And the output should contain "vaquero_io-plugin-test already installed"
+    And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished
 
   Scenario: Update installed Provider(s)
 
-    Given a file named "../../lib/providers/vaquero-plugin-test/Providerfile.yml" with:
+    Given a file named "../../lib/providers/vaquero_io-plugin-test/Providerfile.yml" with:
     """
     provider:
-      name: vaquero-plugin-test
-      version: 0.1.0
-      location: https://github.com/vaquero-io/vaquero-plugin-test.git
+      name: vaquero_io-plugin-test
+      version: 0.1.1
+      location: https://github.com/vaquero-io/vaquero_io-plugin-test.git
     """
-    When I run `vaquero plugin update vaquero-plugin-test`
+    When I run `vaquero plugin update vaquero_io-plugin-test`
     Then the exit status should be 0
-    And the output should contain "vaquero-plugin-test provider already at current version"
-    And I will clean up the test plugin "lib/providers/vaquero-plugin-test" when finished
+    And the output should contain "vaquero_io-plugin-test provider already at current version"
+    And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished
 
-    Given a file named "../../lib/providers/vaquero-plugin-test/Providerfile.yml" with:
+    Given a file named "../../lib/providers/vaquero_io-plugin-test/Providerfile.yml" with:
     """
     provider:
-      name: vaquero-plugin-test
+      name: vaquero_io-plugin-test
       version: 0.0.0
-      location: https://github.com/vaquero-io/vaquero-plugin-test.git
+      location: https://github.com/vaquero-io/vaquero_io-plugin-test.git
     """
-    When I run `vaquero plugin update vaquero-plugin-test`
+    When I run `vaquero plugin update vaquero_io-plugin-test`
     Then the exit status should be 0
-    And the output should contain "Updated vaquero-plugin-test version 0.0.0 -> 0.1.0"
-    And I will clean up the test plugin "lib/providers/vaquero-plugin-test" when finished
+    And the output should contain "Updated vaquero_io-plugin-test version 0.0.0 -> 0.1.1"
+    And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished
 
   Scenario: Remove Provider
 
@@ -121,18 +121,18 @@ Feature: Provider plugin modules
     Then the exit status should be 0
     And the output should contain "called with no arguments"
 
-    When I run `vaquero plugin remove vaquero-plugin-test`
+    When I run `vaquero plugin remove vaquero_io-plugin-test`
     Then the exit status should be 1
     And the output should contain "Missing or invalid Providerfile"
 
-    Given a file named "../../lib/providers/vaquero-plugin-test/Providerfile.yml" with:
+    Given a file named "../../lib/providers/vaquero_io-plugin-test/Providerfile.yml" with:
     """
     provider:
-      name: vaquero-plugin-test
-      version: 0.1.0
-      location: https://github.com/vaquero-io/vaquero-plugin-test.git
+      name: vaquero_io-plugin-test
+      version: 0.1.1
+      location: https://github.com/vaquero-io/vaquero_io-plugin-test.git
     """
-    When I run `vaquero plugin remove vaquero-plugin-test`
+    When I run `vaquero plugin remove vaquero_io-plugin-test`
     Then the exit status should be 0
-    And the output should contain "vaquero-plugin-test removed"
-    And I will clean up the test plugin "lib/providers/vaquero-plugin-test" when finished
+    And the output should contain "vaquero_io-plugin-test removed"
+    And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished

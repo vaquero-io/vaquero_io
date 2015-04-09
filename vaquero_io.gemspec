@@ -1,16 +1,16 @@
 # rubocop:disable all
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
-require 'vaquero/version'
+require 'vaquero_io/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'vaquero'
-  spec.version       = Vaquero::VERSION
+  spec.name          = 'vaquero_io'
+  spec.version       = VaqueroIo::VERSION
   spec.authors       = %w('Nic Cheneweth','Gregory Ruiz-ade')
   spec.email         = %w('Nic.Cheneweth@thoughtworks.com','gregory.ruiz-ade@activenetwork.com')
   spec.summary       = 'Automated provisioning of application environments'
   spec.description   = 'Command line tool to automate the provision and bootstrap of virtual machine application environments'
-  spec.homepage      = ''
+  spec.homepage      = 'http://vaquero.io/'
   spec.license       = 'Apache 2.0'
 
   spec.files         = `git ls-files -z`.split("\x0")
