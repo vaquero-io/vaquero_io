@@ -3,7 +3,7 @@ require 'yaml'
 require 'git'
 require 'fileutils'
 
-module Vaquero
+module VaqueroIo
   # top level comment
   class Plugin < Thor
     include Thor::Actions

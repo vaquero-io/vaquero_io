@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
-require 'vaquero/runner'
+require 'vaquero_io/runner'
 
-Vaquero::Runner.new(ARGV.dup).execute!
+VaqueroIo::Runner.new(ARGV.dup).execute!

@@ -1,6 +1,6 @@
 # string constants for interactive messages
 # rubocop:disable LineLength
-module Vaquero
+module VaqueroIo
   # command descriptions
   DESC_VERSION = 'Display gem version'
 

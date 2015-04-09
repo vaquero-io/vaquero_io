@@ -18,7 +18,7 @@ Feature: New platform definition files for specified provider
     """
     provider:
       name: vaquero-test-a
-      version: 0.1.0.pre
+      version: 0.1.0
       location:
 
       structure:

@@ -22,7 +22,7 @@ Feature: Behavior of CLI with general features and commands
 
 # commands
 #
-#  $putenv new <appname>, create yml folder structure for new platform definition
-#  $putenv generate <environment>, generate new environment yml for current platform
-#  $putenv validate [-e <env>, -p] no param is all, -e is specifici env, -p is platform files only
-#  $putenv build
+#  $vaquero new <appname>, create yml folder structure for new platform definition
+#  $vaquero generate <environment>, generate new environment yml for current platform
+#  $vaquero validate [-e <env>, -p] no param is all, -e is specific env, -p is platform files only
+#  $vaquero build
