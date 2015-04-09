@@ -8,7 +8,7 @@
 [coveralls]: https://coveralls.io/r/vaquero-io/vaquero_io
 [inch]: http://inch-ci.org/github/vaquero-io/vaquero_io
 
-[![Join the chat at https://gitter.im/vaquero-io/vaquero](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaquero-io/vaquero?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/vaquero-io/vaquero_io](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaquero-io/vaquero?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Stories in Ready](https://badge.waffle.io/vaquero-io/vaquero_io.svg?label=ready&title=Ready)](http://waffle.io/vaquero-io/vaquero_io)
 
 # vaquero: environment provisioning
