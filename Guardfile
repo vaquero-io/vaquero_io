@@ -1,15 +1,15 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
-notification :growl, sticky: true
+# notification :growl, sticky: true
 
 guard :rubocop do
   watch(%r{.+\.rb$})
   watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
 end
 
-guard :rspec, cmd: "bundle exec rspec" do
-  require "guard/rspec/dsl"
+guard :rspec, cmd: 'bundle exec rspec' do
+  require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
   # Feel free to open issues for suggestions and improvements
@@ -25,11 +25,17 @@ guard :rspec, cmd: "bundle exec rspec" do
   dsl.watch_spec_files_for(ruby.lib_files)
 end
 
-guard "cucumber" do
+guard 'cucumber' do
   watch(%r{^features/.+\.feature$})
-  watch(%r{^features/support/.+$})          { "features" }
+  watch(%r{^features/support/.+$})          { 'features' }
 
   watch(%r{^features/step_definitions/(.+)_steps\.rb$}) do |m|
-    Dir[File.join("**/#{m[1]}.feature")][0] || "features"
+    Dir[File.join("**/#{m[1]}.feature")][0] || 'features'
   end
+end
+
+guard 'yard' do
+  watch(%r{app/.+\.rb})
+  watch(%r{lib/.+\.rb})
+  watch(%r{ext/.+\.c})
 end
