@@ -26,16 +26,13 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'coveralls', '>= 0.7.9'
   spec.add_development_dependency 'guard', '>= 2.10.0'
   spec.add_development_dependency 'guard-rubocop', '>= 1.1.0'
-  # growl functionality in Guardfile depends on growl-notify
-  spec.add_development_dependency 'growl', '>= 1.0'
+  spec.add_development_dependency 'guard-rspec', '>= 4.5.0'
+  spec.add_development_dependency 'guard-cucumber', '>= 1.6.0'
+  spec.add_development_dependency 'guard-yard', '>= 2.1.4'
+  # growl functionality in Guardfile depends on growlnotify binary
+  spec.add_development_dependency 'growl'
   spec.add_development_dependency 'yard', '>= 0.8'
   spec.add_dependency 'thor', '>= 0.18.0'
   spec.add_dependency 'git', '>= 1.2.0'
 end
 # rubocop:enable all
-
-# spec.add_development_dependency('chef')
-# spec.add_development_dependency('knife-vsphere')
-#
-# spec.add_dependency('open4')
-# spec.add_dependency('english')
