@@ -1,11 +1,19 @@
 vaquero CHANGELOG
 ================
 
+## 0.1.2
+
+* Fix missing require
+
+## 0.1.1
+
+* Initial release
+
 ## 0.1.0
 
 * Initial setup of gem framework.
 
-*note, at this point the guard implementation throws errors when running. Not sure what the cause is...
+* note, at this point the guard implementation throws errors when running. Not sure what the cause is...
 
 
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
