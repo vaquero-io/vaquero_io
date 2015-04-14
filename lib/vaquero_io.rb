@@ -1,4 +1,5 @@
 require 'thor'
+require 'vaquero_io/version'
 require 'vaquero_io/messages'
 require 'vaquero_io/config'
 require 'vaquero_io/plugin'
