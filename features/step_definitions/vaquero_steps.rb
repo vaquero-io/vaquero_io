@@ -1,3 +1,4 @@
+require 'aruba/cucumber'
 require 'fileutils'
 # rubocop:disable LineLength, StringLiterals
 When(/^I get general help for "([^"]*)"$/) do |app_name|
@@ -7,7 +8,7 @@ When(/^I get general help for "([^"]*)"$/) do |app_name|
 end
 
 Then(/^the banner should be present$/) do
-  step %(the output should match /vaquero_io commands:/)
+  step %(the output should match /Commands:/)
 end
 
 Then(/^the following commands should be documented:$/) do |options|

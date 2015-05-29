@@ -6,7 +6,7 @@ Feature: New platform definition files for specified provider
 
   Scenario: Request help with NEW commands
 
-    When I run `vaquero help new`
+    When I run `vaquero_io help init`
     Then the exit status should be 0
     And the output should contain "Usage:"
     And the output should contain "new"
@@ -107,7 +107,7 @@ Feature: New platform definition files for specified provider
     Given a file named "../../lib/providers/vaquero-test-a/vaquero_test_a.rb" with:
     """
     """
-    When I run `vaquero new --provider vaquero-test-a`
+    When I run `vaquero_io init --provider vaquero-test-a`
     Then the exit status should be 0
     And the output should contain "Platform definition files successfully created"
     And the following files should exist:

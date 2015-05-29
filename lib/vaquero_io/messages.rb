@@ -1,7 +1,22 @@
+# Copyright information in version.rb
+#
 # string constants for interactive messages
 # rubocop:disable LineLength
 module VaqueroIo
   # command descriptions
+  DESC = {
+    cmd_version:    'Print vaquero_io version information',
+    cmd_init:       'Create new platform definition files based on specified Provider',
+    cmd_create:     'Provision and boot strap an ENV, COMPONENT, or NODE(s)',
+    cmd_validate:   'Validate contents of platform desired state files',
+    cmd_set:        'Set the default ENV ',
+    cmd_show:       'Print platform definition and current state',
+    cmd_destroy:    'Destroy an ENV, COMPONENT, or NODE(s)',
+    cmd_verify:     'Serverspec tests and Test of desired state vs actual through provider plugin'
+  }
+  # Warning error messages
+  # Fatal error messages
+  # ------------------------------------------
   DESC_VERSION = 'Display gem version'
 
   DESC_PLUGIN = 'Manage Provider plugin modules'

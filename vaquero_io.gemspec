@@ -2,7 +2,6 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'vaquero_io/version'
 # require "English"
-
 Gem::Specification.new do |gem|
   gem.name          = VaqueroIo::APP_NAME
   gem.version       = VaqueroIo::VERSION
@@ -45,8 +44,6 @@ Gem::Specification.new do |gem|
   # legacy
   gem.add_dependency 'git'
   #
-
-
 end
 
 # style and complexity libraries are tightly version pinned as newer releases

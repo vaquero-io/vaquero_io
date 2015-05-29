@@ -1,6 +1,14 @@
-# Gem default configuration settings
-# rubocop:disable LineLength
+# Copyright information in version.rb
+#
 module VaqueroIo
+  # environment variables. Modify .env file to use
+  ENV_VARS =  %w(VAQUEROIO_OVERWRITE_LOGS VAQUEROIO_REMOTE_LOGGER)
+
+  # Log defaults
+  DEFAULT_LOG_LEVEL = Logger::INFO
+  LOG_FILE = '.vaquero_io/logs/vaquero_io.log'
+  LOG_OVERWRITE = false
+
   # plugin conventions
   PROVIDERFILE = 'Providerfile.yml'
   PROVIDERS_PATH = "#{File.dirname(__FILE__).chomp('vaquero_io')}providers/"
@@ -15,5 +23,23 @@ module VaqueroIo
 
   # system variables
   PUTENV_PROVIDER = 'PUTENV_PROVIDER'
+
+  # running app config
+  class Config
+    attr_reader :root_dir
+
+    attr_accessor :stdout_log, :local_log, :remote_log
+    attr_accessor :write_log
+    attr_reader :use_remote_log
+
+    def initialize
+      # @loader         = options.fetch(:loader) { Kitchen::Loader::YAML.new }
+      Dotenv.load     # loads ENV variables from .env
+      @root_dir       = Dir.pwd
+      @stdout_log     = VaqueroIo::Logging.stdout_logger
+      @local_log      = VaqueroIo::Logging.file_logger
+      @remote_log     = VaqueroIo::Logging.remote_logger
+      @write_log      = VaqueroIo::Logging::MultiLogger.new(@local_log, @remote_log)
+    end
+  end
 end
-# rubocop:enable LineLength

@@ -4,7 +4,7 @@ module VaqueroIo
     attr_accessor :provider
     attr_accessor :definition
 
-    # rubocop:disable LineLength
+    # rubocop:disable all
     def initialize(use_provider)
       @provider = resolve_provider(use_provider)
       @definition = YAML.load_file(PROVIDERS_PATH + @provider + '/' + PROVIDERFILE).fetch('provider')
@@ -43,6 +43,6 @@ module VaqueroIo
         provider
       end
     end
-    # rubocop:enable LineLength
+    # rubocop:enable all
   end
 end
