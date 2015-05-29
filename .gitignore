@@ -1,20 +1,21 @@
-# bundler workings
+# Environment normalization
 Gemfile.lock
 .bundle/
 vendor/
-
-
-# Misc things
-environments/
-infrastructure/
-required/
-platform.yml
-.idea/
 .ruby-version
+.DS_Store
+
+# Documentation cache and generated files:
 .yardoc/
 doc/
+rdoc/
 coverage/
 pkg/
+
+# development related
+.idea/
+environments/
+infrastructure/
+platform.yml
 lib/providers/
-.DS_Store
 tmp/
