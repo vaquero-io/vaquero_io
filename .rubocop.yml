@@ -1,9 +1,13 @@
 AllCops:
   Exclude:
-    - Guardfile
     - vendor/**/*
-    - example.rb
-Metrics/AbcSize:
-  Enabled: false
-#Style/SpecialGlobalVars:
+Metrics/LineLength:
+  Max: 100
+  # To make it possible to copy or click on URIs in the code, we allow lines
+  # contaning a URI to be longer than Max.
+  AllowURI: true
+  URISchemes:
+    - http
+    - https
+#Metrics/AbcSize:
 #  Enabled: false
