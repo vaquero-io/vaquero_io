@@ -37,11 +37,11 @@ module VaqueroIo
     #   end
     # end
 
-    # include Logging
     # include PerformCommand
 
     def initialize(*args)
       super
+      puts args[2][:current_command][0]
       $stdout.sync = true
     end
 

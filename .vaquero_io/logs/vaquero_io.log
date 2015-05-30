@@ -1,3 +1,40 @@
 I, [2015-05-29T17:58:09.604632 #12823]  INFO -- vaquero_io: test
 I, [2015-05-29T17:58:19.272783 #12861]  INFO -- vaquero_io: test
 I, [2015-05-29T18:00:55.896312 #12983]  INFO -- vaquero_io: test
+F, [2015-05-30T12:19:36.949774 #20045] FATAL -- vaquero_io: undefined method `currrent_command' for #<Array:0x007ff6ec08a9e0>
+F, [2015-05-30T12:19:36.960494 #20045] FATAL -- vaquero_io: undefined method `currrent_command' for #<Array:0x007ff6ec08a9e0> (NoMethodError)
+/Users/ncheneweth/Documents/toolkit/vaquero_io/lib/vaquero_io/cli.rb:44:in `initialize'
+/Users/ncheneweth/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor.rb:355:in `new'
+/Users/ncheneweth/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor.rb:355:in `dispatch'
+/Users/ncheneweth/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor/base.rb:440:in `start'
+bin/vaquero_io:25:in `block in <main>'
+/Users/ncheneweth/Documents/toolkit/vaquero_io/lib/vaquero_io.rb:32:in `with_logging'
+bin/vaquero_io:25:in `<main>'
+F, [2015-05-30T12:20:00.673645 #20084] FATAL -- vaquero_io: undefined local variable or method `currrent_command' for #<VaqueroIo::CLI:0x007f993b9e1db8>
+F, [2015-05-30T12:20:00.675161 #20084] FATAL -- vaquero_io: undefined local variable or method `currrent_command' for #<VaqueroIo::CLI:0x007f993b9e1db8> (NameError)
+/Users/ncheneweth/Documents/toolkit/vaquero_io/lib/vaquero_io/cli.rb:44:in `initialize'
+/Users/ncheneweth/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor.rb:355:in `new'
+/Users/ncheneweth/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor.rb:355:in `dispatch'
+/Users/ncheneweth/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor/base.rb:440:in `start'
+bin/vaquero_io:25:in `block in <main>'
+/Users/ncheneweth/Documents/toolkit/vaquero_io/lib/vaquero_io.rb:32:in `with_logging'
+bin/vaquero_io:25:in `<main>'
+F, [2015-05-30T12:21:40.276563 #20162] FATAL -- vaquero_io: no implicit conversion of Symbol into Integer
+F, [2015-05-30T12:21:40.286166 #20162] FATAL -- vaquero_io: no implicit conversion of Symbol into Integer (TypeError)
+/Users/ncheneweth/Documents/toolkit/vaquero_io/lib/vaquero_io/cli.rb:44:in `[]'
+/Users/ncheneweth/Documents/toolkit/vaquero_io/lib/vaquero_io/cli.rb:44:in `initialize'
+/Users/ncheneweth/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor.rb:355:in `new'
+/Users/ncheneweth/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor.rb:355:in `dispatch'
+/Users/ncheneweth/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor/base.rb:440:in `start'
+bin/vaquero_io:25:in `block in <main>'
+/Users/ncheneweth/Documents/toolkit/vaquero_io/lib/vaquero_io.rb:32:in `with_logging'
+bin/vaquero_io:25:in `<main>'
+F, [2015-05-30T12:22:51.442462 #20356] FATAL -- vaquero_io: undefined local variable or method `name' for #<VaqueroIo::CLI:0x007ff04644d480>
+F, [2015-05-30T12:22:51.446528 #20356] FATAL -- vaquero_io: undefined local variable or method `name' for #<VaqueroIo::CLI:0x007ff04644d480> (NameError)
+/Users/ncheneweth/Documents/toolkit/vaquero_io/lib/vaquero_io/cli.rb:44:in `initialize'
+/Users/ncheneweth/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor.rb:355:in `new'
+/Users/ncheneweth/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor.rb:355:in `dispatch'
+/Users/ncheneweth/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor/base.rb:440:in `start'
+bin/vaquero_io:25:in `block in <main>'
+/Users/ncheneweth/Documents/toolkit/vaquero_io/lib/vaquero_io.rb:32:in `with_logging'
+bin/vaquero_io:25:in `<main>'
