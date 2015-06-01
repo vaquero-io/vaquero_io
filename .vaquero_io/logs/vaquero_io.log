@@ -38,3 +38,4 @@ F, [2015-05-30T12:22:51.446528 #20356] FATAL -- vaquero_io: undefined local vari
 bin/vaquero_io:25:in `block in <main>'
 /Users/ncheneweth/Documents/toolkit/vaquero_io/lib/vaquero_io.rb:32:in `with_logging'
 bin/vaquero_io:25:in `<main>'
+W, [2015-06-01T13:01:40.417515 #35583]  WARN -- vaquero_io: it works

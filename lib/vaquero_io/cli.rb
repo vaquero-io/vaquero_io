@@ -41,7 +41,7 @@ module VaqueroIo
 
     def initialize(*args)
       super
-      puts args[2][:current_command][0]
+      #puts args[2][:current_command][0]
       $stdout.sync = true
     end
 
