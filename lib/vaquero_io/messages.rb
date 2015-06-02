@@ -5,14 +5,16 @@
 module VaqueroIo
   # command descriptions
   DESC = {
-    cmd_version:    'Print vaquero_io version information',
-    cmd_init:       'Create new platform definition files based on specified Provider',
-    cmd_create:     'Provision and boot strap an ENV, COMPONENT, or NODE(s)',
-    cmd_validate:   'Validate contents of platform desired state files',
-    cmd_set:        'Set the default ENV ',
-    cmd_show:       'Print platform definition and current state',
-    cmd_destroy:    'Destroy an ENV, COMPONENT, or NODE(s)',
-    cmd_verify:     'Serverspec tests and Test of desired state vs actual through provider plugin'
+    cmd_version:            'Print vaquero_io version information',
+    cmd_init:               'Create new platform definition files based on specified Provider',
+    cmd_create:             'Provision and boot strap an ENV, COMPONENT, or NODE(s)',
+    cmd_validate:           'Validate contents of platform desired state files',
+    cmd_set:                'Set the default ENV ',
+    cmd_show:               'Print current state information',
+    cmd_show_test:          'Include serverspec test results',
+    cmd_show_config_only:   'Show only running configuration',
+    cmd_destroy:            'Destroy an ENV, COMPONENT, or NODE(s)',
+    cmd_verify:             'Verify nodes using serverspec and provider-gem test'
   }
   # Warning error messages
   # Fatal error messages
