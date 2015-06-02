@@ -16,6 +16,13 @@ module VaqueroIo
       end
     end
 
+    def self.duration(total)
+      total = 0 if total.nil?
+      minutes = (total / 60).to_i
+      seconds = (total - (minutes * 60))
+      format("(%dm%.2fs)", minutes, seconds)
+    end
+
     def self.stdout_logger
       # Log level and format for stdout message
       log = Logger.new($stdout)

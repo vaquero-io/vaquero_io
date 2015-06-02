@@ -6,9 +6,24 @@ require 'vaquero_io'
 module VaqueroIo
   # CLI Interface
   class CLI < Thor
-    map '-v' => :version
-    map '--version' => :version
 
+
+    module RunCommands
+
+      def do_command(task, command, args = nil)
+        VaqueroIo.elapsed = Benchmark.measure do
+          puts "task: #{task}, command: #{command}, args: #{args}"
+          require "vaquero_io/command/#{command}"
+          parameters = {
+              action: task,
+              help: -> { help(task) }
+          }
+          cmd = VaqueroIo::Command.const_get(Thor::Util.camel_case(command))
+          cmd.new(args, options, parameters).call
+        end
+        VaqueroIo.logger.info "Elapsed #{VaqueroIo::Logging.duration(VaqueroIo.elapsed.real)}"
+      end
+    end
     # Common module to load and invoke a CLI-implementation agnostic command.
     # module PerformCommand
     # Perform a CLI subcommand.
@@ -37,7 +52,7 @@ module VaqueroIo
     #   end
     # end
 
-    # include PerformCommand
+    include RunCommands
 
     def initialize(*args)
       super
@@ -46,9 +61,10 @@ module VaqueroIo
     end
 
     desc 'version, -v', DESC[:cmd_version]
+    map %w(-v --version) => :version
     def version
       puts "vaquero_io #{VaqueroIo::VERSION}"
-      puts VaqueroIo.logger
+      VaqueroIo.logger.info 'hello'
     end
 
     desc 'init', DESC[:cmd_init]
@@ -87,12 +103,20 @@ module VaqueroIo
     #   perform('set', 'set', args)
     # end
     #
-    # desc 'show [ENV|{all}]', DESC[:cmd_show]
-    # # log_options
-    # def show(*args)
-    #   # update_config!
-    #   perform('show', 'show', args)
-    # end
+    desc 'show [ENV|{all}]', DESC[:cmd_show]
+    method_option :test,
+                  :aliases => "-t",
+                  :type => :boolean,
+                  :desc => "Include serverspec test results"
+    method_option :config_only,
+                  :aliases => "-c",
+                  :type => :boolean,
+                  :desc => "Show running configuration"
+    # log_options
+    def show(*args)
+      # update_config!
+      do_command('show', 'show', args)
+    end
     #
     # desc 'destroy ENV [-c COMPONENT [-n NODE#..#]]', DESC[:cmd_destroy]
     # # log_options

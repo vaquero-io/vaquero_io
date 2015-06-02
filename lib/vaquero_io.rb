@@ -2,7 +2,7 @@
 #
 require 'thor'
 require 'pathname'
-# require 'thread'
+require 'benchmark'
 require 'logger'
 require 'fileutils'
 require 'dotenv'
@@ -22,6 +22,7 @@ module VaqueroIo
   class << self
     attr_accessor :config
     attr_accessor :logger
+    attr_accessor :elapsed
 
     def source_root
       @source_root ||= Pathname.new(File.expand_path('../../', __FILE__))

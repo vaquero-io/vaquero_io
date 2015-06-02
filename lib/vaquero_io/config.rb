@@ -2,13 +2,15 @@
 #
 module VaqueroIo
   # environment variables. Modify .env file to use
-  ENV_VARS =  %w(VAQUEROIO_OVERWRITE_LOGS VAQUEROIO_REMOTE_LOGGER)
+  ENV_VARS =  %w(VAQUEROIO_OVERWRITE_LOGS
+                 VAQUEROIO_REMOTE_LOGGER
+                 VAQUEROIO_DEFAULT_PROVIDER
+                )
   ENV_FILE = '.vaquero_io/.env'.freeze
 
   # Log defaults
   DEFAULT_LOG_LEVEL = Logger::INFO
   LOG_FILE = '.vaquero_io/logs/vaquero_io.log'.freeze
-  LOG_OVERWRITE = false
 
   # plugin conventions
   PROVIDERFILE = 'Providerfile.yml'
@@ -37,7 +39,6 @@ module VaqueroIo
     def initialize
       # @loader         = options.fetch(:loader) { Kitchen::Loader::YAML.new }
       local_config
-      Dotenv.load(VaqueroIo::ENV_FILE)     # loads ENV variables from .env
       @root_dir       = Dir.pwd
       @stdout_log     = VaqueroIo::Logging.stdout_logger
       @local_log      = VaqueroIo::Logging.file_logger
@@ -48,9 +49,12 @@ module VaqueroIo
     private
 
     def local_config
-      return if File.exist?(VaqueroIo::ENV_FILE)
-      FileUtils.mkdir_p(File.dirname(VaqueroIo::ENV_FILE))
-      FileUtils.cp(VaqueroIo.source_root + VaqueroIo::ENV_TEMPLATE, VaqueroIo::ENV_FILE)
+      unless File.exist?(VaqueroIo::ENV_FILE)
+        FileUtils.mkdir_p(File.dirname(VaqueroIo::ENV_FILE))
+        FileUtils.cp(VaqueroIo.source_root + VaqueroIo::ENV_TEMPLATE, VaqueroIo::ENV_FILE)
+      end
+      # loads ENV variables defined in .env file
+      Dotenv.load(VaqueroIo::ENV_FILE)
     end
   end
 end
