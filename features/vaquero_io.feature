@@ -19,6 +19,9 @@ Feature: Behavior of CLI with general features and commands
 
     When I run `vaquero_io -v`
     Then the output should display the version
+    And the following files should exist:
+      |.vaquero_io/.env|
+      |.vaquero_io/logs/vaquero_io.log|
 
 # commands
 #

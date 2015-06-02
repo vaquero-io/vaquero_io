@@ -18,7 +18,7 @@ module VaqueroIo
 
     def self.stdout_logger
       # Log level and format for stdout message
-      log = Logger.new(STDOUT)
+      log = Logger.new($stdout)
       log.level = VaqueroIo::DEFAULT_LOG_LEVEL
       log.progname = VaqueroIo::APP_NAME
       log.formatter = proc do |severity, _datetime, _progname, msg|

@@ -39,3 +39,12 @@ bin/vaquero_io:25:in `block in <main>'
 /Users/ncheneweth/Documents/toolkit/vaquero_io/lib/vaquero_io.rb:32:in `with_logging'
 bin/vaquero_io:25:in `<main>'
 W, [2015-06-01T13:01:40.417515 #35583]  WARN -- vaquero_io: it works
+W, [2015-06-02T11:20:42.043366 #44487]  WARN -- vaquero_io: uhoh
+W, [2015-06-02T11:23:11.838156 #44528]  WARN -- vaquero_io: uhoh
+W, [2015-06-02T11:24:31.940324 #44570]  WARN -- vaquero_io: uhoh
+W, [2015-06-02T11:24:44.412873 #44607]  WARN -- vaquero_io: uhoh
+W, [2015-06-02T11:25:00.003737 #44645]  WARN -- vaquero_io: uhoh
+W, [2015-06-02T11:33:39.482302 #45039]  WARN -- vaquero_io: uhoh
+W, [2015-06-02T11:33:47.445184 #45080]  WARN -- vaquero_io: uhoh
+W, [2015-06-02T11:40:20.476093 #45168]  WARN -- vaquero_io: uhoh
+W, [2015-06-02T11:40:35.248622 #45206]  WARN -- vaquero_io: uhoh

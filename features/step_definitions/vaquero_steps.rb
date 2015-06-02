@@ -1,6 +1,6 @@
 require 'aruba/cucumber'
 require 'fileutils'
-# rubocop:disable LineLength, StringLiterals
+# rubocop:disable StringLiterals
 When(/^I get general help for "([^"]*)"$/) do |app_name|
   @app_name = app_name
   step %(I run `#{app_name} --help`)
@@ -32,13 +32,4 @@ Then(/^I will clean up the test plugin "([^"]*)" when finished$/) do |plugin|
   puts Dir.pwd
   FileUtils.remove_dir(plugin) if File.file?("#{plugin}/Providerfile.yml")
 end
-
-# Then(/^I will clean up the test plugin "([^"]*)" when finished$/) do |plugin|
-#   FileUtils.remove_dir('lib/providers/vaquero_io-plugin-test') if File.file?('lib/providers/vaquero_io-plugin-test/Providerfile.yml')
-# end
-
-# Given(/^I have cleaned up the test plugin$/) do
-#   FileUtils.remove_dir('lib/providers/vaquero_io-plugin-test') if File.file?('lib/providers/vaquero_io-plugin-test/Providerfile.yml')
-# end
-
-# rubocop:enable LineLength, StringLiterals
+# rubocop:enable StringLiterals

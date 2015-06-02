@@ -33,6 +33,7 @@ module VaqueroIo
   rescue  => err
     VaqueroIo.logger.fatal(err.message)
     VaqueroIo.config.write_log.fatal(err)
+    exit 1
   end
 
   def self.setup_logging

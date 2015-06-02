@@ -41,13 +41,14 @@ module VaqueroIo
 
     def initialize(*args)
       super
-      #puts args[2][:current_command][0]
+      # puts args[2][:current_command][0]
       $stdout.sync = true
     end
 
     desc 'version, -v', DESC[:cmd_version]
     def version
       puts "vaquero_io #{VaqueroIo::VERSION}"
+      puts VaqueroIo.logger
     end
 
     desc 'init', DESC[:cmd_init]

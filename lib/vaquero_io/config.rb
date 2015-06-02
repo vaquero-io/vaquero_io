@@ -3,11 +3,11 @@
 module VaqueroIo
   # environment variables. Modify .env file to use
   ENV_VARS =  %w(VAQUEROIO_OVERWRITE_LOGS VAQUEROIO_REMOTE_LOGGER)
-  ENV_FILE = '.vaquero_io/.env'
+  ENV_FILE = '.vaquero_io/.env'.freeze
 
   # Log defaults
   DEFAULT_LOG_LEVEL = Logger::INFO
-  LOG_FILE = '.vaquero_io/logs/vaquero_io.log'
+  LOG_FILE = '.vaquero_io/logs/vaquero_io.log'.freeze
   LOG_OVERWRITE = false
 
   # plugin conventions
@@ -48,10 +48,9 @@ module VaqueroIo
     private
 
     def local_config
-      unless File.exist?(VaqueroIo::ENV_FILE)
-        FileUtils.mkdir_p(File.dirname(VaqueroIo::ENV_FILE))
-        FileUtils.cp(VaqueroIo.source_root + VaqueroIo::ENV_TEMPLATE, VaqueroIo::ENV_FILE)
-      end
+      return if File.exist?(VaqueroIo::ENV_FILE)
+      FileUtils.mkdir_p(File.dirname(VaqueroIo::ENV_FILE))
+      FileUtils.cp(VaqueroIo.source_root + VaqueroIo::ENV_TEMPLATE, VaqueroIo::ENV_FILE)
     end
   end
 end
