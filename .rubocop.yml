@@ -9,5 +9,3 @@ Metrics/LineLength:
   URISchemes:
     - http
     - https
-#Metrics/AbcSize:
-#  Enabled: false

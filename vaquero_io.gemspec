@@ -5,9 +5,9 @@ require 'vaquero_io/version'
 Gem::Specification.new do |gem|
   gem.name          = VaqueroIo::APP_NAME
   gem.version       = VaqueroIo::VERSION
-  gem.authors       = %w('Nic Cheneweth','Gregory Ruiz-ade')
-  gem.email         = %w('Nic.Cheneweth@thoughtworks.com', \
-                         'gregory.ruiz-ade@activenetwork.com')
+  gem.authors       = ['Nic Cheneweth', 'Gregory Ruiz-ade']
+  gem.email         = ['Nic.Cheneweth@thoughtworks.com',
+                       'gregory.ruiz-ade@activenetwork.com']
   gem.summary       = 'Automated provisioning of application environments'
   gem.description   = 'Command line tool to automate the provision and ' \
                       'bootstrap of virtual machine application environments'
@@ -33,9 +33,8 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'cucumber',        '~> 2.0'
   gem.add_development_dependency 'rspec',           '~> 3.0'
   gem.add_development_dependency 'fakefs',          '~> 0.6'
-  gem.add_development_dependency 'coveralls',       '~> 0.8'
-  # gem.add_development_dependency "simplecov",     "~> 0.7"
-  # gem.add_development_dependency "yard",          "~> 0.8"
+  # gem.add_development_dependency 'simplecov',       '~> 0.10'
+  gem.add_development_dependency 'yard',            '~> 0.8'
   gem.add_development_dependency 'guard',           '~> 2.0'
   gem.add_development_dependency 'guard-rubocop',   '~> 1.2'
   gem.add_development_dependency 'guard-rspec',     '~> 4.5'
@@ -58,7 +57,6 @@ end
 
 # gem.add_development_dependency "pry"
 # gem.add_development_dependency "winrm-transport"
-# gem.add_development_dependency "fakefs"
 # gem.add_development_dependency "minitest"
 # gem.add_development_dependency "mocha"
 # gem.add_development_dependency "countloc"
