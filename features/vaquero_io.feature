@@ -6,19 +6,22 @@ Feature: Behavior of CLI with general features and commands
 
   Scenario: Request help with commands
 
-    When I get general help for "vaquero"
+    When I get general help for "vaquero_io"
     Then the exit status should be 0
     And the banner should be present
     And the following commands should be documented:
       |help|
       |version|
       |plugin|
-      |new|
+      |init|
 
   Scenario: Display gem version
 
-    When I run `vaquero -v`
+    When I run `vaquero_io -v`
     Then the output should display the version
+    And the following files should exist:
+      |.vaquero_io/.env|
+      |.vaquero_io/logs/vaquero_io.log|
 
 # commands
 #

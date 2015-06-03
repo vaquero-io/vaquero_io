@@ -1,44 +1,51 @@
+# Copyright information in version.rb
+#
 require 'thor'
+require 'pathname'
+require 'benchmark'
+require 'logger'
+require 'fileutils'
+require 'dotenv'
+# require 'English'
 require 'vaquero_io/version'
-require 'vaquero_io/messages'
 require 'vaquero_io/config'
+require 'vaquero_io/messages'
+require 'vaquero_io/logging'
 require 'vaquero_io/plugin'
 require 'vaquero_io/provider'
 require 'vaquero_io/platform'
 require 'vaquero_io/build'
 require 'vaquero_io/provision'
-
-# Refer to README.md for use instructions
+#
 module VaqueroIo
-  # Start of main CLI
-  class CLI < Thor
-    package_name 'vaquero_io'
-    map '--version' => :version
-    map '-v' => :version
+  # global variables and environment initialization
+  class << self
+    attr_accessor :config
+    attr_accessor :logger
+    attr_accessor :elapsed
 
-    desc 'version, -v', DESC_VERSION
-    def version
-      puts VERSION
+    def source_root
+      @source_root ||= Pathname.new(File.expand_path('../../', __FILE__))
     end
+  end
 
-    desc 'new', DESC_NEW
-    method_options %w( provider -p ) => :string, :required => true
-    def new
-      VaqueroIo::Provider.new(options[:provider]).new_definition
-    end
+  def self.with_logging
+    yield
+  rescue  => err
+    VaqueroIo.logger.fatal(err.message)
+    VaqueroIo.config.write_log.fatal(err)
+    exit 1
+  end
 
-    # rubocop:disable LineLength
-    desc 'health [ENVIRONMENT]', DESC_HEALTH
-    method_options %w( provider -p ) => :string
-    def health(env = '')
-      provider = options[:provider] ? VaqueroIo::Provider.new(options[:provider]) : nil
-      # puts HEALTHY if VaqueroIo::Platform.new(VaqueroIo::Provider.new(options[:provider])).healthy?(env)
-      puts HEALTHY if VaqueroIo::Platform.new(provider).healthy?(env)
-    end
-    # rubocop:enable LineLength
-
-    # subcommand in Thor called as registered class
-    register(VaqueroIo::Plugin, 'plugin', 'plugin COMMAND', DESC_PLUGIN)
-    register(VaqueroIo::Build, 'build', 'build TARGET', DESC_BUILD)
+  def self.setup_logging
+    # send logger messages to both console and file storage. Use Remote if defined
+    # Backtrace only to written
+    @logger = VaqueroIo::Logging::MultiLogger.new(VaqueroIo.config.stdout_log,
+                                                  VaqueroIo.config.local_log,
+                                                  VaqueroIo.config.remote_log)
   end
 end
+
+# Initialize running configuration and the base logger
+VaqueroIo.config = VaqueroIo::Config.new
+VaqueroIo.setup_logging

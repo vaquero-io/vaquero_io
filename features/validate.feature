@@ -127,8 +127,8 @@ Feature: Provider Health check
     """
 
     """
-    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero_io-plugin-test.git`
-    When I run `vaquero health -p vaquero_io-plugin-test`
+    When I run `vaquero_io plugin install https://github.com/vaquero-io/vaquero_io-plugin-test.git`
+    When I run `vaquero_io validate -p vaquero_io-plugin-test`
     Then the exit status should be 0
     And the output should contain "Success:"
     And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished
@@ -254,8 +254,8 @@ Feature: Provider Health check
     """
 
     """
-    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero_io-plugin-test.git`
-    When I run `vaquero health -p vaquero_io-plugin-test`
+    When I run `vaquero_io plugin install https://github.com/vaquero-io/vaquero_io-plugin-test.git`
+    When I run `vaquero_io validate -p vaquero_io-plugin-test`
     And the output should contain "Empty environments definition"
     And the output should contain "Empty nodename convention"
     And the output should contain "No references to required file:file1"

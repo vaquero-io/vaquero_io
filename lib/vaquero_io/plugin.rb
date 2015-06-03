@@ -9,7 +9,7 @@ module VaqueroIo
     include Thor::Actions
 
     # list of installed providers (includes PWD)
-    # rubocop:disable LineLength
+    # rubocop:disable all
     desc 'list', DESC_PLUGIN_LIST
     def list
       installed_providers.each { |k, v| puts "#{k} (#{v}) #{ENV[PUTENV_PROVIDER] == k ? '<default' : ''}" }
@@ -109,7 +109,7 @@ module VaqueroIo
       end
       clear_working_copy
     end
-    # rubocop:enable LineLength
+    # rubocop:enable all
 
     def self.source_root
       File.dirname(__FILE__)

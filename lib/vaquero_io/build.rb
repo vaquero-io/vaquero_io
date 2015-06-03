@@ -33,7 +33,7 @@ module VaqueroIo
       File.dirname(__FILE__)
     end
 
-    # rubocop:disable MethodLength, LineLength, CyclomaticComplexity, PerceivedComplexity
+    # rubocop:disable all
 
     def build
       # TODO: Initially, i am just passing the entire
@@ -125,6 +125,6 @@ module VaqueroIo
       plat.provision(env_build, provider_options) # unless options[:dry_run]
     end
 
-    # rubocop:enable MethodLength, LineLength, CyclomaticComplexity, PerceivedComplexity
+    # rubocop:enable all
   end
 end

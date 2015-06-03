@@ -6,7 +6,7 @@ Feature: Provider plugin modules
 
   Scenario: Request help with PLUGIN commands
 
-    When I get general help for "vaquero plugin"
+    When I get general help for "vaquero_io plugin"
     Then the exit status should be 0
     And the following commands should be documented:
       |help|
@@ -30,7 +30,7 @@ Feature: Provider plugin modules
       name: test-installed-b
       version: 0.0.0.b
     """
-    When I run `vaquero plugin list`
+    When I run `vaquero_io plugin list`
     Then the exit status should be 0
     And the output should contain "test-installed-a (0.0.0.a)"
     And the output should contain "test-installed-b (0.0.0.b)"
@@ -39,7 +39,7 @@ Feature: Provider plugin modules
 
   Scenario: New Providerfile template
 
-    When I run `vaquero plugin init`
+    When I run `vaquero_io plugin init`
     Then the exit status should be 0
     And the output should contain "create  Providerfile.yml"
     And the following files should exist:
@@ -52,17 +52,17 @@ Feature: Provider plugin modules
       version: 0.0.0
     """
 
-    When I run `vaquero plugin init example`
+    When I run `vaquero_io plugin init example`
     Then the exit status should be 0
     And the output should contain "called with arguments"
 
   Scenario: Install new Provider
 
-    When I run `vaquero plugin install`
+    When I run `vaquero_io plugin install`
     Then the exit status should be 0
     And the output should contain "called with no arguments"
 
-    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero_io-plugin-test.git`
+    When I run `vaquero_io plugin install https://github.com/vaquero-io/vaquero_io-plugin-test.git`
     Then the exit status should be 0
     And the output should contain "Successfully installed vaquero_io-plugin-test"
     And the following files should exist:
@@ -84,7 +84,7 @@ Feature: Provider plugin modules
       version: 0.1.1
       location: https://github.com/vaquero-io/vaquero_io-plugin-test.git
     """
-    When I run `vaquero plugin install https://github.com/vaquero-io/vaquero_io-plugin-test.git`
+    When I run `vaquero_io plugin install https://github.com/vaquero-io/vaquero_io-plugin-test.git`
     Then the exit status should be 0
     And the output should contain "vaquero_io-plugin-test already installed"
     And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished
@@ -98,7 +98,7 @@ Feature: Provider plugin modules
       version: 0.1.1
       location: https://github.com/vaquero-io/vaquero_io-plugin-test.git
     """
-    When I run `vaquero plugin update vaquero_io-plugin-test`
+    When I run `vaquero_io plugin update vaquero_io-plugin-test`
     Then the exit status should be 0
     And the output should contain "vaquero_io-plugin-test provider already at current version"
     And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished
@@ -110,18 +110,18 @@ Feature: Provider plugin modules
       version: 0.0.0
       location: https://github.com/vaquero-io/vaquero_io-plugin-test.git
     """
-    When I run `vaquero plugin update vaquero_io-plugin-test`
+    When I run `vaquero_io plugin update vaquero_io-plugin-test`
     Then the exit status should be 0
     And the output should contain "Updated vaquero_io-plugin-test version 0.0.0 -> 0.1.1"
     And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished
 
   Scenario: Remove Provider
 
-    When I run `vaquero plugin remove`
+    When I run `vaquero_io plugin remove`
     Then the exit status should be 0
     And the output should contain "called with no arguments"
 
-    When I run `vaquero plugin remove vaquero_io-plugin-test`
+    When I run `vaquero_io plugin remove vaquero_io-plugin-test`
     Then the exit status should be 1
     And the output should contain "Missing or invalid Providerfile"
 
@@ -132,7 +132,7 @@ Feature: Provider plugin modules
       version: 0.1.1
       location: https://github.com/vaquero-io/vaquero_io-plugin-test.git
     """
-    When I run `vaquero plugin remove vaquero_io-plugin-test`
+    When I run `vaquero_io plugin remove vaquero_io-plugin-test`
     Then the exit status should be 0
     And the output should contain "vaquero_io-plugin-test removed"
     And I will clean up the test plugin "lib/providers/vaquero_io-plugin-test" when finished

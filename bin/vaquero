@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-require 'vaquero_io/runner'
-
-VaqueroIo::Runner.new(ARGV.dup).execute!

@@ -1,7 +1,7 @@
 require 'resolv'
 require 'uri'
 require 'vaquero_io/provision'
-
+# rubocop:disable all
 module VaqueroIo
   # rubocop:disable ClassLength
   class Platform
@@ -191,5 +191,5 @@ module VaqueroIo
     end
     # rubocop:enable LineLength
   end
-  # rubocop:enable ClassLength
+  # rubocop:enable all
 end
