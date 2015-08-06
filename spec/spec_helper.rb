@@ -1,4 +1,4 @@
-# $LOAD_PATH << '../../lib'
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 #
-require 'coveralls'
-Coveralls.wear!
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
