@@ -10,9 +10,9 @@ module VaqueroIo
       @definition = YAML.load_file(PROVIDERS_PATH + @provider + '/' + PROVIDERFILE).fetch('provider')
       require PROVIDERS_PATH + @provider + '/' + @provider.gsub('-', '_') + '.rb'
     end
-    # rubocop:enable LineLength
+    # rubocop:enable all
 
-    # rubocop:disable MethodLength, LineLength
+    # rubocop:disable all
     def new_definition
       if File.exist?('platform.yml')
         fail(IOError, PLATFORM_EXISTS)
