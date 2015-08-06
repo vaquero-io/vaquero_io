@@ -9,7 +9,7 @@ module VaqueroIo
     include Thor::Actions
 
     # list of installed providers (includes PWD)
-    # rubocop:disable all
+    # rubocop:disable LineLength
     desc 'list', DESC_PLUGIN_LIST
     def list
       installed_providers.each { |k, v| puts "#{k} (#{v}) #{ENV[PUTENV_PROVIDER] == k ? '<default' : ''}" }
@@ -21,7 +21,7 @@ module VaqueroIo
       template(TEMPLATE_PROVIDER, PROVIDERFILE)
     end
 
-    # rubocop:disable LineLength
+    # rubocop:disable all
     desc 'install LOCATION', DESC_PLUGIN_INSTALL
     def install(path)
       latest = get_working_copy(path)
@@ -35,7 +35,7 @@ module VaqueroIo
       clear_working_copy
       fail(IOError, NO_PROVIDER_FILE) if latest == NO_PROVIDER_FILE
     end
-    # rubocop:enable LineLength
+    # rubocop:enable all
 
     # rubocop:disable MethodLength, LineLength
     desc 'update [PROVIDER]', DESC_PLUGIN_UPDATE
@@ -96,7 +96,6 @@ module VaqueroIo
       locations
     end
 
-    # rubocop:disable LineLength
     def update_plugin(plugin, version)
       locations = plugin_locations
       latest = get_working_copy(locations[plugin])
@@ -109,7 +108,6 @@ module VaqueroIo
       end
       clear_working_copy
     end
-    # rubocop:enable all
 
     def self.source_root
       File.dirname(__FILE__)

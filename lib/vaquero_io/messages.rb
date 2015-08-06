@@ -21,7 +21,7 @@ module VaqueroIo
   # Warning error messages
   # Fatal error messages
   FERR = {
-    fatal_no_provider:        'must specify a valid vaquero_io provider'
+    fatal_no_provider: 'must specify a valid vaquero_io provider'
   }
   # ------------------------------------------
   DESC_VERSION = 'Display gem version'
