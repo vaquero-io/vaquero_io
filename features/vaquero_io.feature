@@ -12,12 +12,11 @@ Feature: Behavior of CLI with general features and commands
     And the following commands should be documented:
       |help|
       |version|
-      |plugin|
-      |init|
+      |provider|
 
   Scenario: Display gem version
 
-    When I run `vaquero_io -v`
+    When I run `vaquero_io --version`
     Then the output should display the version
     And the following files should exist:
       |.vaquero_io/.env|
@@ -25,7 +24,10 @@ Feature: Behavior of CLI with general features and commands
 
 # commands
 #
-#  $vaquero new <appname>, create yml folder structure for new platform definition
-#  $vaquero generate <environment>, generate new environment yml for current platform
-#  $vaquero validate [-e <env>, -p] no param is all, -e is specific env, -p is platform files only
-#  $vaquero build
+#  init <appname>, create yml folder structure for new platform definition
+#  generate <environment>, generate new environment yml for current platform
+#  validate [-e <env>, -p] no param is all, -e is specific env, -p is platform files only
+#  create  (provision-bootstrap specified items)
+#  destroy
+#  show
+#  verify

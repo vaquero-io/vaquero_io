@@ -26,9 +26,3 @@ end
 Then(/^the output should display the version$/) do
   step %(the output should match /\\d+\\.\\d+\\.\\d+/)
 end
-
-Then(/^I will clean up the test plugin "([^"]*)" when finished$/) do |plugin|
-  puts plugin
-  puts Dir.pwd
-  FileUtils.remove_dir(plugin) if File.file?("#{plugin}/Providerfile.yml")
-end

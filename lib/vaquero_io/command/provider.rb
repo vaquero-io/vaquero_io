@@ -5,12 +5,12 @@ require 'vaquero_io/command'
 module VaqueroIo
   # included in Command module
   module Command
-    # command
+    # command processor
     class Provider < VaqueroIo::Command::Base
       # Invoke the command.
       def call
         # its complaining about guard clause but this is only partly done
-        puts "in provider"
+        puts args.first
       end
     end
   end

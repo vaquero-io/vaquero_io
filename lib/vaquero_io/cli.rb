@@ -36,7 +36,22 @@ module VaqueroIo
       puts "vaquero_io #{VaqueroIo::VERSION}"
     end
 
-    desc 'provider { list | init }', DESC[:cmd_provider]
+    desc 'provider {options}', DESC[:cmd_provider]
+    method_option :list,
+                  aliases: '-l',
+                  type: :boolean,
+                  default: false,
+                  desc: DESC[:cmd_provider_list]
+    method_option :create,
+                  aliases: '-c',
+                  type: :boolean,
+                  default: false,
+                  desc: DESC[:cmd_provider_create]
+    method_option :discover,
+                  aliases: '-d',
+                  type: :boolean,
+                  default: false,
+                  desc: DESC[:cmd_provider_discover]
     def provider(*args)
       do_command('provider', 'provider', args)
     end
