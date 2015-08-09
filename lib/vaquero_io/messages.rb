@@ -7,6 +7,7 @@ module VaqueroIo
   DESC = {
     cmd_version:              'Print vaquero_io version information',
     cmd_init:                 'Create new platform definition files based on specified Provider',
+    cmd_provider:             'Manage Provider plugins and definition files',
     cmd_init_provider:        'Specify vaquero_io provider gem to generate platform files',
     cmd_init_create_gemfile:  'Create Gemfile with vaquero_io and provider dependencies',
     cmd_create:               'Provision and boot strap an ENV, COMPONENT, or NODE(s)',

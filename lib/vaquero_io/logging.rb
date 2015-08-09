@@ -6,7 +6,7 @@ module VaqueroIo
     # send log info to both console and log file
     class MultiLogger
       def initialize(*targets)
-        @targets = targets
+        @targets = targets.compact
       end
 
       %w(log debug info warn error fatal unknown).each do |m|

@@ -17,5 +17,5 @@
 #
 module VaqueroIo
   APP_NAME = 'vaquero_io'
-  VERSION = '0.1.2'
+  VERSION = '2.0.0'
 end

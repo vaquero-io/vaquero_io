@@ -34,7 +34,11 @@ module VaqueroIo
     map %w(-v --version) => :version
     def version
       puts "vaquero_io #{VaqueroIo::VERSION}"
-      VaqueroIo.logger.info 'hello'
+    end
+
+    desc 'provider { list | init }', DESC[:cmd_provider]
+    def provider(*args)
+      do_command('provider', 'provider', args)
     end
 
     # desc 'init --provider PROVIDER_GEM', DESC[:cmd_init]
@@ -98,7 +102,7 @@ module VaqueroIo
     # def test(*args)
     #   do_command('test', 'test', args)
     # end
-    register(VaqueroIo::Plugin, 'plugin', 'plugin COMMAND', DESC_PLUGIN)
+    # register(VaqueroIo::Plugin, 'plugin', 'plugin COMMAND', DESC_PLUGIN)
     register(VaqueroIo::Build, 'build', 'build TARGET', DESC_BUILD)
   end
 end
