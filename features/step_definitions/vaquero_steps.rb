@@ -26,3 +26,8 @@ end
 Then(/^the output should display the version$/) do
   step %(the output should match /\\d+\\.\\d+\\.\\d+/)
 end
+
+Given(/^the following gemspec "([^"]*)"$/) do |contents|
+  puts Gem::Specification.dirs[1]
+  puts contents
+end

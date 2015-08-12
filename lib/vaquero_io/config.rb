@@ -13,6 +13,7 @@ module VaqueroIo
   LOG_FILE = '.vaquero_io/logs/vaquero_io.log'.freeze
 
   # plugin conventions
+  PROVIDERGEMPATTERN = /^(vaquero_io)/
   PROVIDERFILE = 'Providerfile.yml'
   PROVIDERS_PATH = "#{File.dirname(__FILE__).chomp('vaquero_io')}providers/"
   LIST_PLUGINS_PATH = "#{PROVIDERS_PATH + '**/Providerfile.yml'}"

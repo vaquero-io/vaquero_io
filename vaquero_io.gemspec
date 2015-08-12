@@ -35,6 +35,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'fakefs',          '~> 0.6'
   # gem.add_development_dependency 'simplecov',       '~> 0.10'
   gem.add_development_dependency 'yard',            '~> 0.8'
+  gem.add_development_dependency 'vaquero_io-provider-gem-test'
   gem.add_development_dependency 'guard',           '~> 2.0'
   gem.add_development_dependency 'guard-rubocop',   '~> 1.2'
   gem.add_development_dependency 'guard-rspec',     '~> 4.5'

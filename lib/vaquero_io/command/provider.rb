@@ -7,10 +7,33 @@ module VaqueroIo
   module Command
     # command processor
     class Provider < VaqueroIo::Command::Base
-      # Invoke the command.
+      # invoke the command
       def call
-        # its complaining about guard clause but this is only partly done
-        puts args.first
+        case
+        when options[:list]
+          Gem::Specification.all_names.grep(PROVIDERGEMPATTERN).each { |g| puts g }
+        when options[:create]
+          puts 'create new providerfile template for developing new plugin gem'
+        when options[:discover]
+          puts available_providers
+        else
+          puts 'list the current, default provider'
+        end
+      end
+
+      private
+
+      def available_providers
+        requirements = Gem::Requirement.default
+        dependencies = Gem::Deprecate.skip_during do
+          Gem::Dependency.new(PROVIDERGEMPATTERN, requirements)
+        end
+        fetch_gems(Gem::SpecFetcher.fetcher, dependencies)
+      end
+
+      def fetch_gems(search_results, dependencies)
+        specs = search_results.spec_for_dependency(dependencies, false)
+        specs.first.map { |t| [t.first.name] }
       end
     end
   end

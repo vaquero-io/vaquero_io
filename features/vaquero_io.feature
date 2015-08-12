@@ -27,7 +27,7 @@ Feature: Behavior of CLI with general features and commands
 #  init <appname>, create yml folder structure for new platform definition
 #  generate <environment>, generate new environment yml for current platform
 #  validate [-e <env>, -p] no param is all, -e is specific env, -p is platform files only
-#  create  (provision-bootstrap specified items)
-#  destroy
+#  create  (provision-bootstrap specified items) PASS-THROUGH
+#  destroy PASS-THROUGH
 #  show
-#  verify
+#  verify  PASS-THROUGH
