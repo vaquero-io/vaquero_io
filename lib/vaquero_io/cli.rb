@@ -30,28 +30,28 @@ module VaqueroIo
       $stdout.sync = true
     end
 
-    desc 'version, -v', DESC[:cmd_version]
+    desc 'version, -v', 'Print vaquero_io version information'
     map %w(-v --version) => :version
     def version
       puts "vaquero_io #{VaqueroIo::VERSION}"
     end
 
-    desc 'provider {options}', DESC[:cmd_provider]
+    desc 'provider {options}', 'Manage Provider plugins and definition files'
     method_option :list,
                   aliases: '-l',
                   type: :boolean,
                   default: false,
-                  desc: DESC[:cmd_provider_list]
+                  desc: 'List all installed provider gems'
     method_option :create,
                   aliases: '-c',
                   type: :boolean,
                   default: false,
-                  desc: DESC[:cmd_provider_create]
+                  desc: 'Generate template for creating new provider plugin gem'
     method_option :discover,
                   aliases: '-d',
                   type: :boolean,
                   default: false,
-                  desc: DESC[:cmd_provider_discover]
+                  desc: 'List all vaquero_io provider gems on RubyGems'
     def provider(*args)
       do_command('provider', 'provider', args)
     end
