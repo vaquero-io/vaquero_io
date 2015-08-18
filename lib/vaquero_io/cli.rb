@@ -42,11 +42,11 @@ module VaqueroIo
                   type: :boolean,
                   default: false,
                   desc: 'List all installed provider gems'
-    method_option :create,
-                  aliases: '-c',
-                  type: :boolean,
-                  default: false,
-                  desc: 'Generate template for creating new provider plugin gem'
+    # method_option :create,
+    #               aliases: '-c',
+    #               type: :boolean,
+    #               default: false,
+    #               desc: 'Generate template for creating new provider plugin gem'
     method_option :discover,
                   aliases: '-d',
                   type: :boolean,
@@ -56,23 +56,21 @@ module VaqueroIo
       do_command('provider', 'provider', args)
     end
 
-    # desc 'init --provider PROVIDER_GEM', DESC[:cmd_init]
-    # method_option :provider,
-    #               :aliases => '-p',
-    #               :type => :string,
-    #               :desc => DESC[:cmd_init_provider]
-    # method_option :create_gemfile,
-    #               :type => :boolean,
-    #               :default => false,
-    #               :desc => DESC[:cmd_init_create_gemfile]
-    # def init(*args)
-    #   do_command('init', 'init', args)
-    # end
-    desc 'init', DESC[:cmd_init]
-    method_options %w( provider -p ) => :string, required: true
-    def init
-      VaqueroIo::Provider.new(options[:provider]).new_definition
+    desc 'init --provider PROVIDER_GEM',
+         'Create new platform definition files based on specified Provider'
+    method_option :provider,
+                  aliases: '-p',
+                  type: :string,
+                  required: true,
+                  desc: 'Specify vaquero_io provider gem'
+    def init(*args)
+      do_command('init', 'init', args)
     end
+    # desc 'init', DESC[:cmd_init]
+    # method_options %w( provider -p ) => :string, required: true
+    # def init
+    #   VaqueroIo::Provider.new(options[:provider]).new_definition
+    # end
 
     desc 'validate [ENV]|all', DESC[:cmd_validate]
     method_options %w( provider -p ) => :string
@@ -81,22 +79,24 @@ module VaqueroIo
       puts HEALTHY if VaqueroIo::Platform.new(provider).healthy?(env)
     end
 
-    desc 'show [ENV|{all}]', DESC[:cmd_show]
+    desc 'show [ENV|{all}]', 'Print current platform state information'
     method_option :test,
                   aliases: '-t',
                   type: :boolean,
-                  desc: DESC[:cmd_show_test]
+                  desc: 'Include serverspec test results'
     method_option :config_only,
                   aliases: '-c',
                   type: :boolean,
-                  desc: DESC[:cmd_show_config_only]
+                  desc: 'Show running configuration'
     def show(*args)
       do_command('show', 'show', args)
     end
-    # desc 'create ENV [-c COMPONENT [-n NODE#..#]]', DESC[:cmd_create]
-    # def create(*args)
-    #   do_command('create', 'create', args)
-    # end
+
+    desc 'create ENV [-c COMPONENT [-n NODE#..#]]',
+         'Provision and boot strap an ENV, COMPONENT, or NODE(s)'
+    def create(*args)
+      do_command('create', 'create', args)
+    end
     #
     # desc 'validate [ENV|{all}]', DESC[:cmd_validate]
     # def validate(*args)

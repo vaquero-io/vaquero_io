@@ -8,12 +8,8 @@ module VaqueroIo
     class Init < VaqueroIo::Command::Base
       # Invoke the command.
       def call
-        provider = VaqueroIo::Provider.new(options[:provider])
-        puts "name: #{provider.name}"
-
-        # if options[:create_gemfile]
-        #
-        # end
+        # provider = VaqueroIo::Provider.new(options[:provider])
+        puts "name: #{args} with #{options[:provider]}"
       end
 
       # private
