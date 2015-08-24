@@ -5,8 +5,6 @@ require 'vaquero_io/provision'
 module VaqueroIo
   # rubocop:disable ClassLength
   class Platform
-    include VaqueroIo::Platform::Provision
-
     attr_accessor :provider
     attr_accessor :product
     attr_accessor :product_provider, :product_provider_version

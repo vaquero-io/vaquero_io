@@ -9,7 +9,7 @@ module VaqueroIo
     cmd_init_provider:        'Specify vaquero_io provider gem to generate platform files',
     cmd_init_create_gemfile:  'Create Gemfile with vaquero_io and provider dependencies',
     cmd_validate:             'Validate contents of platform desired state files',
-    cmd_set:                  'Set the default ENV ',
+    cmd_set:                  'Set the default ENV',
     cmd_destroy:              'Destroy an ENV, COMPONENT, or NODE(s)',
     cmd_verify:               'Verify nodes using serverspec and provider-gem test'
   }

@@ -1,17 +1,32 @@
 module VaqueroIo
   # comment
   class Provider
-    attr_accessor :provider
+    # attr_accessor :provider
+
     attr_accessor :definition
 
-    # rubocop:disable all
     def initialize(use_provider)
-      @provider = resolve_provider(use_provider)
-      @definition = YAML.load_file(PROVIDERS_PATH + @provider + '/' + PROVIDERFILE).fetch('provider')
-      require PROVIDERS_PATH + @provider + '/' + @provider.gsub('-', '_') + '.rb'
+      puts "init provider type: #{use_provider}"
+      gdep = Gem::Dependency.new(use_provider)
+      if gdep.matching_specs.last
+        require use_provider
+        extend ProviderPluginExtensions
+      else
+        puts 'not installed'
+      end
     end
+    # rubocop:disable all
+    # def initialize(use_provider)
+    #   @provider = resolve_provider(use_provider)
+    #   @definition = YAML.load_file(PROVIDERS_PATH + @provider + '/' + PROVIDERFILE).fetch('provider')
+    #   require PROVIDERS_PATH + @provider + '/' + @provider.gsub('-', '_') + '.rb'
+    # end
     # rubocop:enable all
 
+    # def template
+    #   puts "in template"
+    #   # VaqueroIo::Platform::Provision.provision("in plugin")
+    # end
     # rubocop:disable all
     def new_definition
       if File.exist?('platform.yml')

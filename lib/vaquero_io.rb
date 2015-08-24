@@ -13,9 +13,9 @@ require 'vaquero_io/messages'
 require 'vaquero_io/logging'
 require 'vaquero_io/plugin'
 require 'vaquero_io/provider'
+require 'vaquero_io/providerplugin'
 require 'vaquero_io/platform'
 require 'vaquero_io/build'
-require 'vaquero_io/provision'
 #
 module VaqueroIo
   # global variables and environment initialization
