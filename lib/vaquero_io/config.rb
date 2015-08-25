@@ -22,8 +22,8 @@ module VaqueroIo
   TMP_INSTALL_PROVIDER = "#{TMP_INSTALL_FOLDER}/#{PROVIDERFILE}"
   ENVIRONMENTFILE = 'environments/'
 
-  # provider platform temmplates
-  PLATFORMFILE = 'platform.yml'
+  # provider platform templates
+  PLATFORMFILE = 'lib/vaquero_io/templates/platform.yml.erb'
   ENV_TEMPLATE = 'lib/vaquero_io/templates/.env'
 
   # system variables

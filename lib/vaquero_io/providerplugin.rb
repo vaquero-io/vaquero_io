@@ -10,12 +10,15 @@ module VaqueroIo
     def create_platform_template
       platformdef = self.definition['provider']['platform']
       puts platformdef.to_yaml
+      platform_file(platformdef)
     end
 
     private
 
     def platform_file(d)
-      puts d.to_yaml
+      input = File.read(PLATFORMFILE)
+      eruby = Erubis::Eruby.new(input)
+      puts eruby.src
 
     end
 

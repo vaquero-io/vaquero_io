@@ -25,6 +25,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'remote_syslog_logger',  '~> 1.0'    # support for papertrail.com
   gem.add_dependency 'logglier',              '~> 0.2'    # support for loggly.com
   gem.add_dependency 'dotenv',                '~> 2.0'
+  gem.add_dependency 'erubis',                '~> 2.7'
 
   gem.add_development_dependency 'bundler',         '~> 1.7'
   gem.add_development_dependency 'rake',            '~> 10.0'

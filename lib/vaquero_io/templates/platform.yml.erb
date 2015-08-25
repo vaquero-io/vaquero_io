@@ -1,0 +1,24 @@
+platform:
+  product: <% %>
+  provider: <% %>
+  plugin_version: <% %>
+
+  environments:
+    -
+
+  nodename:
+    - environment
+    - component
+
+  require:
+    <% %>
+
+  profiles:
+
+    defaultprofile: &defaultprofile
+      <% %>
+
+  roles:
+
+    example:
+      <<: *defaultprofile
