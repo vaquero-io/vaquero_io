@@ -25,6 +25,7 @@ module VaqueroIo
 
   # provider platform templates
   PLATFORMTEMPLATE = 'lib/vaquero_io/templates/platform.yml.erb'
+  INFRASTRUCTURETEMPLATE = 'lib/vaquero_io/templates/infrastructure.yml.erb'
   PLATFORMFILE = 'platform.yml'
 
   # system variables

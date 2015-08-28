@@ -23,12 +23,15 @@ module VaqueroIo
       puts erbfile.result(binding)
       writefilename = providerfile['platform']['path'].to_s + VaqueroIo::PLATFORMFILE
       puts writefilename
-      # File.write(VaqueroIo::PLATFORMFILE, eruby.result(binding))
+      # File.write(writefilename, eruby.result(binding))
     end
 
     def required_files(list, providerfile)
       list.each do |f|
         puts f
+        erbfile = Erubis::Eruby.new(File.read(VaqueroIo.source_root +
+                                    VaqueroIo::INFRASTRUCTURETEMPLATE))
+        puts erbfile.result(binding)
       end
     end
 
