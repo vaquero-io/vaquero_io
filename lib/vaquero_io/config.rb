@@ -7,6 +7,7 @@ module VaqueroIo
                 VAQUEROIO_DEFAULT_PROVIDER
                 VAQUEROIO_DEFAULT_ENV)
   ENV_FILE = '.vaquero_io/.env'.freeze
+  ENV_TEMPLATE = 'lib/vaquero_io/templates/.env'
 
   # Log defaults
   DEFAULT_LOG_LEVEL = Logger::INFO
@@ -23,8 +24,8 @@ module VaqueroIo
   ENVIRONMENTFILE = 'environments/'
 
   # provider platform templates
-  PLATFORMFILE = 'lib/vaquero_io/templates/platform.yml.erb'
-  ENV_TEMPLATE = 'lib/vaquero_io/templates/.env'
+  PLATFORMTEMPLATE = 'lib/vaquero_io/templates/platform.yml.erb'
+  PLATFORMFILE = 'platform.yml'
 
   # system variables
   PUTENV_PROVIDER = 'PUTENV_PROVIDER'

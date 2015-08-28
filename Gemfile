@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 Gem::Deprecate.skip_during do
-  Gem::Specification.find_all_by_name(/^(vaquero_io)/).each do |g|
+  Gem::Specification.find_all_by_name(/^(vaquero_io_)/).each do |g|
     gem g.name, require: false
   end
 end

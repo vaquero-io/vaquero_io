@@ -1,25 +1,35 @@
 module VaqueroIo
   # ProviderPlugin class definition
   class ProviderPlugin
-    attr_accessor :definition
+    attr_accessor :app_name
 
-    def initialize(use_provider)
+    def initialize(use_provider, app_name)
       resolve_provider(use_provider)
+      @app_name = app_name
     end
 
     def create_platform_template
-      platformdef = self.definition['provider']['platform']
-      puts platformdef.to_yaml
-      platform_file(platformdef)
+      providerfile = definition['provider']
+      puts providerfile.to_yaml
+      puts '___'
+      platform_file(providerfile)
+      required_files(providerfile['require'], providerfile)
     end
 
     private
 
-    def platform_file(d)
-      input = File.read(PLATFORMFILE)
-      eruby = Erubis::Eruby.new(input)
-      puts eruby.src
+    def platform_file(providerfile)
+      erbfile = Erubis::Eruby.new(File.read(VaqueroIo.source_root + VaqueroIo::PLATFORMTEMPLATE))
+      puts erbfile.result(binding)
+      writefilename = providerfile['platform']['path'] + VaqueroIo::PLATFORMFILE
+      puts writefilename
+      # File.write(VaqueroIo::PLATFORMFILE, eruby.result(binding))
+    end
 
+    def required_files(list, providerfile)
+      list.each do |f|
+        puts f
+      end
     end
 
     def resolve_provider(provider)

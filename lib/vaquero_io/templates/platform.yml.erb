@@ -1,7 +1,7 @@
 platform:
-  product: <% %>
-  provider: <% %>
-  plugin_version: <% %>
+  product: <%= @app_name %>
+  provider: <%= name %>
+  plugin_version: <%= version %>
 
   environments:
     -
@@ -11,12 +11,30 @@ platform:
     - component
 
   require:
-    <% %>
+  <% providerfile['require'].each do |requiredfile| %>
+    - <%= requiredfile %>
+  <% end %>
 
   profiles:
 
     defaultprofile: &defaultprofile
-      <% %>
+    <% providerfile['require'].each do |requiredfile| %>
+      <%= requiredfile %>:
+    <% end %>
+    <% providerfile['platform']['params'].each do |k, v| %>
+      <%= k %>:
+      <% if v.first[0] == 'array' %>
+        -
+      <% end %>
+      <% if v.first[0] == 'hash' %>
+        <% v.first[1].each do |hk, hv| %>
+          <%= hk %>:
+          <% if hv.first[0] == 'array' %>
+            -
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
 
   roles:
 
