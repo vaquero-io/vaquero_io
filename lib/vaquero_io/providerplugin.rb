@@ -21,7 +21,7 @@ module VaqueroIo
     def platform_file(providerfile)
       erbfile = Erubis::Eruby.new(File.read(VaqueroIo.source_root + VaqueroIo::PLATFORMTEMPLATE))
       puts erbfile.result(binding)
-      writefilename = providerfile['platform']['path'] + VaqueroIo::PLATFORMFILE
+      writefilename = providerfile['platform']['path'].to_s + VaqueroIo::PLATFORMFILE
       puts writefilename
       # File.write(VaqueroIo::PLATFORMFILE, eruby.result(binding))
     end
