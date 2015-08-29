@@ -42,11 +42,6 @@ module VaqueroIo
                   type: :boolean,
                   default: false,
                   desc: 'List all installed provider gems'
-    # method_option :create,
-    #               aliases: '-c',
-    #               type: :boolean,
-    #               default: false,
-    #               desc: 'Generate template for creating new provider plugin gem'
     method_option :discover,
                   aliases: '-d',
                   type: :boolean,
@@ -56,21 +51,14 @@ module VaqueroIo
       do_command('provider', 'provider', args)
     end
 
-    desc 'init --provider PROVIDER_GEM',
-         'Create new platform definition files based on specified Provider'
+    desc 'init PLATFORM', 'Create new platform definition files based on specified Provider'
     method_option :provider,
                   aliases: '-p',
                   type: :string,
-                  required: true,
                   desc: 'Specify vaquero_io provider gem'
     def init(*args)
       do_command('init', 'init', args)
     end
-    # desc 'init', DESC[:cmd_init]
-    # method_options %w( provider -p ) => :string, required: true
-    # def init
-    #   VaqueroIo::Provider.new(options[:provider]).new_definition
-    # end
 
     desc 'validate [ENV]|all', DESC[:cmd_validate]
     method_options %w( provider -p ) => :string

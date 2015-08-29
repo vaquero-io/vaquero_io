@@ -17,7 +17,7 @@ module VaqueroIo
         when options[:discover]
           puts available_providers
         else
-          puts 'list the current, default provider'
+          default_provider
         end
       end
 
@@ -34,6 +34,14 @@ module VaqueroIo
       def fetch_gems(search_results, dependencies)
         specs = search_results.spec_for_dependency(dependencies, false)
         specs.first.map { |t| [t.first.name] }
+      end
+
+      def default_provider
+        if ENV['VAQUEROIO_DEFAULT_PROVIDER'].empty?
+          puts 'No default provider specified in .env file'
+        else
+          puts "default provider is #{ENV['VAQUEROIO_DEFAULT_PROVIDER']}"
+        end
       end
     end
   end

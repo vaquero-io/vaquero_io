@@ -1,6 +1,6 @@
 require 'pathname'
 require 'yaml'
-require 'git'
+# require 'git'
 require 'fileutils'
 
 module VaqueroIo

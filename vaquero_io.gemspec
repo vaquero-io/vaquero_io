@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = %w(vaquero_io)
-  # gem.test_files    = gem.files.grep(%r{/^\/(test|spec|features)/})
+  gem.test_files    = gem.files.grep(%r{/^\/(test|spec|features)/})
   gem.require_paths = ['lib']
   gem.required_ruby_version = '>= 2.0.0'
 
@@ -33,17 +33,15 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'aruba',           '~> 0.6'
   gem.add_development_dependency 'cucumber',        '~> 2.0'
   gem.add_development_dependency 'rspec',           '~> 3.0'
-  gem.add_development_dependency 'fakefs',          '~> 0.6'
+  # gem.add_development_dependency 'fakefs',          '~> 0.6'
   # gem.add_development_dependency 'simplecov',       '~> 0.10'
-  gem.add_development_dependency 'yard',            '~> 0.8'
-  gem.add_development_dependency 'guard',           '~> 2.0'
-  gem.add_development_dependency 'guard-rubocop',   '~> 1.2'
-  gem.add_development_dependency 'guard-rspec',     '~> 4.5'
-  gem.add_development_dependency 'guard-cucumber',  '~> 1.6.0'
+  # gem.add_development_dependency 'yard',            '~> 0.8'
+  # gem.add_development_dependency 'guard',           '~> 2.0'
+  # gem.add_development_dependency 'guard-rubocop',   '~> 1.2'
+  # gem.add_development_dependency 'guard-rspec',     '~> 4.5'
+  # gem.add_development_dependency 'guard-cucumber',  '~> 1.6.0'
   # gem.add_development_dependency 'guard-yard',      '>= 2.1.4'
-
-  # legacy
-  gem.add_dependency 'git'
+  gem.add_development_dependency 'vaquero_io_provider_template'
   #
 end
 

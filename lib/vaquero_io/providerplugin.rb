@@ -11,6 +11,7 @@ module VaqueroIo
     def create_platform_template
       platform_file(definition['provider'])
       required_files(definition['provider']['require'], definition['provider'])
+      puts 'Platform definition files successfully created'
     end
 
     private
