@@ -21,3 +21,47 @@ Feature: Provider plugin gems
 
     When I run `vaquero_io provider --discover`
     Then the output should contain "vaquero_io"
+
+  Scenario: List default provider when specified
+
+    Given a file named ".vaquero_io/.env" with:
+    """
+    # Environment variables used by vaquero_io
+    #
+    # Provider
+    export VAQUEROIO_DEFAULT_PROVIDER = 'RANDOM'
+    export VAQEUROIO_DEFAULT_ENV =
+    # Logging
+    export VAQUEROIO_OVERWRITE_LOGS = false
+
+    export VAQUEROIO_REMOTE_LOGGER = 'papertrail'
+    export VAQUEROIO_PAPERTRAIL_URL = '<your-url>'
+    export VAQUEROIO_PAPERTRAIL_PORT = '<your-port>'
+
+    #export VAQUEROIO_REMOTE_LOGGER = 'loggly'
+    #export VAQUEROIO_LOGGLY_URL = '<your-url>'
+    """
+    When I run `vaquero_io provider`
+    Then the output should contain "RANDOM"
+
+  Scenario: List default provider when none specified
+
+    Given a file named ".vaquero_io/.env" with:
+    """
+    # Environment variables used by vaquero_io
+    #
+    # Provider
+    export VAQUEROIO_DEFAULT_PROVIDER =
+    export VAQEUROIO_DEFAULT_ENV =
+    # Logging
+    export VAQUEROIO_OVERWRITE_LOGS = false
+
+    export VAQUEROIO_REMOTE_LOGGER = 'papertrail'
+    export VAQUEROIO_PAPERTRAIL_URL = '<your-url>'
+    export VAQUEROIO_PAPERTRAIL_PORT = '<your-port>'
+
+    #export VAQUEROIO_REMOTE_LOGGER = 'loggly'
+    #export VAQUEROIO_LOGGLY_URL = '<your-url>'
+    """
+    When I run `vaquero_io provider`
+    Then the output should contain "No default provider"
