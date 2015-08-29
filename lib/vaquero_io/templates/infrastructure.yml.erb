@@ -1,3 +1,20 @@
-start file
-<%= providerfile[f].to_yaml %>
-end file
+<%= f %>:
+
+  default: &default
+  <% providerfile[f]['params'].each do |k,v| %>
+    <%= k %>:
+    <% if v.first[0] == 'array' %>
+        -
+    <% end %>
+    <% if v.first[0] == 'hash' %>
+      <% v.first[1].each do |hk, hv| %>
+      <%= hk %>:
+        <% if hv.first[0] == 'array' %>
+          -
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  dev:
+    <<: *default

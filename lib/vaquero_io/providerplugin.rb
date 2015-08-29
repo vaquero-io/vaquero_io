@@ -9,29 +9,21 @@ module VaqueroIo
     end
 
     def create_platform_template
-      providerfile = definition['provider']
-      puts providerfile.to_yaml
-      puts '___'
-      platform_file(providerfile)
-      required_files(providerfile['require'], providerfile)
+      platform_file(definition['provider'])
+      required_files(definition['provider']['require'], definition['provider'])
     end
 
     private
 
     def platform_file(providerfile)
-      erbfile = Erubis::Eruby.new(File.read(VaqueroIo.source_root + VaqueroIo::PLATFORMTEMPLATE))
-      puts erbfile.result(binding)
-      writefilename = providerfile['platform']['path'].to_s + VaqueroIo::PLATFORMFILE
-      puts writefilename
-      # File.write(writefilename, eruby.result(binding))
+      erbfile = parse_template(VaqueroIo::PLATFORMTEMPLATE, providerfile)
+      writetemplate(providerfile['platform']['path'].to_s, VaqueroIo::PLATFORMFILE, erbfile)
     end
 
     def required_files(list, providerfile)
       list.each do |f|
-        puts f
-        erbfile = Erubis::Eruby.new(File.read(VaqueroIo.source_root +
-                                    VaqueroIo::INFRASTRUCTURETEMPLATE))
-        puts erbfile.result(binding)
+        erbfile = parse_template(VaqueroIo::INFRASTRUCTURETEMPLATE, providerfile, f)
+        writetemplate(providerfile[f]['path'].to_s, f + '.yml', erbfile)
       end
     end
 
@@ -43,6 +35,20 @@ module VaqueroIo
       else
         fail IOError, 'Cannot load the Provider Gem specified'
       end
+    end
+
+    def parse_template(template, providerfile, f = nil)
+      templatefile = VaqueroIo.source_root + template
+      Erubis::Eruby.new(File.read(templatefile)).result(binding)
+    end
+
+    def writetemplate(filepath, filename, template)
+      writefile = filename
+      unless filepath.empty?
+        Dir.mkdir(filepath) unless File.exist?(filepath)
+        writefile = File.join(filepath, writefile)
+      end
+      File.write(writefile, template)
     end
   end
 end
