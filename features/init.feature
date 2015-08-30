@@ -35,12 +35,12 @@ Feature: New platform definition files for specified provider
     # Logging
     export VAQUEROIO_OVERWRITE_LOGS = false
 
-    export VAQUEROIO_REMOTE_LOGGER = 'papertrail'
-    export VAQUEROIO_PAPERTRAIL_URL = '<your-url>'
-    export VAQUEROIO_PAPERTRAIL_PORT = '<your-port>'
+    # export VAQUEROIO_REMOTE_LOGGER = 'papertrail'
+    # export VAQUEROIO_PAPERTRAIL_URL = '<your-url>'
+    # export VAQUEROIO_PAPERTRAIL_PORT = '<your-port>'
 
-    #export VAQUEROIO_REMOTE_LOGGER = 'loggly'
-    #export VAQUEROIO_LOGGLY_URL = '<your-url>'
+    # export VAQUEROIO_REMOTE_LOGGER = 'loggly'
+    # export VAQUEROIO_LOGGLY_URL = '<your-url>'
     """
     When I run `vaquero_io init PLATFORM`
     Then the exit status should be 1
@@ -71,12 +71,12 @@ Feature: New platform definition files for specified provider
     # Logging
     export VAQUEROIO_OVERWRITE_LOGS = false
 
-    export VAQUEROIO_REMOTE_LOGGER = 'papertrail'
-    export VAQUEROIO_PAPERTRAIL_URL = '<your-url>'
-    export VAQUEROIO_PAPERTRAIL_PORT = '<your-port>'
+    # export VAQUEROIO_REMOTE_LOGGER = 'papertrail'
+    # export VAQUEROIO_PAPERTRAIL_URL = '<your-url>'
+    # export VAQUEROIO_PAPERTRAIL_PORT = '<your-port>'
 
-    #export VAQUEROIO_REMOTE_LOGGER = 'loggly'
-    #export VAQUEROIO_LOGGLY_URL = '<your-url>'
+    # export VAQUEROIO_REMOTE_LOGGER = 'loggly'
+    # export VAQUEROIO_LOGGLY_URL = '<your-url>'
     """
     When I run `vaquero_io init PLATFORM`
     Then the exit status should be 0

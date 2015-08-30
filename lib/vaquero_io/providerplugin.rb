@@ -18,13 +18,13 @@ module VaqueroIo
 
     def platform_file(providerfile)
       erbfile = parse_template(VaqueroIo::PLATFORMTEMPLATE, providerfile)
-      writetemplate(providerfile['platform']['path'].to_s, VaqueroIo::PLATFORMFILE, erbfile)
+      write_template(providerfile['platform']['path'].to_s, VaqueroIo::PLATFORMFILE, erbfile)
     end
 
     def required_files(list, providerfile)
       list.each do |f|
         erbfile = parse_template(VaqueroIo::INFRASTRUCTURETEMPLATE, providerfile, f)
-        writetemplate(providerfile[f]['path'].to_s, f + '.yml', erbfile)
+        write_template(providerfile[f]['path'].to_s, f + '.yml', erbfile)
       end
     end
 
@@ -43,7 +43,7 @@ module VaqueroIo
       Erubis::Eruby.new(File.read(templatefile)).result(binding)
     end
 
-    def writetemplate(filepath, filename, template)
+    def write_template(filepath, filename, template)
       writefile = filename
       unless filepath.empty?
         Dir.mkdir(filepath) unless File.exist?(filepath)
