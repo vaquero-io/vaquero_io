@@ -31,7 +31,6 @@ Feature: New platform definition files for specified provider
     #
     # Provider
     export VAQUEROIO_DEFAULT_PROVIDER = 'RANDOM'
-    export VAQEUROIO_DEFAULT_ENV =
     # Logging
     export VAQUEROIO_OVERWRITE_LOGS = false
 
@@ -67,7 +66,6 @@ Feature: New platform definition files for specified provider
     #
     # Provider
     export VAQUEROIO_DEFAULT_PROVIDER = 'vaquero_io_provider_template'
-    export VAQEUROIO_DEFAULT_ENV =
     # Logging
     export VAQUEROIO_OVERWRITE_LOGS = false
 

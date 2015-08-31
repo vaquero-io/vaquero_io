@@ -4,8 +4,7 @@ module VaqueroIo
   # environment variables. Modify .env file to use
   ENV_VARS = %w(VAQUEROIO_OVERWRITE_LOGS
                 VAQUEROIO_REMOTE_LOGGER
-                VAQUEROIO_DEFAULT_PROVIDER
-                VAQUEROIO_DEFAULT_ENV)
+                VAQUEROIO_DEFAULT_PROVIDER)
   ENV_FILE = '.vaquero_io/.env'.freeze
   ENV_TEMPLATE = 'lib/vaquero_io/templates/.env'
 
