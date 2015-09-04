@@ -15,3 +15,4 @@
 
 vaquero_io is envisioned as an extensible vm provisioning and bootstrap automation tool for managing the multiple servers, roles, and environments that make up a typical continuous delivery architectural design for a web based software-as-a-service application.
 
+updated
