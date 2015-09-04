@@ -5,7 +5,7 @@ require 'vaquero_io'
 module VaqueroIo
   # CLI Interface
   class CLI < Thor
-    # comand files in Command folder
+    # command files in Command folder
     module RunCommands
       # rubocop:disable AbcSize
       def do_command(task, command, args = nil)
@@ -72,10 +72,10 @@ module VaqueroIo
                   aliases: '-t',
                   type: :boolean,
                   desc: 'Include serverspec test results'
-    method_option :config_only,
+    method_option :config_env,
                   aliases: '-c',
                   type: :boolean,
-                  desc: 'Show running configuration'
+                  desc: 'Show running ENV configuration'
     def show(*args)
       do_command('show', 'show', args)
     end

@@ -10,7 +10,7 @@ module VaqueroIo
 
     def create_platform_template
       platform_file(definition['provider'])
-      required_files(definition['provider']['require'], definition['provider'])
+      required_files(definition['provider']['infrastructure'], definition['provider'])
       puts 'Platform definition files successfully created'
     end
 
@@ -18,13 +18,14 @@ module VaqueroIo
 
     def platform_file(providerfile)
       erbfile = parse_template(VaqueroIo::PLATFORMTEMPLATE, providerfile)
-      write_template(providerfile['platform']['path'].to_s, VaqueroIo::PLATFORMFILE, erbfile)
+      File.write(VaqueroIo::PLATFORM + '.yml', erbfile)
+      # write_template('', VaqueroIo::PLATFORM + '.yml', erbfile)
     end
 
     def required_files(list, providerfile)
       list.each do |f|
         erbfile = parse_template(VaqueroIo::INFRASTRUCTURETEMPLATE, providerfile, f)
-        write_template(providerfile[f]['path'].to_s, f + '.yml', erbfile)
+        write_template('infrastructure/', f + '.yml', erbfile)
       end
     end
 
@@ -32,7 +33,7 @@ module VaqueroIo
       provider = ENV['VAQUEROIO_DEFAULT_PROVIDER'] if provider.nil? || provider.empty?
       if Gem::Dependency.new(provider).matching_specs.last
         require provider
-        extend ProviderPluginExtensions
+        extend VaqueroIo::ProviderPluginExtensions
       else
         fail IOError, 'Cannot load the Provider Gem specified'
       end

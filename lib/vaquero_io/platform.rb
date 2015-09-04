@@ -1,193 +1,102 @@
-require 'resolv'
-require 'uri'
-require 'vaquero_io/provision'
-# rubocop:disable all
+# require 'resolv'
+# require 'uri'
+
 module VaqueroIo
-  # rubocop:disable ClassLength
+  # Platform class definition
   class Platform
-    attr_accessor :provider
-    attr_accessor :product
-    attr_accessor :product_provider, :product_provider_version
+    attr_accessor :platform
+    attr_accessor :definition
+    attr_accessor :infrastructure
     attr_accessor :environments
-    attr_accessor :nodename
-    attr_accessor :components
-    attr_accessor :required
-    attr_accessor :env_definition
+    attr_accessor :pre_env
 
-    # rubocop:disable MethodLength, LineLength
     def initialize(provider = nil)
-      @provider = provider
-      fail unless platform_files_exist?
-      platform = YAML.load_file(PLATFORMFILE).fetch('platform')
-      @product = platform['product']
-      @product_provider = platform['provider']
+      @platform = load_yaml(VaqueroIo::PLATFORM + '.yml', VaqueroIo::PLATFORM)
+      @definition = load_provider_definition(provider)
+      @infrastructure = load_infrastructure(@platform[VaqueroIo::INFRASTRUCTURE],
+                                            VaqueroIo::INFRASTRUCTURE)
+      @environments = load_infrastructure(@platform[VaqueroIo::ENVIRONMENTS],
+                                          VaqueroIo::ENVIRONMENTS)
 
-      # Lazy provider loading if we weren't given one...
-      if @provider.nil?
-        @provider = VaqueroIo::Provider.new(@product_provider)
-        # re-test platform health
-        fail unless platform_files_exist?
-      end
-
-      @product_provider_version = platform['plugin_version']
-      @environments = platform['environments']
-      @nodename = platform['nodename']
-      @components = platform['components']
-      @required = {}
-      @provider.definition['structure']['require'].each do |required_file|
-        @required[required_file] = YAML.load_file(@provider.definition['structure'][required_file]['path'] + required_file + '.yml').fetch(required_file)
-      end
+      merge_platform
+      @pre_env = Marshal.load(Marshal.dump(@environments))
+      substitute_infrastructure
+      refactor_environments
     end
-    # rubocop:enable MethodLength, LineLength
-
-    # rubocop:disable MethodLength, LineLength, CyclomaticComplexity, PerceivedComplexity
-    def healthy?(env = '')
-      health = ''
-      health += (FAIL_PROVIDER + "\n") if @provider.definition['name'] != @product_provider
-      puts WARN_PROVIDER_VERSION if @provider.definition['version'] != @product_provider_version
-      health += (FAIL_EMPTY_ENVIRONMENTS + "\n") unless @environments.all?
-      @environments.each do |e|
-        health += (FAIL_MISSING_ENV + e + "\n") unless File.file?(ENVIRONMENTFILE + e + '.yml')
-      end if @environments.all?
-      health += (FAIL_EMPTY_NODENAME + "\n") unless @nodename.all?
-
-      # confirm that the platform definition references all required files
-      @provider.definition['structure']['require'].each do |required_file|
-        @components.each do |_param, value|
-          health += (FAIL_REQUIRED_FILES + required_file + "\n") unless value.key?(required_file)
-          # TODO: Validate that the value for the required file key actually matches a defined key value
-        end
-        # Validate required files against template
-        health += validate(@provider.definition['structure'][required_file]['params'], @required[required_file])
-      end
-      # Validate platform against template
-      health += validate(@provider.definition['structure']['platform']['params'], @components)
-
-      # TODO: if an environment is specified then we are checking the health of the environment rather than platform
-      puts 'list nodes' unless env.empty?
-      if health.length > 0
-        puts health + "\n#{health.lines.count} platform offense(s) detected"
-        false
-      else
-        true
-      end
-    end
-    # rubocop:enable MethodLength, LineLength, CyclomaticComplexity, PerceivedComplexity
-
-    # rubocop:disable MethodLength, LineLength
-    def environment(env)
-      return unless healthy?
-      build_env = YAML.load_file(ENVIRONMENTFILE + env + '.yml').fetch(env)
-      @components.each do |component, _config|
-        begin
-          build_env['components'][component].merge!(@components[component]) { |_key, v1, _v2| v1 } unless build_env['components'][component].nil?
-        rescue => error
-          puts "ERROR: build_env: could not merge component \"#{component}\" for environment \"#{env}\"!"
-          raise error
-        end
-      end
-      build_env['components'].each do |component, config|
-        @required.each do |required_item, _values|
-          build_env['components'][component][required_item] = @required[required_item][build_env['components'][component][required_item]]
-        end
-        config['component_role'] = config['component_role'].gsub('#', component) if config['component_role']
-      end
-      @env_definition = {}
-      build_env['components'].each do |component, config|
-        nodes = []
-        (1..config['count']).each do |n|
-          nodes << node_name(env, component, n)
-        end
-        # build_env['components'][component].merge!(@components[component])
-        build_env['components'][component]['nodes'] = nodes
-      end
-      @env_definition = build_env
-    end
-    # rubocop:enable MethodLength, LineLength
 
     private
 
-    # rubocop:disable MethodLength
-    def node_name(env, component, instance)
-      name = ''
-      @nodename.each do |i|
-        case i
-        when 'environment'
-          name += env
-        when 'component'
-          name += component
-        when 'instance'
-          name += instance.to_s.rjust(2, '0')
-        else
-          name += i
+    def load_provider_definition(provider)
+      provider ? use_provider = provider : use_provider = @platform['provider']
+      VaqueroIo::ProviderPlugin.new(use_provider, @platform['product']).definition['provider']
+    end
+
+    def load_infrastructure(list, location)
+      returnhash = {}
+      list.each do |f|
+        filetoload = File.join(location, f + '.yml')
+        returnhash[f] = load_yaml(filetoload, f)
+      end
+      returnhash
+    end
+
+    def merge_platform
+      # for each role defined by the platform definition
+      @platform['roles'].each do |role, _v|
+        # for each environment defined in the platform definition
+        @platform['environments'].each do |e|
+          # merge into the environment role any platform definition not overridden
+          environments[e][role].merge!(platform['roles'][role]) { |_key, v1, _v2| v1 }
         end
       end
-      name
     end
-    # rubocop:enable MethodLength
 
-    # rubocop:disable MethodLength, LineLength, CyclomaticComplexity, PerceivedComplexity
-    def validate(templatefile, definitionfile)
-      health = ''
-      templatefile.each do |param, value|
-        definitionfile.each do |component, keys|
-          case
-          when value['array']
-            if keys[param].class == Array
-              keys[param].each do |i|
-                health += "Validation error: #{component}:#{param}\n" unless valid?(i, value['array'])
-              end
-            else
-              health += "Validation error: #{component}:#{param}\n"
-            end
-          when value['hash']
-            keys[param].each do |k, v|
-              health += "Validation error: #{component}:#{param}\n" unless valid?(v, value['hash'][k])
-            end
-          else
-            health += "Validation error: #{component}:#{param}\n" unless valid?(keys[param], value)
+    def substitute_infrastructure
+      # for each environment defined in the platform definition
+      @environments.each do |e, roles|
+        # for each role defined in the environment
+        roles.each do |role, _keys|
+          # replace infrastructure tags with the respective keys
+          @platform['infrastructure'].each do |infra|
+            @environments[e][role][infra] = @infrastructure[infra][@environments[e][role][infra]]
           end
         end
       end
-      health
     end
-    # rubocop:enable MethodLength, LineLength, CyclomaticComplexity, PerceivedComplexity
 
-    # rubocop:disable MethodLength, DoubleNegation, CyclomaticComplexity, PerceivedComplexity, LineLength
-    def valid?(value, validate)
-      if value.nil?
-        false
-      else
-        case validate['type']
-        when 'integer'
-          rng = validate['range'].split('..').map { |d| Integer(d) }
-          (value.class != Fixnum) ? false : Range.new(rng[0], rng[1]).member?(value)
-        when 'string'
-          (value.class != String) ? false : value.match(Regexp.new(validate['match']))
-        when 'IP'
-          (value.class != String) ? false : Resolv::IPv4::Regex.match(value)
-        when 'URL'
-          (value.class != String) ? false : value.match(URI.regexp)
-        when 'boolean'
-          !!value == value
-        else
-          false
+    def refactor_environments
+      # for each environment
+      @environments.each do |e, roles|
+        # for each role defined in the environment
+        roles.each do |role, _keys|
+          add_nodename(e, role)
+          runlist_substitute(e, role)
         end
       end
+      File.write(VaqueroIo::LASTENV_FILE, @environments.to_yaml)
     end
-    # rubocop:enable MethodLength, DoubleNegation, CyclomaticComplexity, PerceivedComplexity, LineLength
 
-    # rubocop:disable LineLength
-    def platform_files_exist?
-      fail(IOError, MISSING_PLATFORM) unless File.file?(PLATFORMFILE)
-      unless @provider.nil? # We can't check that everything's present yet...
-        @provider.definition['structure']['require'].each do |required_file|
-          fail(IOError, MISSING_PLATFORM + required_file) unless File.file?(@provider.definition['structure'][required_file]['path'] + required_file + '.yml')
-        end
+    def add_nodename(environment, role)
+      nodename = ''
+      @platform['nodename'].each do |i|
+        nodename += environment if i == 'environment'
+        nodename += role if i == 'role'
+        nodename += i unless i == 'environment' || i == 'role'
       end
-      true
+      @environments[environment][role]['nodename'] = nodename
     end
-    # rubocop:enable LineLength
+
+    def runlist_substitute(environment, role)
+      runlist = []
+      @environments[environment][role]['cmrunlist'].count.times do |r|
+        runlist[r] = @environments[environment][role]['cmrunlist'][r].gsub('#', role)
+      end
+      @environments[environment][role]['cmrunlist'] = runlist
+    end
+
+    def load_yaml(filename, key)
+      fail IOError, "#{filename} not found" unless File.file?(filename)
+      YAML.load_file(filename).fetch(key)
+    end
   end
-  # rubocop:enable all
 end

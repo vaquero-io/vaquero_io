@@ -10,8 +10,6 @@ module VaqueroIo
         case
         when options[:list]
           Gem::Specification.all_names.grep(PROVIDERGEMPATTERN).each { |g| puts g }
-        when options[:create]
-          puts 'TODO: create new providerfile template for developing new plugin gem'
         when options[:discover]
           puts available_providers
         else

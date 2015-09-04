@@ -11,21 +11,25 @@ module VaqueroIo
   # Log defaults
   DEFAULT_LOG_LEVEL = Logger::INFO
   LOG_FILE = '.vaquero_io/logs/vaquero_io.log'.freeze
+  LASTENV_FILE = '.vaquero_io/logs/environments.log'
 
   # plugin conventions
   PROVIDERGEMPATTERN = /^(vaquero_io)/
   PROVIDERFILE = 'Providerfile.yml'
-  PROVIDERS_PATH = "#{File.dirname(__FILE__).chomp('vaquero_io')}providers/"
-  LIST_PLUGINS_PATH = "#{PROVIDERS_PATH + '**/Providerfile.yml'}"
-  TEMPLATE_PROVIDER = "templates/#{PROVIDERFILE}.tt"
-  TMP_INSTALL_FOLDER = "#{Dir.pwd}/tmp-providers"
-  TMP_INSTALL_PROVIDER = "#{TMP_INSTALL_FOLDER}/#{PROVIDERFILE}"
-  ENVIRONMENTFILE = 'environments/'
+
+  # PROVIDERS_PATH = "#{File.dirname(__FILE__).chomp('vaquero_io')}providers/"
+  # LIST_PLUGINS_PATH = "#{PROVIDERS_PATH + '**/Providerfile.yml'}"
+  # TEMPLATE_PROVIDER = "templates/#{PROVIDERFILE}.tt"
+  # TMP_INSTALL_FOLDER = "#{Dir.pwd}/tmp-providers"
+  # TMP_INSTALL_PROVIDER = "#{TMP_INSTALL_FOLDER}/#{PROVIDERFILE}"
+  # ENVIRONMENTFILE = 'environments/'
 
   # provider platform templates
   PLATFORMTEMPLATE = 'lib/vaquero_io/templates/platform.yml.erb'
   INFRASTRUCTURETEMPLATE = 'lib/vaquero_io/templates/infrastructure.yml.erb'
-  PLATFORMFILE = 'platform.yml'
+  PLATFORM = 'platform'
+  INFRASTRUCTURE = 'infrastructure'
+  ENVIRONMENTS = 'environments'
 
   # system variables
   PUTENV_PROVIDER = 'PUTENV_PROVIDER'

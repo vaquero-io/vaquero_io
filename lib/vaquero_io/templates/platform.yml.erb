@@ -8,17 +8,17 @@ platform:
 
   nodename:
     - environment
-    - component
+    - role
 
-  require:
-  <% providerfile['require'].each do |requiredfile| %>
+  infrastructure:
+  <% providerfile['infrastructure'].each do |requiredfile| %>
     - <%= requiredfile %>
   <% end %>
 
   profiles:
 
     defaultprofile: &defaultprofile
-    <% providerfile['require'].each do |requiredfile| %>
+    <% providerfile['infrastructure'].each do |requiredfile| %>
       <%= requiredfile %>:
     <% end %>
     <% providerfile['platform']['params'].each do |k, v| %>
