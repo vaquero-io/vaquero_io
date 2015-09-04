@@ -17,7 +17,6 @@ require 'vaquero_io/command'
 require 'vaquero_io/showutils'
 require 'vaquero_io/providerplugin'
 require 'vaquero_io/platform'
-require 'vaquero_io/build'
 #
 module VaqueroIo
   # global variables and environment initialization

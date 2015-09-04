@@ -22,7 +22,7 @@ Feature: Provider plugin gems
     When I run `vaquero_io provider --discover`
     Then the output should contain "vaquero_io"
 
-  Scenario: List default provider when specified
+  Scenario: List default provider when no argument specified but defined in .env
 
     Given a file named ".vaquero_io/.env" with:
     """
@@ -44,7 +44,7 @@ Feature: Provider plugin gems
     When I run `vaquero_io provider`
     Then the output should contain "RANDOM"
 
-  Scenario: List default provider when none specified
+  Scenario: List default provider when no argument and not defined in .env
 
     Given a file named ".vaquero_io/.env" with:
     """

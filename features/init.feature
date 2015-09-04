@@ -6,7 +6,7 @@ Feature: New platform definition files for specified provider
 
   Scenario: Request help with init command
 
-    When I run `vaquero_io help init`
+    When I get general help for "vaquero_io help init"
     Then the exit status should be 0
     And the output should contain "Usage:"
     And the output should contain "init PLATFORM"
