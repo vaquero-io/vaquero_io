@@ -23,7 +23,7 @@ describe 'vaquero_io' do
       expect(VaqueroIo::LOG_FILE.frozen?).to eq true
     end
 
-    it '.stdout_log and .file_log are Logger' do
+    it '.stdout_log and .file_log are Loggers' do
       expect(VaqueroIo.config.stdout_log).to be_a Logger
       expect(VaqueroIo.config.local_log).to be_a Logger
     end

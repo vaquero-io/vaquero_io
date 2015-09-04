@@ -55,23 +55,19 @@ module VaqueroIo
     method_option :provider,
                   aliases: '-p',
                   type: :string,
-                  desc: 'Specify vaquero_io provider gem'
+                  desc: 'Specify vaquero_io provider gem (or or .env)'
     def init(*args)
       do_command('init', 'init', args)
     end
 
-    desc 'validate [ENV]|all', DESC[:cmd_validate]
-    method_options %w( provider -p ) => :string
-    def validate(env = '')
-      provider = options[:provider] ? VaqueroIo::Provider.new(options[:provider]) : nil
-      puts HEALTHY if VaqueroIo::Platform.new(provider).healthy?(env)
-    end
+    # desc 'validate [ENV]|all', DESC[:cmd_validate]
+    # method_options %w( provider -p ) => :string
+    # def validate(env = '')
+    #   provider = options[:provider] ? VaqueroIo::Provider.new(options[:provider]) : nil
+    #   puts HEALTHY if VaqueroIo::Platform.new(provider).healthy?(env)
+    # end
 
-    desc 'show [ENV|{all}]', 'Print current platform state information'
-    method_option :test,
-                  aliases: '-t',
-                  type: :boolean,
-                  desc: 'Include serverspec test results'
+    desc 'show [INFRA|ENV|{all}]', 'Print current platform state information'
     method_option :config_env,
                   aliases: '-c',
                   type: :boolean,
@@ -80,32 +76,44 @@ module VaqueroIo
       do_command('show', 'show', args)
     end
 
-    desc 'create ENV [-c COMPONENT [-n NODE#..#]]',
-         'Provision and boot strap an ENV, COMPONENT, or NODE(s)'
+    desc 'create ENV {-r ROLE {-n NODE#..#}}',
+         'Provision and boot strap an ENV, ROLE, or NODE(s)'
+    method_option :role,
+                  aliases: '-r',
+                  type: :boolean,
+                  desc: 'Create only specific ROLE within ENV'
+    method_option :node,
+                  aliases: '-n',
+                  type: :boolean,
+                  desc: 'Create only node(#range) in ROLE within ENV'
     def create(*args)
       do_command('create', 'create', args)
     end
-    #
-    # desc 'validate [ENV|{all}]', DESC[:cmd_validate]
-    # def validate(*args)
-    #   do_command('validate', 'validate', args)
-    # end
-    #
-    # desc 'set ENV', DESC[:cmd_set]
-    # def set(*args)
-    #   do_command('set', 'set', args)
-    # end
-    #
-    # desc 'destroy ENV [-c COMPONENT [-n NODE#..#]]', DESC[:cmd_destroy]
-    # def destroy(*args)
-    #   do_command('destroy', 'destroy', args)
-    # end
+
+    desc 'destroy ENV {-r ROLE {-n NODE#..#}}',
+         'Delete or de-provision an ENV, ROLE, or NODE(s)'
+    method_option :role,
+                  aliases: '-r',
+                  type: :boolean,
+                  desc: 'Delete only specific ROLE within ENV'
+    method_option :node,
+                  aliases: '-n',
+                  type: :boolean,
+                  desc: 'Delete only node(#range) in ROLE within ENV'
+    def destroy(*args)
+      do_command('destroy', 'destroy', args)
+    end
+
+    desc 'validate [ENV|{all}]', 'Test providerfile validations against full platform or ENV'
+    def validate(*args)
+      do_command('validate', 'validate', args)
+    end
     #
     # desc 'test [ENV|{all}]', DESC[:cmd_test]
     # def test(*args)
     #   do_command('test', 'test', args)
     # end
     # register(VaqueroIo::Plugin, 'plugin', 'plugin COMMAND', DESC_PLUGIN)
-    register(VaqueroIo::Build, 'build', 'build TARGET', DESC_BUILD)
+    # register(VaqueroIo::Build, 'build', 'build TARGET', DESC_BUILD)
   end
 end

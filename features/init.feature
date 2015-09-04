@@ -56,6 +56,87 @@ Feature: New platform definition files for specified provider
       |infrastructure/vcenter.yml|
       |infrastructure/compute.yml|
       |infrastructure/network.yml|
+    And the file "platform.yml" should contain:
+    """
+    platform:
+      product: PLATFORM
+      provider: vaquero_io_provider_template
+      plugin_version: 2.0.0
+
+      environments:
+        -
+
+      nodename:
+        - environment
+        - role
+
+      infrastructure:
+        - vcenter
+        - network
+        - compute
+
+      profiles:
+
+        defaultprofile: &defaultprofile
+          vcenter:
+          network:
+          compute:
+          count:
+          cmserver:
+          cmrunlist:
+            -
+          addresses:
+            -
+
+      roles:
+
+        example:
+          <<: *defaultprofile
+    """
+    And the file "infrastructure/vcenter.yml" should contain:
+    """
+    vcenter:
+
+      default: &default
+        timezone:
+        datacenter:
+        imagefolder:
+        destfolder:
+        datastore:
+        domain:
+        dnsips:
+            -
+
+      dev:
+        <<: *default
+    """
+    And the file "infrastructure/compute.yml" should contain:
+    """
+    compute:
+
+      default: &default
+        ram:
+        cpu:
+        image:
+        drive:
+          mount:
+          capacity:
+
+      dev:
+        <<: *default
+    """
+    And the file "infrastructure/network.yml" should contain:
+    """
+    network:
+
+      default: &default
+        vlandid:
+        gateway:
+        netmask:
+
+      dev:
+        <<: *default
+    """
 
   Scenario: Create new platform definition file with no specified provider but a valid default
 
