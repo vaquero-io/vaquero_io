@@ -57,7 +57,6 @@ end
 
 # gem.add_development_dependency "pry"
 # gem.add_development_dependency "winrm-transport"
-# gem.add_development_dependency "minitest"
 # gem.add_development_dependency "mocha"
 # gem.add_development_dependency "countloc"
 # gem.add_development_dependency "maruku"
