@@ -1,7 +1,7 @@
 <%= f %>:
 
   default: &default
-  <% providerfile[f]['params'].each do |k,v| %>
+  <% providerfile[f].each do |k,v| %>
     <%= k %>:
     <% if v.first[0] == 'array' %>
         -

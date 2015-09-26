@@ -36,7 +36,7 @@ module VaqueroIo
       puts "vaquero_io #{VaqueroIo::VERSION}"
     end
 
-    desc 'provider {options}', 'Manage Provider plugins and definition files'
+    desc 'provider {options}', 'Provider plugin gem information'
     method_option :list,
                   aliases: '-l',
                   type: :boolean,
@@ -59,13 +59,6 @@ module VaqueroIo
     def init(*args)
       do_command('init', 'init', args)
     end
-
-    # desc 'validate [ENV]|all', DESC[:cmd_validate]
-    # method_options %w( provider -p ) => :string
-    # def validate(env = '')
-    #   provider = options[:provider] ? VaqueroIo::Provider.new(options[:provider]) : nil
-    #   puts HEALTHY if VaqueroIo::Platform.new(provider).healthy?(env)
-    # end
 
     desc 'show [INFRA|ENV|{all}]', 'Print current platform state information'
     method_option :config_env,
@@ -104,7 +97,7 @@ module VaqueroIo
       do_command('destroy', 'destroy', args)
     end
 
-    desc 'validate [ENV|{all}]', 'Test providerfile validations against full platform or ENV'
+    desc 'validate', 'Test providerfile validations against platform definition'
     def validate(*args)
       do_command('validate', 'validate', args)
     end
@@ -113,7 +106,6 @@ module VaqueroIo
     # def test(*args)
     #   do_command('test', 'test', args)
     # end
-    # register(VaqueroIo::Plugin, 'plugin', 'plugin COMMAND', DESC_PLUGIN)
     # register(VaqueroIo::Build, 'build', 'build TARGET', DESC_BUILD)
   end
 end

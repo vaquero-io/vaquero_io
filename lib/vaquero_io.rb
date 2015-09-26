@@ -8,6 +8,9 @@ require 'fileutils'
 require 'dotenv'
 require 'erubis'
 require 'yaml'
+require 'english'
+require 'uri'
+require 'resolv'
 require 'command_line_reporter'
 require 'vaquero_io/version'
 require 'vaquero_io/config'
@@ -17,6 +20,7 @@ require 'vaquero_io/command'
 require 'vaquero_io/showutils'
 require 'vaquero_io/providerplugin'
 require 'vaquero_io/platform'
+require 'vaquero_io/validateutils'
 #
 module VaqueroIo
   # global variables and environment initialization

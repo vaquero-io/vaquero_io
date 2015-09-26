@@ -13,14 +13,11 @@ module VaqueroIo
     def initialize(provider = nil)
       @platform = load_yaml(VaqueroIo::PLATFORM + '.yml', VaqueroIo::PLATFORM)
       @definition = load_provider_definition(provider)
-      @infrastructure = load_infrastructure(@platform[VaqueroIo::INFRASTRUCTURE],
-                                            VaqueroIo::INFRASTRUCTURE)
-      @environments = load_infrastructure(@platform[VaqueroIo::ENVIRONMENTS],
-                                          VaqueroIo::ENVIRONMENTS)
+      @infrastructure = load_infrastructure(VaqueroIo::INFRASTRUCTURE)
+      @environments = load_environments(VaqueroIo::ENVIRONMENTS)
 
       merge_platform
-      @pre_env = Marshal.load(Marshal.dump(@environments))
-      substitute_infrastructure
+      substitute_infrastructure unless @platform[VaqueroIo::INFRASTRUCTURE][0].nil?
       refactor_environments
     end
 
@@ -28,10 +25,22 @@ module VaqueroIo
 
     def load_provider_definition(provider)
       provider ? use_provider = provider : use_provider = @platform['provider']
-      VaqueroIo::ProviderPlugin.new(use_provider, @platform['product']).definition['provider']
+      plugin = VaqueroIo::ProviderPlugin.new(use_provider, @platform['product'])
+      fail StandardError, "Incorrect provider gem version #{plugin.version}" unless \
+        plugin.version == @platform['plugin_version']
+      plugin.definition['provider']
     end
 
-    def load_infrastructure(list, location)
+    def load_infrastructure(infra)
+      load_multiple(@platform[infra], infra) unless @platform[infra][0].nil?
+    end
+
+    def load_environments(env)
+      fail StandardError, 'Must define at least one environment' if @platform[env][0].nil?
+      load_multiple(@platform[env], env)
+    end
+
+    def load_multiple(list, location)
       returnhash = {}
       list.each do |f|
         filetoload = File.join(location, f + '.yml')
@@ -49,8 +58,11 @@ module VaqueroIo
           environments[e][role].merge!(platform['roles'][role]) { |_key, v1, _v2| v1 }
         end
       end
+      @pre_env = Marshal.load(Marshal.dump(@environments))
     end
 
+    # Still fails ABC even when I move the inner interators to sep method
+    # rubocop:disable AbcSize
     def substitute_infrastructure
       # for each environment defined in the platform definition
       @environments.each do |e, roles|
@@ -58,11 +70,15 @@ module VaqueroIo
         roles.each do |role, _keys|
           # replace infrastructure tags with the respective keys
           @platform['infrastructure'].each do |infra|
+            # fails where infra defined in platform but not found in role
+            fail StandardError, "#{infra} not found in #{e} environment, #{role} role" \
+            unless @environments[e][role].key?(infra)
             @environments[e][role][infra] = @infrastructure[infra][@environments[e][role][infra]]
           end
         end
       end
     end
+    # rubocop:enable AbcSize
 
     def refactor_environments
       # for each environment
@@ -70,9 +86,11 @@ module VaqueroIo
         # for each role defined in the environment
         roles.each do |role, _keys|
           add_nodename(e, role)
+          # substitute role name for # in cmrunlist entries
           runlist_substitute(e, role)
         end
       end
+      # copy last platform class environment build to log directory
       File.write(VaqueroIo::LASTENV_FILE, @environments.to_yaml)
     end
 

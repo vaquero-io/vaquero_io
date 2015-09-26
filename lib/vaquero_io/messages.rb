@@ -32,7 +32,7 @@ module VaqueroIo
   MSG_NEW_SUCCESS = 'Platform definition files successfully created'
 
   DESC_HEALTH = 'Health check of all platform files and list all nodes for ENVIRONMENT'
-  HEALTHY = 'Success: Platform definition files exist and parameters match type requirements'
+  HEALTHY = 'Platform definition validated successfully'
 
   DESC_BUILD = 'Provision vms in an environment definition'
   DESC_BUILD_ALL = 'Build everything for the named environment'

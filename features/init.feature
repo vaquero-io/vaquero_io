@@ -115,10 +115,11 @@ Feature: New platform definition files for specified provider
     compute:
 
       default: &default
+        windows:
         ram:
         cpu:
         image:
-        drive:
+        disk:
           mount:
           capacity:
 
@@ -130,7 +131,7 @@ Feature: New platform definition files for specified provider
     network:
 
       default: &default
-        vlandid:
+        vlanid:
         gateway:
         netmask:
 

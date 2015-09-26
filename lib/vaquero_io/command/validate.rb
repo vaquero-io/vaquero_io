@@ -5,9 +5,10 @@ module VaqueroIo
   module Command
     # command
     class Validate < VaqueroIo::Command::Base
+      include VaqueroIo::ValidateUtils
       # Invoke the command.
       def call
-        puts 'validate command'
+        puts VaqueroIo::HEALTHY if validate(VaqueroIo::Platform.new)
       end
     end
   end

@@ -21,7 +21,7 @@ platform:
     <% providerfile['infrastructure'].each do |requiredfile| %>
       <%= requiredfile %>:
     <% end %>
-    <% providerfile['platform']['params'].each do |k, v| %>
+    <% providerfile['platform'].each do |k, v| %>
       <%= k %>:
       <% if v.first[0] == 'array' %>
         -
