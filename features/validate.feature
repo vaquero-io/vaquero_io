@@ -18,7 +18,7 @@ Feature: Platform definition validate
     platform:
       product: demo
       provider: vaquero_io_provider_template
-      plugin_version: 2.0.0
+      plugin_version: 2.0.1
 
       environments:
         - dev
