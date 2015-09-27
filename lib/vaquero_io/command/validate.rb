@@ -8,7 +8,7 @@ module VaqueroIo
       include VaqueroIo::ValidateUtils
       # Invoke the command.
       def call
-        puts VaqueroIo::HEALTHY if validate(VaqueroIo::Platform.new)
+        puts VaqueroIo::HEALTHY if validate_platform(VaqueroIo::Platform.new)
       end
     end
   end
