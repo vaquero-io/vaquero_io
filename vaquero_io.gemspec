@@ -20,7 +20,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.required_ruby_version = '>= 2.0.0'
 
-  # gem.add_dependency "safe_yaml",           "~> 1.0"
   gem.add_dependency 'thor',                  '~> 0.19'
   gem.add_dependency 'remote_syslog_logger',  '~> 1.0'    # support for papertrail.com
   gem.add_dependency 'logglier',              '~> 0.2'    # support for loggly.com
@@ -34,15 +33,8 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'aruba',           '~> 0.6'
   gem.add_development_dependency 'cucumber',        '~> 2.0'
   gem.add_development_dependency 'rspec',           '~> 3.0'
-  # gem.add_development_dependency 'fakefs',          '~> 0.6'
-  # gem.add_development_dependency 'simplecov',       '~> 0.10'
   # gem.add_development_dependency 'yard',            '~> 0.8'
-  # gem.add_development_dependency 'guard',           '~> 2.0'
-  # gem.add_development_dependency 'guard-rubocop',   '~> 1.2'
-  # gem.add_development_dependency 'guard-rspec',     '~> 4.5'
-  # gem.add_development_dependency 'guard-cucumber',  '~> 1.6.0'
-  # gem.add_development_dependency 'guard-yard',      '>= 2.1.4'
-  gem.add_development_dependency 'vaquero_io_provider_template'
+  gem.add_development_dependency 'vaquero_io_provider_template', '2.0.1'
   #
 end
 
