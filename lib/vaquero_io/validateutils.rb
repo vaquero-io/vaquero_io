@@ -31,7 +31,6 @@ module VaqueroIo
       # than the other way around custom attributes will not cause an error
       #
       # for each platform component in the providerfile
-      #puts definition['platform'].to_yaml
       definition['platform'].each do |component, shouldbe|
         validate_profile_component(component, shouldbe, environments)
       end
