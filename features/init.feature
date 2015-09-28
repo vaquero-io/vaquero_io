@@ -61,7 +61,7 @@ Feature: New platform definition files for specified provider
     platform:
       product: PLATFORM
       provider: vaquero_io_provider_template
-      plugin_version: 2.0.1
+      plugin_version: 2.0.2
 
       environments:
         -

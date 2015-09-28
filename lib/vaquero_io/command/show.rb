@@ -14,6 +14,8 @@ module VaqueroIo
         ENV_VARS.each { |v| puts "#{v}: #{ENV[v]}" } if options[:config_env]
       end
 
+      private
+
       def show_commands
         show_infra_cmd(VaqueroIo::Platform.new) if args[0] == 'infra'
         show_env_cmd(VaqueroIo::Platform.new) if args[0] == 'env'

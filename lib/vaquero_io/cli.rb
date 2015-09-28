@@ -73,12 +73,24 @@ module VaqueroIo
          'Provision and boot strap an ENV, ROLE, or NODE(s)'
     method_option :role,
                   aliases: '-r',
-                  type: :boolean,
+                  type: :string,
                   desc: 'Create only specific ROLE within ENV'
     method_option :node,
                   aliases: '-n',
-                  type: :boolean,
+                  type: :string,
                   desc: 'Create only node(#range) in ROLE within ENV'
+    method_option :puser,
+                  type: :string,
+                  desc: 'Provisioner virtualization USERNAME'
+    method_option :ppass,
+                  type: :string,
+                  desc: 'Provisioner virtualization PASSWORD'
+    method_option :nuser,
+                  type: :string,
+                  desc: 'Running Node USERNAME'
+    method_option :npass,
+                  type: :string,
+                  desc: 'Running Node PASSWORD'
     def create(*args)
       do_command('create', 'create', args)
     end
@@ -87,11 +99,11 @@ module VaqueroIo
          'Delete or de-provision an ENV, ROLE, or NODE(s)'
     method_option :role,
                   aliases: '-r',
-                  type: :boolean,
+                  type: :string,
                   desc: 'Delete only specific ROLE within ENV'
     method_option :node,
                   aliases: '-n',
-                  type: :boolean,
+                  type: :string,
                   desc: 'Delete only node(#range) in ROLE within ENV'
     def destroy(*args)
       do_command('destroy', 'destroy', args)
