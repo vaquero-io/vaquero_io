@@ -22,14 +22,14 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'thor',                  '~> 0.19'
   gem.add_dependency 'remote_syslog_logger',  '~> 1.0'    # support for papertrail.com
-  gem.add_dependency 'logglier',              '~> 0.2'    # support for loggly.com
+  gem.add_dependency 'logglier',              '~> 0.3'    # support for loggly.com
   gem.add_dependency 'dotenv',                '~> 2.0'
   gem.add_dependency 'erubis',                '~> 2.7'
-  gem.add_dependency 'command_line_reporter'
+  gem.add_dependency 'command_line_reporter', '~> 3.3'
 
   gem.add_development_dependency 'bundler',         '~> 1.7'
   gem.add_development_dependency 'rake',            '~> 10.0'
-  gem.add_development_dependency 'rubocop',         '~> 0.30'
+  gem.add_development_dependency 'rubocop',         '~> 0.34'
   gem.add_development_dependency 'aruba',           '~> 0.6'
   gem.add_development_dependency 'cucumber',        '~> 2.0'
   gem.add_development_dependency 'rspec',           '~> 3.0'

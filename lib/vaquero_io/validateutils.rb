@@ -3,7 +3,7 @@ module VaqueroIo
   module ValidateUtils
     def validate_platform(pf)
       # At this point, trying to keep the platform definition DRY I haven't repeated
-      # the platform key in each environment definition. You define it once in platform.yml
+      # the platform key in each environment definition. You define it once in platform.bak
       # and then each environment definition is just the differences. But this also means
       # that the logic to loop through the keys for validation looks a bit different for
       # the platform keys than for the infrastructure keys. Hence, this section feels
